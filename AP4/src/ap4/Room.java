@@ -11,25 +11,7 @@ package ap4;
  */
 public class Room {
     
-    static int width = 16;
-    static int height = 12;
-    
-    Tile[][] tiles;
-    
-    boolean[] exits = new boolean[4];
-    
-    
-    
-    Room(boolean north, boolean east, boolean south, boolean west){
-        tiles = new Tile[width][height];
-        
-        exits[0] = north;
-        exits[1] = east;
-        exits[2] = south;
-        exits[3] = west;
-        
-        createExits();
-    }
+    static int width = 16;static int height = 12;Tile[][] tiles;boolean[] exits = new boolean[4];Room(boolean north, boolean east, boolean south, boolean west){tiles = new Tile[width][height];exits[0] = north;exits[1] = east;exits[2] = south;exits[3] = west;createExits();}
     
     void createExits(){
         if(exits[0] == true){//if north exit
