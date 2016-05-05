@@ -12,9 +12,12 @@ package ap4;
 public class Tile {
       
     boolean exit;
+    boolean solid;//false = can walk into
+    
     
     Tile(){
+        solid = false;
         exit = false;
     }
-    
+     
 }
