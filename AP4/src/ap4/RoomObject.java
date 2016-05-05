@@ -1,11 +1,20 @@
 package ap4;
 
-public class RoomObject {
+import java.awt.Graphics;
 
+public class RoomObject {
+  
+    float x;
+    float y;
     
-   RoomObject()
+    //consider 3dmondel vs images
+    
+   RoomObject(float x, float y)
    {
+       this.x = x;
+       this.y = y;
        
+            
        
          
        
@@ -13,4 +22,27 @@ public class RoomObject {
        
    }
      
+   
+   
+   
+   void movement()
+   {
+       
+       
+       
+       
+       
+   }
+   
+   
+   
+   void paint(Graphics g)
+   {
+      //paint the images we put in 
+       
+       
+       
+       
+       
+   }
 }
