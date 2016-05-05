@@ -6,5 +6,5 @@ public class AP4 {
         
         System.out.println("shish"); //srciuytfjhf
     }
-    //ONJIURUSRIASODNIOSADIOSAIODJSIOAjXDIOJDIOJSAIODJOSAj
+    
 }
