@@ -15,10 +15,7 @@ public class Room {
     static int height = 12;
     
     Tile[][] tiles;
-    
     boolean[] exits = new boolean[4];
-    
-    
     
     Room(boolean north, boolean east, boolean south, boolean west){
         tiles = new Tile[width][height];
