@@ -4,10 +4,11 @@ import java.awt.Graphics;
 
 public class RoomObject {
   
-    private float x;
-    private float y;
+   public float x;
+   public float y;
     
     //consider 3dmodel vs images on gui
+    //
     
    RoomObject(float x, float y)
    {
@@ -16,15 +17,7 @@ public class RoomObject {
       
    }
      
-  float getX()
-  {
-      return this.x;
-  }
   
-  float getY()
-  {
-      return this.y;
-  }
   
   
   
@@ -33,7 +26,19 @@ public class RoomObject {
   
    void draw(Graphics g)
    {
-      //paint the images we put in 
       
+
+
+
+//paint the images we put in   
    }
+   
+   void update()
+   {
+       
+       
+       
+       
+       
+   } 
 }
