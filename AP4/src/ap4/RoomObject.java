@@ -4,8 +4,8 @@ import java.awt.Graphics;
 
 public class RoomObject {
   
-    private float x;
-    private float y;
+    float x;
+    float y;
     
     //consider 3dmodel vs images on gui
     //
