@@ -22,6 +22,9 @@ public class GamePanel extends JPanel {
     double drawTime;
     double cycleTime;
     Thread loop;
+    final float hertz = 30;
+    final float seconds = 1 / hertz;
+    final long nanoseconds = (int)(1000000000 * seconds);
     
     public GamePanel(Game game)
     {
@@ -46,9 +49,6 @@ public class GamePanel extends JPanel {
         @Override
         public void run() {
             try {
-                final float hertz = 30;
-                final float seconds = 1 / hertz;
-                final long nanoseconds = (int)(1000000000 * seconds);
                 while(running)
                 {
                     long startUpdateTime = System.nanoTime();
