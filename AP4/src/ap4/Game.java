@@ -13,4 +13,9 @@ import ap4.graphics.Camera;
  */
 public class Game {
     public Camera camera;
+    
+    
+    
+    
+    
 }
