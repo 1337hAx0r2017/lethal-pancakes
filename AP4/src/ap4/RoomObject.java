@@ -4,8 +4,8 @@ import java.awt.Graphics;
 
 public class RoomObject {
   
-    float x;
-    float y;
+   public float x;
+   public float y;
     
     //consider 3dmodel vs images on gui
     //
@@ -17,15 +17,7 @@ public class RoomObject {
       
    }
      
-  float getX()
-  {
-      return this.x;
-  }
   
-  float getY()
-  {
-      return this.y;
-  }
   
   
   
