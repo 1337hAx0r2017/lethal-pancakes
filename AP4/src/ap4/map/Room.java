@@ -5,6 +5,9 @@
  */
 package ap4.map;
 
+import ap4.RoomObject;
+import java.util.ArrayList;
+
 /**
  *
  * @author kileys.2017
@@ -14,11 +17,15 @@ public class Room {
     static int width = 16;
     static int height = 12;
     
+    ArrayList<RoomObject> objects;
+    
     Tile[][] tiles;
     boolean[] exits = new boolean[4];
     
-    Room(boolean north, boolean east, boolean south, boolean west){
+    Room(boolean north, boolean east, boolean south, boolean west, ArrayList<RoomObject> objects){
         tiles = new Tile[width][height];
+        
+        this.objects = objects;
         
         exits[0] = north;
         exits[1] = east;
