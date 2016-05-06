@@ -5,6 +5,8 @@
  */
 package ap4;
 
+import java.awt.Graphics;
+
 /**
  *
  * @author kardzhalao.2017
@@ -18,5 +20,18 @@ float y;
         this.y = y;
         
     }
+    
+    void draw(Graphics g)
+    {
+        
+    }
+    
+    void update(Game game)
+    {
+        
+        
+    }
+    
+    
     
 }
