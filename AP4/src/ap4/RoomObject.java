@@ -16,10 +16,7 @@ public class RoomObject {
       
    }
      
-   void movement()
-   {   
-       
-   }
+  
   
    void paint(Graphics g)
    {

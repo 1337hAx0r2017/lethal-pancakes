@@ -9,6 +9,14 @@ package ap4;
  *
  * @author kileys.2017
  */
-public class Character {
+public class Character extends RoomObject{
+
+    //LIVING OBJECTS IN ROOMS
+    Character(float x, float y){
+        super(x, y);
+    }
     
+    void movement(){
+        
+    }
 }
