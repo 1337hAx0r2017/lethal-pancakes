@@ -29,15 +29,19 @@ public class Player extends Character{
     void update(Game game, float time){
         if(up){
             move(game, 0, time*moveSpeed);
+            up = false;
         }
         if(down){
-            
+            move(game, 0, -1*time*moveSpeed);
+            down = false;
         }
         if(right){
-            
+            move(game,  time*moveSpeed, 0);
+            right = false;
         }
         if(left){
-            
+            move(game, -1*time*moveSpeed, 0);
+            left = false;
         }
     }
 }

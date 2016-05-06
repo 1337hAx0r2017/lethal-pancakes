@@ -31,6 +31,7 @@ public abstract class Character extends RoomObject{
     void draw(Graphics g){
         
     }
+    
     void move(Game game, float dx, float dy){//actually moving(giving parameters for moving in x and y directions
         
         
@@ -38,21 +39,5 @@ public abstract class Character extends RoomObject{
         this.y += dy;
         //animation stuff
     }
-    
-    void attack(){//attacking animation
-        
-    }
-    
-    void defend(){//animation for when they are taking damage(ex. make red or throw up arms)
-        
-    }
-    
-    void die(){//die animation
-        
-    }
-    
-    
-    //inherits paint
-    
-    
+
 }
