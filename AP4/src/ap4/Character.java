@@ -43,6 +43,7 @@ public class Character extends RoomObject{
         
     }
     
+    
     //inherits paint
     
     
