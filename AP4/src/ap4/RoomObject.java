@@ -2,12 +2,13 @@ package ap4;
 
 import java.awt.Graphics;
 
-public class RoomObject {
+public abstract class RoomObject {
   
-    float x;
-    float y;
+   public float x;
+   public float y;
     
     //consider 3dmodel vs images on gui
+    
     
    RoomObject(float x, float y)
    {
@@ -16,14 +17,9 @@ public class RoomObject {
       
    }
      
-   void movement()
-   {   
-       
-   }
-  
-   void paint(Graphics g)
-   {
-      //paint the images we put in 
-      
-   }
+   abstract void draw(Graphics g);
+   //paint the images we put in   
+   
+   abstract void update(Game game);//will be different in 
+        
 }
