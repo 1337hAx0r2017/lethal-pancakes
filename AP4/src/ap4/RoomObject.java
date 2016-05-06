@@ -8,6 +8,7 @@ public class RoomObject {
     private float y;
     
     //consider 3dmodel vs images on gui
+    //
     
    RoomObject(float x, float y)
    {
@@ -33,7 +34,19 @@ public class RoomObject {
   
    void draw(Graphics g)
    {
-      //paint the images we put in 
       
+
+
+
+//paint the images we put in   
    }
+   
+   void update()
+   {
+       
+       
+       
+       
+       
+   } 
 }
