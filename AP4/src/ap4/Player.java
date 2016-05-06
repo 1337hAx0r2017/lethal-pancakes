@@ -13,12 +13,31 @@ import java.util.ArrayList;
  */
 public class Player extends Character{
     
+    boolean up;
+    boolean down;
+    boolean right;
+    boolean left;
+    
     ArrayList<InvItem> items;
     
-    Player(float x, float y){
-        super(x, y);
+    Player(float x, float y, float moveSpeed){
+        super(x, y, moveSpeed);
         
         items = new ArrayList<InvItem>();
     }
     
+    void update(Game game, float time){
+        if(up){
+            move(game, 0, time*moveSpeed);
+        }
+        if(down){
+            
+        }
+        if(right){
+            
+        }
+        if(left){
+            
+        }
+    }
 }

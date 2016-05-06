@@ -5,24 +5,32 @@
  */
 package ap4;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 /**
  *
  * @author kileys.2017
  */
-public class Character extends RoomObject{
+public abstract class Character extends RoomObject{
 
     
-    
+    final float moveSpeed;
     
     //LIVING OBJECTS IN ROOMS
-    Character(float x, float y){
-        super(x, y);
+    Character(float x, float y, float moveSpeed){
         
+        super(x, y);
+        this.moveSpeed = moveSpeed;
         
     }
     
+    abstract void update(Game game, float time);
+        
+    
+    void draw(Graphics g){
+        
+    }
     void move(Game game, float dx, float dy){//actually moving(giving parameters for moving in x and y directions
         
         
