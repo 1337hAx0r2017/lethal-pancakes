@@ -6,7 +6,7 @@ public abstract class RoomObject {
    public float x;
    public float y;     
    RoomObject(float x, float y)
-   {
+   { 
        this.x = x;
        this.y = y;
       //consider 3dmodel vs images on gui    
