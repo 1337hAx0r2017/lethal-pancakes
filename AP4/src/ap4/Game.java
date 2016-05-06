@@ -5,10 +5,12 @@
  */
 package ap4;
 
+import ap4.graphics.Camera;
+
 /**
  *
  * @author kileys.2017
  */
 public class Game {
-    
+    public Camera camera;
 }
