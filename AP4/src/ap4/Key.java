@@ -8,9 +8,11 @@ public class Key {
     
     public boolean isDown = false;
     public boolean wasDown = false;
+    public String keyName = "";
     
     public Key(String keyName, Controller c)
     {
+        this.keyName = keyName;
         c.getInputMap().put(KeyStroke.getKeyStroke(keyName), "hit" + keyName);
         c.getActionMap().put("hit" + keyName, new AbstractAction() {
         @Override

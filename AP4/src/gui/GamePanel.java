@@ -1,26 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
+import ap4.Controller;
 import ap4.Game;
 import java.awt.Graphics;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JPanel;
 
-/**
- *
- * @author ed.mason
- */
 public class GamePanel extends GeneralGamePanel {
+    
     Game game;
+    Controller c;
     
     public GamePanel(Game game)
     {
         this.game = game;
+        
+        // Keys
+        c = new Controller();
+        add(c);
+        c.addKey("UP");
+        c.addKey("DOWN");
+        c.addKey("LEFT");
+        c.addKey("RIGHT");
     }
     
     

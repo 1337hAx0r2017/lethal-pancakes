@@ -1,5 +1,6 @@
 package gui;
 
+import ap4.Controller;
 import ap4.Game;
 import javax.swing.JFrame;
 
