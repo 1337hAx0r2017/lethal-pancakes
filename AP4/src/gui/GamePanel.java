@@ -23,10 +23,13 @@ public class GamePanel extends GeneralGamePanel {
     }
     
     
+    @Override
     public void update(float time)
     {
+        c.update();
     }
     
+    @Override
     public void paint(Graphics g)
     {
         super.paint(g);

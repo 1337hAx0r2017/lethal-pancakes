@@ -16,4 +16,13 @@ public class Controller extends JComponent {
     {
         keys.add(new Key(keyName, this));
     }
+    
+    public void update()
+    {
+        for (Key k : keys)
+        {
+            k.update();
+            System.out.println(k.keyName + " down: " + k.isDown);
+        }
+    }
 }
