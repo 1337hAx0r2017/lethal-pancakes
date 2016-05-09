@@ -17,7 +17,7 @@ public abstract class RoomObject {
     
     public float distanceTo(float x, float y)
     {
-        return (float)Math.sqrt((x * x) + (y * y));
+        return (float)Math.sqrt(Math.pow(x - this.x, 2) + Math.pow(y - this.y, 2));
     }
     
     public float distanceTo(RoomObject object)
