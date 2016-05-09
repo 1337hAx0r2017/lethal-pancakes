@@ -18,7 +18,7 @@ public class Room {
     Tile[][] tiles;
     boolean[] exits = new boolean[4];
     
-    Room(boolean north, boolean east, boolean south, boolean west, ArrayList<RoomObject> objects, int x, int y){
+    Room(boolean north, boolean east, boolean south, boolean west, int x, int y){//??ArrayList<RoomObject> objects,
         tiles = new Tile[width][height];
         
         this.x = x;

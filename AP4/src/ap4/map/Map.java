@@ -15,9 +15,9 @@ public class Map {
         int lY;//largest y direction room
         
         for(int i = 0; i < nRooms; i++){
-            
-            rooms.add(new Room(false, false, false, false,))
-            
+            if(i == 0){
+                rooms.add(new Room(false, false, false, false, 5,5));
+            }
         }
         
     }
