@@ -6,6 +6,10 @@ import java.util.ArrayList;
 
 public class Room {
     
+    int x;
+    int y;
+    
+    
     static int width = 16;
     static int height = 12;
     
@@ -14,8 +18,11 @@ public class Room {
     Tile[][] tiles;
     boolean[] exits = new boolean[4];
     
-    Room(boolean north, boolean east, boolean south, boolean west, ArrayList<RoomObject> objects){
+    Room(boolean north, boolean east, boolean south, boolean west, int x, int y){//??ArrayList<RoomObject> objects,
         tiles = new Tile[width][height];
+        
+        this.x = x;
+        this.y = y;
         
         this.objects = objects;
         
