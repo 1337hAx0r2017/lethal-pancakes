@@ -12,7 +12,7 @@ public abstract class RoomObject {
         x = tX;
         y = tY;
         
-        // Consider 3dmodel vs images on gui    
+        // Consider 3dmodel vs images on gui
     } 
     
     public float distanceTo(float x, float y)
