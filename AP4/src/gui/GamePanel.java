@@ -18,10 +18,6 @@ public class GamePanel extends GeneralGamePanel {
         // Keys
         c = new Controller();
         add(c);
-        c.addKey("UP");
-        c.addKey("DOWN");
-        c.addKey("LEFT");
-        c.addKey("RIGHT");
     }
     
     @Override
