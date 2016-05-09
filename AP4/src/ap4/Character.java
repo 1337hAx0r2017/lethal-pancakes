@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ap4;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-/**
- *
- * @author kileys.2017
- */
 public abstract class Character extends RoomObject{
 
     

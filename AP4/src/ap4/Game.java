@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ap4;
 
 import ap4.graphics.Camera;
@@ -16,7 +12,7 @@ import java.util.ArrayList;
 public class Game {
     public Camera camera;
     
-    public ArrayList<Room> rooms;
+    public Room[][] rooms;
     
     public Game()
     {
@@ -24,7 +20,7 @@ public class Game {
         // will need rockobjects, enemies etc
         
         
-        
+         
     }
     
     
