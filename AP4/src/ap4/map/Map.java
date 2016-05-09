@@ -12,15 +12,8 @@ import java.util.ArrayList;
  *
  * @author kardzhalao.2017
  */
-public class Map {
-    
-    ArrayList<Room> rooms;
-    
-    Map(Game game)
-    {
-        this.rooms = game.rooms;
-    }
-    
+public class Map {  
+    Room[][] rooms;Map(Game game) { this.rooms = rooms; } 
     void createMap()
     {
         
