@@ -5,8 +5,8 @@ import ap4.map.Room;
 import java.util.ArrayList;
 
 public class Game {
-    public Camera camera;
     
+    public Camera camera;
     public Room[][] rooms;
     
     public Game()
