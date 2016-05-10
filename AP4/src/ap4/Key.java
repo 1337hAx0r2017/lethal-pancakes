@@ -6,9 +6,9 @@ import javax.swing.KeyStroke;
 
 public class Key {
     
-    public boolean isDown = false;
-    public boolean wasDown = false;
-    public String keyName = "";
+    private boolean isDown = false;
+    private boolean wasDown = false;
+    private String keyName = "";
     
     public Key(String keyName, Controller c)
     {
@@ -33,4 +33,11 @@ public class Key {
     {
         wasDown = isDown;
     }
+    
+    public String getName()
+    { return keyName; }
+    public boolean getDown()
+    { return isDown; }
+    public boolean getWasDown()
+    { return wasDown; }
 }
