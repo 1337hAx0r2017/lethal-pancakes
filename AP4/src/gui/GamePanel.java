@@ -86,8 +86,8 @@ public class GamePanel extends GeneralGamePanel {
         game.camera.beginDraw(g);
         game.camera.setWorld(Matrix.IDENTITY);
         
-        //model.draw(game.camera, 0, .25f);
-        //model.draw(game.camera, -1, 0);
+        model.draw(game.camera, 0, .25f);
+        model.draw(game.camera, -1, 0);
         
         /*for(int x = 0; x < 16; x++)
             for(int y = 0; y < 12; y++)
