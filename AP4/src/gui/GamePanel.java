@@ -22,14 +22,11 @@ public class GamePanel extends GeneralGamePanel {
     Game game;
     Controller c;
     
-    Game game;
-    Controller c;
-    
     //GouraudColorModelGraphic[][] testGraphics;
     TextureModelGraphic model;
-    public GamePanel(Game game)
+    public GamePanel()
     {
-        this.game = game;
+        game = new Game();
         //game.camera.setTilt(-10);
         //game.camera.setPosition(8, 10, 6);
         game.camera.setPosition(0, .5f, 2);

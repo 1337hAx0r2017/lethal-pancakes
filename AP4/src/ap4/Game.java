@@ -15,7 +15,7 @@ public class Game {
    
         // will initialize every room here, with their own sets of objects and enemies
         // will need rockobjects, enemies etc     
-       playGame();
+       //playGame();
     }
 
     void playGame()
@@ -40,4 +40,3 @@ public class Game {
          }
     }
 }
->>>>>>> origin/dev
