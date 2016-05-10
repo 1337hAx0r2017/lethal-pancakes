@@ -24,8 +24,6 @@ public class GamePanel extends GeneralGamePanel {
     Game game;
     Controller control;
     
-    //GouraudColorModelGraphic[][] testGraphics;
-    TextureModelGraphic model;
     public GamePanel()
     {
         game = new Game();
@@ -36,40 +34,6 @@ public class GamePanel extends GeneralGamePanel {
         game.attachController(control);
         add(control);
         
-        /*testGraphics = new GouraudColorModelGraphic[16][12];
-        for(int x = 0; x < 16; x++)
-            for(int y = 0; y < 12; y++)
-            {
-                testGraphics[x][y] = new GouraudColorModelGraphic(
-                        new ColorVertex[]
-                        {
-                            new ColorVertex(0, 0, 0, 0xff000000 | ((x * 255 / 15) << 8) | (y * 255 / 15)),
-                            new ColorVertex(1, 0, 0, 0xff000000 | ((x * 255 / 15) << 8) | (y * 255 / 15)),
-                            new ColorVertex(0, 0, 1, 0xff000000 | ((x * 255 / 15) << 8) | (y * 255 / 15)),
-                            new ColorVertex(1, 0, 1, 0xff000000 | ((x * 255 / 15) << 8) | (y * 255 / 15)),
-                        },
-                        new short[] { 0, 1, 2, 2, 1, 3 });
-            }*/
-        try{
-            //GouraudColorModelGraphic[][] testGraphics;
-            model = new TextureModelGraphic(
-                            new TextureVertex[]
-                            {
-                                new TextureVertex(0, 0, 0, 0, 0),
-                                new TextureVertex(1, 0, 0, 1, 0),
-                                new TextureVertex(0, 0, 1, 0, 1),
-                                new TextureVertex(1, 0, 1, 1, 1),
-                            },
-                            new short[]
-                            { 
-                                0, 1, 2, 
-                                2, 1, 3
-                            },
-                            ImageIO.read(new File("47610129.jpg")));
-        }
-        catch(IOException ex)
-        {
-        }
     }
     
     @Override
@@ -84,16 +48,6 @@ public class GamePanel extends GeneralGamePanel {
         super.paint(g);
         
         game.camera.beginDraw(g);
-        game.camera.setWorld(Matrix.IDENTITY);
-        
-        model.draw(game.camera, 0, .25f);
-        model.draw(game.camera, -1, 0);
-        
-        /*for(int x = 0; x < 16; x++)
-            for(int y = 0; y < 12; y++)
-            {
-                testGraphics[x][y].draw(game.camera, x, y);
-            }*/
         
         
         //Draw ALL THE THINGS
