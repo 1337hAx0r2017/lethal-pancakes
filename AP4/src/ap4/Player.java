@@ -18,6 +18,7 @@ public class Player extends Character{
         items = new ArrayList<InvItem>();
     }
     
+    @Override
     void update(Game game, float time){
         if(up){
             move(game, 0, time*moveSpeed);
