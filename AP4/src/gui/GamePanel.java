@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
+import ap4.Controller;
 import ap4.Game;
 import ap4.graphics.ColorVertex;
 import ap4.graphics.GouraudColorModelGraphic;
@@ -21,12 +17,11 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-/**
- *
- * @author ed.mason
- */
 public class GamePanel extends GeneralGamePanel {
+    
     Game game;
+    Controller c;
+    
     //GouraudColorModelGraphic[][] testGraphics;
     TextureModelGraphic model;
     public GamePanel(Game game)
@@ -72,11 +67,13 @@ public class GamePanel extends GeneralGamePanel {
         }
     }
     
-    
+    @Override
     public void update(float time)
     {
+        c.update();
     }
     
+    @Override
     public void paint(Graphics g)
     {
         super.paint(g);
