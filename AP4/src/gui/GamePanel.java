@@ -10,6 +10,8 @@ import ap4.graphics.TextureVertex;
 import ap4.graphics.Vector3;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -84,8 +86,8 @@ public class GamePanel extends GeneralGamePanel {
         game.camera.beginDraw(g);
         game.camera.setWorld(Matrix.IDENTITY);
         
-        model.draw(game.camera, 0, .25f);
-        model.draw(game.camera, -1, 0);
+        //model.draw(game.camera, 0, .25f);
+        //model.draw(game.camera, -1, 0);
         
         /*for(int x = 0; x < 16; x++)
             for(int y = 0; y < 12; y++)
@@ -99,13 +101,24 @@ public class GamePanel extends GeneralGamePanel {
         
         game.camera.endDraw(g);
         
-        g.setColor(Color.BLACK);
-        g.drawString("Update Time: " + ((int)(getUpdateTime() * 1000)) + "ms (" +  ((int)(1.0/getUpdateTime())) +"Hz)",1, 21);
-        g.drawString("Draw Time: " + ((int)(getDrawTime() * 1000)) + "ms (" +  ((int)(1.0/getDrawTime())) +"Hz)",1, 41);
-        g.drawString("Cycle Time: " + ((int)(getCycleTime() * 1000)) + "ms (" +  ((int)(1.0/getCycleTime())) +"Hz)",1, 61);
-        g.setColor(Color.WHITE);
-        g.drawString("Update Time: " + ((int)(getUpdateTime() * 1000)) + "ms (" +  ((int)(1.0/getUpdateTime())) +"Hz)",0, 20);
-        g.drawString("Draw Time: " + ((int)(getDrawTime() * 1000)) + "ms (" +  ((int)(1.0/getDrawTime())) +"Hz)",0, 40);
-        g.drawString("Cycle Time: " + ((int)(getCycleTime() * 1000)) + "ms (" +  ((int)(1.0/getCycleTime())) +"Hz)",0, 60);
+        // Debug stuff
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        
+        g2d.setColor(new Color(220, 220, 220, 240));
+        g2d.fillRect(0, 0, 203, 65);
+        
+        g2d.setColor(Color.BLACK);
+        g2d.drawString("Update Time: " + ((int)(getUpdateTime() * 1000)) + "ms (" +  ((int)(1.0/getUpdateTime())) +"Hz)", 2, 12);
+        g2d.drawString("Draw Time: " + ((int)(getDrawTime() * 1000)) + "ms (" +  ((int)(1.0/getDrawTime())) +"Hz)", 2, 28);
+        g2d.drawString("Cycle Time: " + ((int)(getCycleTime() * 1000)) + "ms (" +  ((int)(1.0/getCycleTime())) +"Hz)", 2, 44);
+        g2d.drawString("Keys; U:" + control.up.getDown() + " D:" + control.down.getDown() + " L:" + control.left.getDown() + " R:" + control.right.getDown(), 2, 60);
+
+        g2d.setColor(Color.WHITE);
+        /*g2d.drawString("Update Time: " + ((int)(getUpdateTime() * 1000)) + "ms (" +  ((int)(1.0/getUpdateTime())) +"Hz)", 1, 12);
+        g2d.drawString("Draw Time: " + ((int)(getDrawTime() * 1000)) + "ms (" +  ((int)(1.0/getDrawTime())) +"Hz)", 1, 28);
+        g2d.drawString("Cycle Time: " + ((int)(getCycleTime() * 1000)) + "ms (" +  ((int)(1.0/getCycleTime())) +"Hz)", 1, 44);
+        g2d.drawString("Keys; U:" + control.up.getDown() + " D:" + control.down.getDown() + " L:" + control.left.getDown() + " R:" + control.right.getDown(), 1, 60);*/
     }
 }
