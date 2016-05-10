@@ -22,6 +22,9 @@ public class GamePanel extends GeneralGamePanel {
     Game game;
     Controller c;
     
+    Game game;
+    Controller c;
+    
     //GouraudColorModelGraphic[][] testGraphics;
     TextureModelGraphic model;
     public GamePanel(Game game)

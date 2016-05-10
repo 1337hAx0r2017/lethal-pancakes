@@ -1,24 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ap4.map;
 
-/**
- *
- * @author kileys.2017
- */
+import ap4.RoomObject;
+import java.util.ArrayList;
+
 public class Room {
+    
+    int x;
+    int y;
+    
     
     static int width = 16;
     static int height = 12;
     
+    ArrayList<RoomObject> objects;
+    
     Tile[][] tiles;
     boolean[] exits = new boolean[4];
     
-    Room(boolean north, boolean east, boolean south, boolean west){
+    Room(boolean north, boolean east, boolean south, boolean west, int x, int y){//??ArrayList<RoomObject> objects,
         tiles = new Tile[width][height];
+        
+        this.x = x;
+        this.y = y;
+        
+        this.objects = objects;
         
         exits[0] = north;
         exits[1] = east;

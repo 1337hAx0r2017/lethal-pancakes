@@ -4,22 +4,30 @@ import java.awt.Graphics;
 
 public abstract class RoomObject {
   
-   public float x;
-   public float y;
-    
-    //consider 3dmodel vs images on gui
-    
-    
-   RoomObject(float x, float y)
-   {
-       this.x = x;
-       this.y = y;
-      
-   }
-     
-   abstract void draw(Graphics g);
-   //paint the images we put in   
+    public float x;
+    public float y;
    
-   abstract void update(Game game);//will be different in 
+    RoomObject(float tX, float tY) // Consider later how graphics will be added in
+    { 
+        x = tX;
+        y = tY;
         
+        // Consider 3dmodel vs images on gui
+    } 
+    
+    public float distanceTo(float x, float y)
+    {
+        return (float)Math.sqrt(Math.pow(x - this.x, 2) + Math.pow(y - this.y, 2));
+    }
+    
+    public float distanceTo(RoomObject object)
+    {
+        return distanceTo(object.x, object.y);
+    }
+    
+    // Paint the images we put in
+    abstract void draw(Graphics g);
+    
+    // Will be different in object3d and image object
+    abstract void update(Game game, float time);
 }
