@@ -60,7 +60,7 @@ public class GamePanel extends GeneralGamePanel {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         
-        g2d.setColor(new Color(220, 220, 220, 240));
+        g2d.setColor(new Color(220, 220, 220, 100));
         g2d.fillRect(0, 0, 203, 65);
         
         g2d.setColor(Color.BLACK);
