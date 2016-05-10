@@ -46,10 +46,19 @@ public class Vector3 {
     {
         return new Vector3(a.x * b, a.y * b, a.z * b);
     }
+    public static float distanceSquared(Vector3 a, Vector3 b)
+    {
+        Vector3 d = subtract(a, b);
+        return dot(d, d);
+    }
     public static Vector3 normalize(Vector3 v)
     {
         float length = (float)Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
         return new Vector3(v.x/length,v.y/length,v.z/length);
+    }
+    public static Vector3 lerp(Vector3 v1, Vector3 v2, float f)
+    {
+        return new Vector3(v1.x * (1-f) + v2.x * f, v1.y * (1-f) + v2.y * f, v1.z * (1-f) + v2.z * f);
     }
     public String toString()
     {

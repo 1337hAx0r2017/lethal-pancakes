@@ -52,6 +52,7 @@ public class Vector4 {
     {
         return new Vector3(x/w, y/w, z/w);
     }
+    @Override
     public String toString()
     {
         return "(" + x + ", " + y + ", " + z + ", " + w + ")";
