@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 public class Game {
     
+    Controller control;
+    
     public Camera camera;
     public Game()
     {
@@ -38,5 +40,13 @@ public class Game {
          {
              new Map(15);
          }
+    }
+    public void update(float time)
+    {
+        control.update();
+    }
+    public void attachController(Controller control)
+    {
+        this.control = control; 
     }
 }

@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 public class GamePanel extends GeneralGamePanel {
     
     Game game;
-    Controller c;
+    Controller control;
     
     //GouraudColorModelGraphic[][] testGraphics;
     TextureModelGraphic model;
@@ -30,6 +30,9 @@ public class GamePanel extends GeneralGamePanel {
         //game.camera.setTilt(-10);
         //game.camera.setPosition(8, 10, 6);
         game.camera.setPosition(0, .5f, 2);
+        control = new Controller();
+        game.attachController(control);
+        add(control);
         
         /*testGraphics = new GouraudColorModelGraphic[16][12];
         for(int x = 0; x < 16; x++)
@@ -70,7 +73,7 @@ public class GamePanel extends GeneralGamePanel {
     @Override
     public void update(float time)
     {
-        c.update();
+        game.update(time);
     }
     
     @Override

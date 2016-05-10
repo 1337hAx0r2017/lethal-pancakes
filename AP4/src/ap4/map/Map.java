@@ -8,7 +8,7 @@ public class Map {
     Room[][] rooms;
     Random r = new Random();
     
-    Map(int nRooms){
+    public Map(int nRooms){
         ArrayList<Room> rooms = new ArrayList<Room>();//temporary storage for rooms
         
         int lX;//largest x direction room

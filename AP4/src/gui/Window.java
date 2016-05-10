@@ -10,13 +10,11 @@ import javax.swing.JFrame;
  */
 public class Window extends JFrame {
     
-    Game game;
     GamePanel panel;
     
     public Window()
     {
-        game = new Game();
-        panel = new GamePanel(game);
+        panel = new GamePanel();
         setSize(800, 600);
         setTitle("Lethal Pancakes");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
