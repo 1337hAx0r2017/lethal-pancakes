@@ -43,10 +43,8 @@ public class Game {
     }
     public void update(float time)
     {
-        control.update();
     }
     public void attachController(Controller control)
     {
-        this.control = control; 
     }
 }

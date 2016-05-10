@@ -26,7 +26,4 @@ public abstract class PixelShader {
         int b = (((c1>>0)&0xff) * (int)(l1 * 255) + ((c2>>0)&0xff) * (int)(l2 * 255) + ((c3>>0)&0xff) * (int)(l3 * 255)) / 255;
         return 0xff000000 | (r<<16) | (g<<8) | (b<<0);
     }
-    
-    Light light;
-    public void setPreferredLight(Light light) { this.light = light; }
 }

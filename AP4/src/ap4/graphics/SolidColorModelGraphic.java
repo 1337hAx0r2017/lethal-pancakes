@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
  */
 public class SolidColorModelGraphic extends ModelGraphic {
 
-    static class SolidColorPixelShader extends PixelShader
+    static class SolidColorPixelShader extends LightPixelShader
     {
         int color;
         public SolidColorPixelShader(int color)
@@ -22,7 +22,15 @@ public class SolidColorModelGraphic extends ModelGraphic {
         }
         @Override
         public int colorAt(Vertex v1, Vertex v2, Vertex v3, float l1, float l2, float l3) {
-            return color;
+            if(light != null)
+            {
+                int c1 = light.calculateColor(color, world.transform(v1.position), normal);
+                int c2 = light.calculateColor(color, world.transform(v2.position), normal);
+                int c3 = light.calculateColor(color, world.transform(v3.position), normal);
+                return 0xff000000 | interpolate(c1, c2, c3, l1, l2, l3);
+            }
+            else
+                return color;
         }
     }
 

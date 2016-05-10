@@ -14,7 +14,7 @@ public class Window extends JFrame {
     
     public Window()
     {
-        panel = new GamePanel();
+        panel = new ModelTestGamePanel();
         setSize(800, 600);
         setTitle("Lethal Pancakes");
         setDefaultCloseOperation(EXIT_ON_CLOSE);

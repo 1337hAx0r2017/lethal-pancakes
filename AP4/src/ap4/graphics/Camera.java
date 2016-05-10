@@ -257,6 +257,12 @@ public class Camera {
     {
         byte result = prepareVertices(v1, v2, v3);
         
+        if(shader instanceof LightPixelShader && ((LightPixelShader)shader).light != null)
+        {
+            ((LightPixelShader)shader).setWorld(world);
+            ((LightPixelShader)shader).setNormal(v1, v2, v3);
+        }
+        
         if((result & 7) == 3) // three vertices used
         {
             int x1 = (int)(width / 2 * (projectionvbuf[0*4+0]/projectionvbuf[0*4+3] + 1)); 
@@ -324,9 +330,13 @@ public class Camera {
     }
     public void beginDraw(Graphics g)
     {
+        beginDraw(g, 0xff000000);
+    }
+    public void beginDraw(Graphics g, int color)
+    {
         for(int i = 0; i < pixels.length; i++)
         {
-            pixels[i] = 0;
+            pixels[i] = color;
             zbuf[i] = 0;
         }
         setView(x, y, z, pan, tilt);

@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
  */
 public class TextureModelGraphic extends ModelGraphic {
 
-    static class TexturePixelShader extends PixelShader
+    static class TexturePixelShader extends LightPixelShader
     {
         BufferedImage texture;
         int[] data;
@@ -42,7 +42,14 @@ public class TextureModelGraphic extends ModelGraphic {
             float vv1 = ((TextureVertex)v1).v;
             float vv2 = ((TextureVertex)v2).v;
             float vv3 = ((TextureVertex)v3).v;
-            return textureSample(interpolate(vu1, vu2, vu3, l1, l2, l3), interpolate(vv1, vv2, vv3, l1, l2, l3));
+            int c = textureSample(interpolate(vu1, vu2, vu3, l1, l2, l3), interpolate(vv1, vv2, vv3, l1, l2, l3));
+            if(light != null)
+            {
+                int l = light.calculateLighting(interpolate(world.transform(v1.position), world.transform(v2.position), world.transform(v3.position), l1, l2, l3), normal);
+                return Light.multiply(c, l);
+            }
+            else
+                return c;
         }
         
     }

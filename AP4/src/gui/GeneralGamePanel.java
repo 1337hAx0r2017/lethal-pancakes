@@ -5,6 +5,7 @@
  */
 package gui;
 
+import java.awt.Graphics;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -23,6 +24,7 @@ public abstract class GeneralGamePanel extends JPanel {
     final float seconds = 1 / hertz;
     final long nanoseconds = (int)(1000000000 * seconds);
     public abstract void update(float time);
+    public abstract void draw(Graphics g);
     
     public GeneralGamePanel()
     {
@@ -56,12 +58,10 @@ public abstract class GeneralGamePanel extends JPanel {
                     update(seconds);
                     long endUpdateTime = System.nanoTime();
                     repaint();
-                    long endDrawTime = System.nanoTime();
-                    int sleepTime = (int)(nanoseconds - (endDrawTime - startUpdateTime));
+                    int sleepTime = (int)(nanoseconds - (endUpdateTime - startUpdateTime));
                     Thread.sleep(sleepTime / 1000000, sleepTime % 1000000);
                     long endSleepTime = System.nanoTime();
                     updateTime = (endUpdateTime - startUpdateTime) / 1000000000.0;
-                    drawTime = (endDrawTime - endUpdateTime) / 1000000000.0;
                     cycleTime = (endSleepTime - startUpdateTime) / 1000000000.0;
                 }
             } catch (InterruptedException ex) {
@@ -69,6 +69,15 @@ public abstract class GeneralGamePanel extends JPanel {
             }
         }
         
+    }
+    
+    public void paint(Graphics g)
+    {
+        super.paint(g);
+        long startDrawTime = System.nanoTime();
+        draw(g);
+        long endDrawTime = System.nanoTime();
+        drawTime = (endDrawTime - startDrawTime) / 1000000000.0;
     }
     
 }

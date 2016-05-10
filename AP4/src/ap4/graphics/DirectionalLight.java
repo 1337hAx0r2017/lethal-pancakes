@@ -12,6 +12,10 @@ package ap4.graphics;
 public class DirectionalLight extends Light {
 
     Vector3 direction;
+    public DirectionalLight(int color, float x, float y, float z)
+    {
+        this(color, Vector3.normalize(new Vector3(x,y,z)));
+    }
     public DirectionalLight(int color, Vector3 direction)
     {
         this.direction = Vector3.multiply(direction,-1);
