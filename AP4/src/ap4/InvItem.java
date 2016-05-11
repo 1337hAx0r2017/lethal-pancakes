@@ -1,17 +1,8 @@
 package ap4;
-
-public class InvItem {
+import ap4.graphics.Graphic;
+public abstract class InvItem {
  
-    void Use()
-    {
-        
-    }
-    void Drop()
-    {
-        
-    }
-    String Examine()
-    {
-        return "This is an item.";
-    }
+    Graphic graphic;
+    abstract void Use(RoomObject o);
 }
+// ertese
