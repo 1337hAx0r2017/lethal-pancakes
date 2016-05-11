@@ -43,9 +43,8 @@ public class GamePanel extends GeneralGamePanel {
     }
     
     @Override
-    public void paint(Graphics g)
+    public void draw(Graphics g)
     {
-        super.paint(g);
         
         game.camera.beginDraw(g);
         
