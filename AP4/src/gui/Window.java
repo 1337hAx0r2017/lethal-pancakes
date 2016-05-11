@@ -10,7 +10,7 @@ import javax.swing.JFrame;
  */
 public class Window extends JFrame {
     
-    GamePanel panel;
+    GeneralGamePanel panel;
     
     public Window()
     {
