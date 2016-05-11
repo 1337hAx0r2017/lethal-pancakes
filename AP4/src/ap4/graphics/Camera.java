@@ -332,9 +332,13 @@ public class Camera {
                     float z = z1 * l1 + z2 * l2 + z3 * l3;
                     if(z < zbuf[y * width + x])
                         continue;
-                    zbuf[y * width + x] = z;
                 }
-                pixels[y * width + x] = shader.colorAt(v1, v2, v3, l1, l2, l3);
+                int sample = shader.colorAt(v1, v2, v3, l1, l2, l3);
+                if(((sample>>24)&0xff)<=192)
+                {
+                    zbuf[y * width + x] = z;
+                    pixels[y * width + x] = sample;
+                }
             }
     }
     public void beginDraw(Graphics g)
