@@ -1,17 +1,7 @@
 package ap4;
-
-public class InvItem {
+public abstract class InvItem {
  
-    void Use()
-    {
-        
-    }
-    void Drop()
-    {
-        
-    }
-    String Examine()
-    {
-        return "This is an item.";
-    }
+    
+    abstract void Use(RoomObject o);
 }
+// ertese
