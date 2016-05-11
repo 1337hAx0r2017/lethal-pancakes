@@ -25,6 +25,7 @@ public abstract class GeneralGamePanel extends JPanel {
     final long nanoseconds = (int)(1000000000 * seconds);
     public abstract void update(float time);
     public abstract void draw(Graphics g);
+    boolean drawing;
     
     public GeneralGamePanel()
     {
@@ -73,11 +74,16 @@ public abstract class GeneralGamePanel extends JPanel {
     
     public void paint(Graphics g)
     {
-        super.paint(g);
-        long startDrawTime = System.nanoTime();
-        draw(g);
-        long endDrawTime = System.nanoTime();
-        drawTime = (endDrawTime - startDrawTime) / 1000000000.0;
+        if(!drawing)
+        {
+            super.paint(g);
+            long startDrawTime = System.nanoTime();
+            drawing = true;
+            draw(g);
+            drawing = false;
+            long endDrawTime = System.nanoTime();
+            drawTime = (endDrawTime - startDrawTime) / 1000000000.0;
+        }
     }
     
 }

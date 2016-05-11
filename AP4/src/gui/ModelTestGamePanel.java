@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class ModelTestGamePanel extends GamePanel {
+public class ModelTestGamePanel extends GeneralGamePanel {
     
     Game game;
     Light light;
@@ -72,7 +72,7 @@ public class ModelTestGamePanel extends GamePanel {
         {
         }
         
-        light = new PointLight(0xffffff, -1,1, 1, 1);
+        //light = new PointLight(0xffffff, -1,1, 1, 1);
         //light = new DirectionalLight(0xffffff, -1,-1, 1);
     }
     
@@ -81,13 +81,14 @@ public class ModelTestGamePanel extends GamePanel {
     {
         game.update(time);
         theta += time;
-        ((PointLight)light).source = new Vector3((float)Math.cos(theta), 1, (float)Math.sin(theta));
+        //((PointLight)light).source = new Vector3((float)Math.cos(theta), 1, (float)Math.sin(theta));
+        //((DirectionalLight)light).setDirection((float)Math.cos(theta), -1, (float)Math.sin(theta));
     }
     
     @Override
     public void draw(Graphics g)
     {
-        super.draw(g);
+
         
         game.camera.beginDraw(g);
         game.camera.setWorld(Matrix.IDENTITY);
@@ -119,7 +120,6 @@ public class ModelTestGamePanel extends GamePanel {
         g2d.drawString("Update Time: " + ((int)(getUpdateTime() * 1000)) + "ms (" +  ((int)(1.0/getUpdateTime())) +"Hz)", 2, 12);
         g2d.drawString("Draw Time: " + ((int)(getDrawTime() * 1000)) + "ms (" +  ((int)(1.0/getDrawTime())) +"Hz)", 2, 28);
         g2d.drawString("Cycle Time: " + ((int)(getCycleTime() * 1000)) + "ms (" +  ((int)(1.0/getCycleTime())) +"Hz)", 2, 44);
-        g2d.drawString("Keys; U:" + control.up.getDown() + " D:" + control.down.getDown() + " L:" + control.left.getDown() + " R:" + control.right.getDown(), 2, 60);
 
         g2d.setColor(Color.WHITE);
         /*g2d.drawString("Update Time: " + ((int)(getUpdateTime() * 1000)) + "ms (" +  ((int)(1.0/getUpdateTime())) +"Hz)", 1, 12);
