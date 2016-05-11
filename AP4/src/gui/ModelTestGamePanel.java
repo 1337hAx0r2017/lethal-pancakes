@@ -7,10 +7,12 @@ import ap4.graphics.DirectionalLight;
 import ap4.graphics.GouraudColorModelGraphic;
 import ap4.graphics.Light;
 import ap4.graphics.Matrix;
+import ap4.graphics.ModelGraphic;
 import ap4.graphics.PointLight;
 import ap4.graphics.TextureModelGraphic;
 import ap4.graphics.TextureVertex;
 import ap4.graphics.Vector3;
+import ap4.models.DemoCubeModel;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -27,6 +29,7 @@ public class ModelTestGamePanel extends GeneralGamePanel {
     Game game;
     Light light;
     double theta;
+    ModelGraphic cube;
     
     //GouraudColorModelGraphic[][] testGraphics;
     TextureModelGraphic model;
@@ -72,6 +75,8 @@ public class ModelTestGamePanel extends GeneralGamePanel {
         {
         }
         
+        cube = new DemoCubeModel();
+        
         light = new PointLight(0xffffff, -1,1, 1, 1);
         //light = new DirectionalLight(0xffffff, -1,-1, 1);
     }
@@ -96,6 +101,10 @@ public class ModelTestGamePanel extends GeneralGamePanel {
         model.draw(game.camera, 0, 0, .25f, 1, light);
         model.draw(game.camera, -1, 0, 0, 1, light);
         
+        Matrix world = Matrix.multiply(Matrix.multiply(Matrix.multiply(Matrix.multiply(Matrix.createRotationZ(Math.PI/4), Matrix.createRotationX(Math.PI/4)), Matrix.createRotationY(-2*theta)), Matrix.createScale(.25f)), Matrix.createTranslation(0, .25f, 0));
+        
+        cube.draw(game.camera, world, light);
+       
         /*for(int x = 0; x < 16; x++)
             for(int y = 0; y < 12; y++)
             {
