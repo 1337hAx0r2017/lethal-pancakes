@@ -72,7 +72,7 @@ public class ModelTestGamePanel extends GeneralGamePanel {
         {
         }
         
-        //light = new PointLight(0xffffff, -1,1, 1, 1);
+        light = new PointLight(0xffffff, -1,1, 1, 1);
         //light = new DirectionalLight(0xffffff, -1,-1, 1);
     }
     
@@ -81,7 +81,7 @@ public class ModelTestGamePanel extends GeneralGamePanel {
     {
         game.update(time);
         theta += time;
-        //((PointLight)light).source = new Vector3((float)Math.cos(theta), 1, (float)Math.sin(theta));
+        ((PointLight)light).source = new Vector3((float)Math.cos(theta), 1, (float)Math.sin(theta));
         //((DirectionalLight)light).setDirection((float)Math.cos(theta), -1, (float)Math.sin(theta));
     }
     
