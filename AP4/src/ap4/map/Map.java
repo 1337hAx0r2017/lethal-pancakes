@@ -14,9 +14,13 @@ public class Map {
         int lX; //largest x direction room
         int lY; //largest y direction room
         
-        for(int i = 0; i < nRooms; i++){
-            if(i == 0){
-                rooms.add(new Room(false, false, false, false, 5,5));
+        for(int i = 0; i < nRooms; i++)
+        {
+            if (i == 0)
+                rooms.add(new Room(new boolean[] {false, false, false, false}, 5,5));
+            else
+            {
+                
             }
         }
     }

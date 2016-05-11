@@ -1,4 +1,3 @@
-
 package ap4.map;
 
 import ap4.RoomObject;
@@ -9,7 +8,6 @@ public class Room {
     int x;
     int y;
     
-    
     static int width = 16;
     static int height = 12;
     
@@ -18,7 +16,8 @@ public class Room {
     Tile[][] tiles;
     boolean[] exits = new boolean[4];
     
-    Room(boolean north, boolean east, boolean south, boolean west, int x, int y){//??ArrayList<RoomObject> objects,
+    public Room(boolean[] ex, int x, int y) //??ArrayList<RoomObject> objects,
+    {
         tiles = new Tile[width][height];
         
         this.x = x;
@@ -26,10 +25,10 @@ public class Room {
         
         this.objects = objects;
         
-        exits[0] = north;
-        exits[1] = east;
-        exits[2] = south;
-        exits[3] = west;
+        exits[0] = ex[0];
+        exits[1] = ex[1];
+        exits[2] = ex[2];
+        exits[3] = ex[3];
         
         createExits();
     }
@@ -84,6 +83,4 @@ public class Room {
             return false;
         }
     }
-    
-    
 }
