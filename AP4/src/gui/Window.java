@@ -1,16 +1,9 @@
 package gui;
-
-import ap4.Controller;
-import ap4.Game;
 import javax.swing.JFrame;
 
-/**
- *
- * @author ed.mason
- */
 public class Window extends JFrame {
     
-    GeneralGamePanel panel;
+    GamePanel panel;
     
     public Window()
     {
