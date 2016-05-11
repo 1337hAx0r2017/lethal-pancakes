@@ -2,7 +2,7 @@ package ap4;
 
 import java.util.ArrayList;
 
-public class Player extends Character{
+public class Player extends Character {
     
     ArrayList<InvItem> items;
     
