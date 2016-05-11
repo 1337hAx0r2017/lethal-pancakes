@@ -11,20 +11,25 @@ package ap4.graphics;
  */
 public class DirectionalLight extends Light {
 
-    Vector3 direction;
+    Vector3 directionToLight;
     public DirectionalLight(int color, float x, float y, float z)
     {
         this(color, Vector3.normalize(new Vector3(x,y,z)));
     }
     public DirectionalLight(int color, Vector3 direction)
     {
-        this.direction = Vector3.multiply(direction,-1);
+        this.directionToLight = Vector3.multiply(direction,-1);
         this.color = color;
+    }
+    
+    public void setDirection(float x, float y, float z)
+    {
+        directionToLight = Vector3.normalize(new Vector3(-x, -y, -z));
     }
     
     @Override
     int calculateLighting(Vector3 position, Vector3 normal) {
-        float f = Math.max(Vector3.dot(direction, normal), 0);
+        float f = Math.max(Vector3.dot(directionToLight, normal), 0);
         return multiply(color, f);
     }
     
