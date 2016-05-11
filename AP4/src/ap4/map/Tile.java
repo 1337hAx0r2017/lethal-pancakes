@@ -1,15 +1,18 @@
-
 package ap4.map;
 
 public class Tile {
       
-    boolean exit;
-    boolean solid;//false = can walk into
+    public boolean exit = false;
+    public boolean solid = false; //false = can walk through
+    public int type = 0;
+    /** types
+     * 0: air
+    */
     
-    
-    Tile(){
+    Tile()
+    {
         solid = false;
         exit = false;
+        type = 0;
     }
-     
 }
