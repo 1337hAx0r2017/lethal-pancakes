@@ -93,8 +93,8 @@ public class ModelTestGamePanel extends GeneralGamePanel {
         game.camera.beginDraw(g);
         game.camera.setWorld(Matrix.IDENTITY);
         
-        model.draw(game.camera, 0, 0, .25f, 1, light);
-        model.draw(game.camera, -1, 0, 0, 1, light);
+        //model.draw(game.camera, 0, 0, .25f, 1, light);
+        //model.draw(game.camera, -1, 0, 0, 1, light);
         
         /*for(int x = 0; x < 16; x++)
             for(int y = 0; y < 12; y++)

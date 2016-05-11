@@ -25,15 +25,15 @@ public abstract class Character extends RoomObject
         
     }
     
-    void move(Game game, boolean left, boolean right, boolean up, boolean down) // Moving with butter
+    void move(Game game, Controller controls) // Moving with butter
     {
-        if (left)
+        if (controls.left.getDown())
             xvel -= 1.5;
-        if (right)
+        if (controls.right.getDown())
             xvel += 1.5;
-        if (up)
+        if (controls.up.getDown())
             yvel -= 1.5;
-        if (down)
+        if (controls.down.getDown())
             yvel += 1.5;
         
         this.x += xvel;

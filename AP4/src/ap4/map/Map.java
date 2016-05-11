@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Map {
+    
     Room[][] rooms;
     Random r = new Random();
     
