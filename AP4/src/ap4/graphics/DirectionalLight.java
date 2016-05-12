@@ -30,7 +30,7 @@ public class DirectionalLight extends Light {
     @Override
     int calculateLighting(Vector3 position, Vector3 normal) {
         float f = Math.max(Vector3.dot(directionToLight, normal), 0);
-        return multiply(color, f);
+        return 0xff000000 | multiply(color, f);
     }
     
 }
