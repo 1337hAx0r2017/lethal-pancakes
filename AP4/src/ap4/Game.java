@@ -41,19 +41,19 @@ public class Game {
         System.out.println("Welcome to Lethal Pancakes, pick a map size: easy(1), medium(2), hard(3), or EXTREME(4) map.");
         if (input.nextInt() == 1)
         {
-            new Map(5);
+            new Map(5, 3, 3);
         }
         else if (input.nextInt() == 2)
         {
-            new Map(8);
+            new Map(8, 4, 4);
         }
         else if (input.nextInt() == 3)
         {
-             new Map(11);
+             new Map(11, 4, 4);
         }
         else if (input.nextInt() == 4)
         {
-            new Map(15);
+            new Map(15, 5, 5);
         }
     }
     
