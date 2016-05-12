@@ -13,6 +13,7 @@ import ap4.graphics.TextureModelGraphic;
 import ap4.graphics.TextureVertex;
 import ap4.graphics.Vector3;
 import ap4.models.DemoCubeModel;
+import ap4.models.DemoCubeModel1;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -75,7 +76,7 @@ public class ModelTestGamePanel extends GeneralGamePanel {
         {
         }
         
-        cube = new DemoCubeModel();
+        cube = new DemoCubeModel1();
         
         light = new PointLight(0xffffff, -1,1, 1, 1);
         //light = new DirectionalLight(0xffffff, -1,-1, 1);

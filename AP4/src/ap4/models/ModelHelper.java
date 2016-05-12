@@ -29,9 +29,9 @@ public class ModelHelper {
         vbuf.add(v1);
         vbuf.add(v2);
         vbuf.add(v3);
+        ibuf.add((short)(vbuf.size() - 3));
         ibuf.add((short)(vbuf.size() - 2));
         ibuf.add((short)(vbuf.size() - 1));
-        ibuf.add((short)(vbuf.size() - 0));
     }
     public void addQuad(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3, float x4, float y4, float z4)
     {
@@ -43,13 +43,25 @@ public class ModelHelper {
         vbuf.add(v2);
         vbuf.add(v3);
         vbuf.add(v4);
+        ibuf.add((short)(vbuf.size() - 4));
         ibuf.add((short)(vbuf.size() - 3));
         ibuf.add((short)(vbuf.size() - 2));
-        ibuf.add((short)(vbuf.size() - 1));
-        ibuf.add((short)(vbuf.size() - 1));
         ibuf.add((short)(vbuf.size() - 2));
-        ibuf.add((short)(vbuf.size() - 0));
+        ibuf.add((short)(vbuf.size() - 1));
+        ibuf.add((short)(vbuf.size() - 4));
     }
-    public Vector3[] getVerices() { return (Vector3[])vbuf.toArray(); }
-    public Short[] getIndicies() { return (Short[])ibuf.toArray(); }
+    public Vector3[] getVerices()
+    {
+        Vector3[] r = new Vector3[vbuf.size()];
+        for(int i = 0; i < vbuf.size(); i++)
+            r[i] = vbuf.get(i);
+        return r; 
+    }
+    public short[] getIndicies()
+    {
+        short[] r = new short[ibuf.size()];
+        for(int i = 0; i < ibuf.size(); i++)
+            r[i] = ibuf.get(i);
+        return r;
+    }
 }
