@@ -19,6 +19,10 @@ public class Vertex {
     {
         this.position = position;
     }
+    public Vertex(float x, float y, float z)
+    {
+        this.position = new Vector3(x, y, z);
+    }
     public Vertex lerpToward(Vertex v2, float f)
     {
         return new Vertex(Vector3.lerp(position, v2.position, f));

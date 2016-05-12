@@ -2,7 +2,12 @@
 package ap4.graphics;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.DataBufferInt;
+import java.awt.image.Raster;
+import java.awt.image.WritableRaster;
 
 
 public class Camera {
@@ -21,8 +26,9 @@ public class Camera {
     private Matrix viewProjection;
     int width;
     int height;
+    DataBufferInt databuf;
     BufferedImage backbuf;
-    //WritableRaster raster;
+    WritableRaster raster;
     //DataBuffer dataBuffer;
     int[] pixels;
     float[] zbuf;
@@ -45,12 +51,15 @@ public class Camera {
         //projection = new Matrix();
         width = screenWidth;
         height = screenHeight;
-        backbuf = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
+        pixels = new int[width*height];
+        zbuf = new float[width*height];
+        databuf = new DataBufferInt(pixels, pixels.length);
+        int[] bandMasks = { 0xff0000, 0xff00, 0xff, 0xff000000 };
+        raster = Raster.createPackedRaster(databuf, width, height, width, bandMasks, null);
+        backbuf = new BufferedImage(ColorModel.getRGBdefault(), raster, ColorModel.getRGBdefault().isAlphaPremultiplied(), null);
         //raster = backbuf.getRaster().createCompatibleWritableRaster();
         //backbuf.setData(raster);
         //dataBuffer = raster.getDataBuffer();
-        pixels = new int[width*height];
-        zbuf = new float[width*height];
         //raster.getPixels(0, 0, width, height, pixels);
         near = 1;
         far = 50;
@@ -323,9 +332,13 @@ public class Camera {
                     float z = z1 * l1 + z2 * l2 + z3 * l3;
                     if(z < zbuf[y * width + x])
                         continue;
-                    zbuf[y * width + x] = z;
                 }
-                pixels[y * width + x] = shader.colorAt(v1, v2, v3, l1, l2, l3);
+                int sample = shader.colorAt(v1, v2, v3, l1, l2, l3);
+                if(((sample>>24)&0xff)>=192)
+                {
+                    zbuf[y * width + x] = z;
+                    pixels[y * width + x] = sample;
+                }
             }
     }
     public void beginDraw(Graphics g)
@@ -345,9 +358,11 @@ public class Camera {
     }
     public void endDraw(Graphics g)
     {
+        //raster.set
         //raster.setPixels(0, 0, width, height, pixels);
-        //backbuf.set.setData(raster);
-        backbuf.setRGB(0, 0, width, height, pixels, 0, width);
+        //raster.setDataElements(0, 0, width, height, pixels);
+        //backbuf.setData(raster);
+        //backbuf.setRGB(0, 0, width, height, pixels, 0, width);
         g.drawImage(backbuf, 0, 0, null);
     }
     /*public Image getBackBuffer()

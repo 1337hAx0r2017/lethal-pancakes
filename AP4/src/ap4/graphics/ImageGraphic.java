@@ -14,9 +14,12 @@ import java.awt.image.BufferedImage;
 public class ImageGraphic extends Graphic {
 
     BufferedImage image;
+    public ImageGraphic(BufferedImage image)
+    {
+        this.image = image;
+    }
     @Override
     public void draw(Camera camera, float x, float y, float z, float scale) {
         camera.drawImage(new Vector3(x, y, z), image, scale);
     }
-    
 }
