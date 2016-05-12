@@ -16,7 +16,7 @@ public class Room {
     Tile[][] tiles;
     boolean[] exits = new boolean[4];
     
-    public Room(boolean[] ex, int x, int y) //??ArrayList<RoomObject> objects,
+    public Room(boolean[] ex)//, int x, int y //??ArrayList<RoomObject> objects,
     {
         tiles = new Tile[width][height];
         
