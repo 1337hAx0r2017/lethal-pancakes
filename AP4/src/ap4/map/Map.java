@@ -30,19 +30,34 @@ public class Map {
                 if(randInt == 0){//Add room above
                     rooms[cX][cY].exits[0] = true;//add exit to prev room
                     rooms[cX][cY-1] = new Room(new boolean[] {false,false,true,false});//add sout exit to new room
+                    cY = cY-1;
                 }
                 else if(randInt == 1){//add room to the right
                     rooms[cX][cY].exits[1] = true;
                     rooms[cX+1][cY] = new Room(new boolean[] {false,false,false,true});
+                    cX = cX+1;
                 }
                 else if(randInt == 2){//add room below
                     rooms[cX][cY].exits[2] = true;
-                    rooms[cX][cY-1] = new Room(new boolean[] {true,false,false,false});
+                    rooms[cX][cY+1] = new Room(new boolean[] {true,false,false,false});
+                    cY = cY+1;
                 }
                 else if(randInt == 3){//add room to the left
-                    
+                    rooms[cX][cY].exits[3] = true;
+                    rooms[cX-1][cY] = new Room(new boolean[] {false,true,false,false});
+                    cX = cX-1;
                 }
                 
+            }
+        }
+        
+        //checking all exits
+        for(int x = 0; x < rooms.length; x++){
+            for(int y = 0; y < rooms[0].length;y++){
+                
+                if(rooms[x][y] != null && rooms[x+1][y] != null){
+                    
+                }
             }
         }
     }
