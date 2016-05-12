@@ -17,8 +17,8 @@ public class Game {
     {
         camera = new Camera(800, 600);
    
-        // will initialize every room here, with their own sets of objects and enemies
-        // will need rockobjects, enemies etc     
+       // will initialize every room here, with their own sets of objects and enemies
+       // will need rockobjects, enemies etc     
        //playGame();
         
         // Logic setup
