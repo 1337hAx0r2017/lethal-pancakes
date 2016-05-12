@@ -33,7 +33,6 @@ public class GamePanel extends GeneralGamePanel {
         control = new Controller();
         game.attachController(control);
         add(control);
-        
     }
     
     @Override
@@ -45,12 +44,10 @@ public class GamePanel extends GeneralGamePanel {
     @Override
     public void draw(Graphics g)
     {
-        
         game.camera.beginDraw(g);
         
-        
         //Draw ALL THE THINGS
-        //map.draw(camera);
+        game.drawStuff(g);
         
         game.camera.endDraw(g);
         

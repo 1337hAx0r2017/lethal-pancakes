@@ -22,6 +22,7 @@ public class Controller extends JComponent {
         right = addKey("RIGHT");
     }
     
+    // Uses java keybinding names - A is A, up arrow is UP
     public Key addKey(String keyName)
     {
         Key k = new Key(keyName, this);

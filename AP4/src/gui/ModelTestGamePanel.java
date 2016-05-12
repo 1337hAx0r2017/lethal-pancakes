@@ -99,8 +99,8 @@ public class ModelTestGamePanel extends GeneralGamePanel {
         game.camera.beginDraw(g);
         game.camera.setWorld(Matrix.IDENTITY);
         
-        model.draw(game.camera, 0, 0, .25f, 1, light);
-        model.draw(game.camera, -1, 0, 0, 1, light);
+        //model.draw(game.camera, 0, 0, .25f, 1, light);
+        //model.draw(game.camera, -1, 0, 0, 1, light);
         
         Matrix world = Matrix.multiply(Matrix.multiply(Matrix.multiply(Matrix.multiply(Matrix.createRotationZ(Math.PI/4), Matrix.createRotationX(Math.PI/4)), Matrix.createRotationY(-2*theta)), Matrix.createScale(.25f)), Matrix.createTranslation(0, .25f, 0));
         

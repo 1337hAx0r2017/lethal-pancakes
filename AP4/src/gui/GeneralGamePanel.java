@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import java.awt.Graphics;
@@ -10,10 +5,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 
-/**
- *
- * @author ed.mason
- */
 public abstract class GeneralGamePanel extends JPanel {
     private boolean running;
     private double updateTime;
@@ -49,7 +40,6 @@ public abstract class GeneralGamePanel extends JPanel {
     
     class GameLoop implements Runnable
     {
-
         @Override
         public void run() {
             try {
@@ -69,7 +59,6 @@ public abstract class GeneralGamePanel extends JPanel {
                 Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
     }
     
     public void paint(Graphics g)
@@ -84,6 +73,5 @@ public abstract class GeneralGamePanel extends JPanel {
             long endDrawTime = System.nanoTime();
             drawTime = (endDrawTime - startDrawTime) / 1000000000.0;
         }
-    }
-    
+    }   
 }
