@@ -10,7 +10,7 @@ package rooms;
  * @author kardzhalao.2017
  */
 public class StartRoom {
-    //this will be the starting room of the map
+    //this will be the starting room of the map, guarantee a south exit
     
     
     
