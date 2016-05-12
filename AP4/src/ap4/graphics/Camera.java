@@ -402,7 +402,4 @@ public class Camera {
                 }
             }
     }
-    
-
-    
 }

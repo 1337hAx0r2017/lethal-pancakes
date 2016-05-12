@@ -1,5 +1,9 @@
 package ap4.map;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -17,8 +21,7 @@ public class Map {
         
         for(int i = 0; i < nRooms; i++)
         {
-            
-            if (i == 0){
+            if (i == 0) {
                 rooms[sizeX/2][sizeY/2] =  new Room(new boolean[] {false, false, false, false});
                 cX = sizeX/2;
                 cY = sizeY/2;
@@ -47,7 +50,6 @@ public class Map {
                     rooms[cX-1][cY] = new Room(new boolean[] {false,true,false,false});
                     cX = cX-1;
                 }
-                
             }
         }
         
@@ -60,5 +62,17 @@ public class Map {
                 }
             }
         }
+    }
+    
+    public void draw(Graphics g)
+    {
+        for (int x = 0; x < rooms.length; x++)
+            for (int y = 0; y < rooms[0].length; y++)
+            {
+                if (rooms[x][y] != null)
+                {
+                    rooms[x][y].draw(g);
+                }
+            }
     }
 }

@@ -59,7 +59,6 @@ public abstract class GeneralGamePanel extends JPanel {
                 Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
     }
     
     public void paint(Graphics g)
