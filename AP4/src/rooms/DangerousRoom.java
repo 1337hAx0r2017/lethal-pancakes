@@ -10,5 +10,5 @@ package rooms;
  * @author kardzhalao.2017
  */
 public class DangerousRoom {
-    //will have a lot of enemies, and only exit/entrance is the north position
+    //will have a lot of enemies, and only exit/entrance is the north position, so you have to walk down into it
 }
