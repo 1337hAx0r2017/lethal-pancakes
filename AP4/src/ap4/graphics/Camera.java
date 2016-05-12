@@ -334,7 +334,7 @@ public class Camera {
                         continue;
                 }
                 int sample = shader.colorAt(v1, v2, v3, l1, l2, l3);
-                if(((sample>>24)&0xff)<=192)
+                if(((sample>>24)&0xff)>=192)
                 {
                     zbuf[y * width + x] = z;
                     pixels[y * width + x] = sample;
