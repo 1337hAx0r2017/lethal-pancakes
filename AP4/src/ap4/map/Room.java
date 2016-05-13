@@ -37,11 +37,6 @@ public class Room {
     {
         tiles = new Tile[width][height];
         
-        this.x = x;
-        this.y = y;
-        
-        this.objects = objects;
-        
         exits[0] = ex[0];
         exits[1] = ex[1];
         exits[2] = ex[2];
