@@ -3,26 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ap4.items;
+package ap4;
 
-import ap4.InvItem;
-import ap4.Player;
 import java.awt.Graphics;
 
 /**
  *
  * @author kardzhalao.2017
  */
-public class SwordItem extends InvItem{ 
-    SwordItem()
-    {
+public abstract class Enemies extends Character{
+    
+    public Enemies(float x, float y, float movespeed)
+    {               
+     super(x, y, movespeed);
     }
     
-    public void Use(Player o)
-    {   
-    }
-    
-    public void draw(Graphics g)
-    {   
-    }
+    public abstract void draw(Graphics g);
+    public abstract void update(Game game, float time);
 }
