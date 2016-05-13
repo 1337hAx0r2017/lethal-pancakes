@@ -10,14 +10,14 @@ public abstract class Character extends RoomObject
     public double yvel = 0;
     
     //LIVING OBJECTS IN ROOMS
-    Character(float x, float y, float moveSpeed)
+    public Character(float x, float y, float moveSpeed)
     {   
         super(x, y);
         this.moveSpeed = moveSpeed;
     }
     
     @Override
-    abstract void update(Game game, float time);
-    abstract void draw(Graphics g);
-    abstract void move(Game game, Controller controls);
+    public abstract void update(Game game, float time);
+    public abstract void draw(Graphics g);
+    public abstract void move(Game game, Controller controls);
 }
