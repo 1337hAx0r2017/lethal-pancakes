@@ -1,5 +1,8 @@
 package ap4.map;
 
+import ap4.graphics.Light;
+import java.awt.Graphics;
+
 public class Tile {
       
     public boolean exit = false;
@@ -9,10 +12,15 @@ public class Tile {
      * 0: air
     */
     
-    Tile()
+    public Tile()
     {
         solid = false;
         exit = false;
         type = 0;
+    }
+    
+    public void draw(Graphics g, Light light)
+    {
+        
     }
 }

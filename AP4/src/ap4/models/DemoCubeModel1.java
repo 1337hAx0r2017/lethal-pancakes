@@ -39,7 +39,18 @@ public class DemoCubeModel1 extends GouraudColorModelGraphic { // Gouraud shadin
         Vector3[] corners = h.getVerices();
         vbuf = new ColorVertex[corners.length];
         for(int i = 0; i < corners.length; i++)
-            vbuf[i] = new ColorVertex(corners[i], 0xffffffff); // a position and a color
+        {
+            int color;
+            if(i % 4 == 0)
+                color = 0xff0000ff;
+            else if(i % 4 == 1)
+                color = 0xff00ff00;
+            else if(i % 4 == 2)
+                color = 0xffff0000;
+            else
+                color = 0xffffff00;
+            vbuf[i] = new ColorVertex(corners[i], color); // a position and a color
+        }
     }
     
     public DemoCubeModel1() {
