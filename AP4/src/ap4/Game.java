@@ -71,7 +71,8 @@ public class Game {
     //////////// DRAWING ///////////////
     public void drawStuff(Graphics g)
     {
-        map.draw(g, this);
+        if (map != null)
+            map.draw(g, this);
     }
     
     public void attachController(Controller control)
