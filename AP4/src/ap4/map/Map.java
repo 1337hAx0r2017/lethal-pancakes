@@ -50,9 +50,10 @@ public class Map {
         
         int cX = 0;//prevY
         int cY = 0;//prevX
-        
-        for(int i = 0; i < nRooms; i++)
-        {
+        do{
+            if(roomTypes.size() > 0){
+        for(int i = 0; i < nRooms; i++){
+            
             if (i == 0) {
                 rooms[sizeX/2][sizeY/2] =  new Room(new boolean[] {false, false, false, false});
                 cX = sizeX/2;
@@ -74,10 +75,9 @@ public class Map {
 
                         rooms[cX][cY].exits[0] = true;//add exit to prev room
                         Room room = getRoom();
-                        int count = 0;
-                        while(room.exits[2] == false  && count < 5){
+                        while(room != null && room.exits[2] == false){
                             room = getRoom();
-                            count++;
+                            
                         }
                         rooms[cX][cY-1] = room;
                         cY = cY-1;
@@ -85,10 +85,9 @@ public class Map {
                     else if(randInt == 1 &&  cX < rooms.length-1){//add room to the right
                         rooms[cX][cY].exits[1] = true;
                         Room room = getRoom();
-                        int count = 0;
-                        while(room.exits[3] == false  && count < 5){
+                        while(room != null && room.exits[3] == false){
                             room = getRoom();
-                            count++;
+                            
                         }
                         rooms[cX+1][cY] = room;
                         cX = cX+1;
@@ -96,10 +95,9 @@ public class Map {
                     else if(randInt == 2 &&  cY < rooms[0].length-1){//add room below
                         rooms[cX][cY].exits[2] = true;
                         Room room = getRoom();
-                        int count = 0;
-                        while(room.exits[0] == false  && count < 5){
+                        while(room != null && room.exits[0] == false){
                             room = getRoom();
-                            count++;
+                            
                         }
                         rooms[cX][cY+1] = room;
                         cY = cY+1;
@@ -107,10 +105,8 @@ public class Map {
                     else if(randInt == 3 &&  cX > 0){//add room to the left
                         rooms[cX][cY].exits[3] = true;
                         Room room = getRoom();
-                        int count = 0;
-                        while(room.exits[1] == false && count < 5){
+                        while(room != null && room.exits[1] == false){
                             room = getRoom();
-                            count++;
                         }
                         rooms[cX-1][cY] = room;
                         cX = cX-1;
@@ -121,10 +117,12 @@ public class Map {
 
                 }
             }
-        
-    }while(verify() == false);//continue making maps until you find a good one
-        
-        
+        }
+    }
+    
+        }while(verify() == false);//continue making maps until you find a good one
+    
+          
 }
     
     
