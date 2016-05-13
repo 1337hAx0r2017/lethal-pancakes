@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ap4.enemies;
 
 import ap4.Controller;
@@ -9,9 +14,9 @@ import java.awt.Graphics;
  *
  * @author kardzhalao.2017
  */
-public class Octorok extends Enemy{
-
-    public Octorok(float x, float y, float movespeed)
+public class Dampe extends Enemy{
+    
+    public Dampe(float x, float y, float movespeed)
     {
         super(x, y, movespeed);
     }
@@ -22,11 +27,11 @@ public class Octorok extends Enemy{
 
     @Override
     public void update(Game game, float time) {
-       // specific to this class' move method
+       // will be specific to this class' movement
     }
 
     @Override
     public void move(Game game, Controller controls) {
-       //specific movement
+        //movement specific to dampe
     }
 }
