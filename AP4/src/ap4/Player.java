@@ -1,5 +1,6 @@
 package ap4;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class Player extends Character {
@@ -12,9 +13,31 @@ public class Player extends Character {
         items = new ArrayList<InvItem>();
     }
     
-    @Override
+    
     void update(Game game, float time){
         // Movement
-        move(game, game.control);
+        
+    }
+    
+    void draw(Graphics g){
+        //stuffs
+    }
+    
+    void move(Game game, Controller controls) // Moving with butter
+    {
+        if (controls.left.getDown())
+            xvel -= 1.5;
+        if (controls.right.getDown())
+            xvel += 1.5;
+        if (controls.up.getDown())
+            yvel -= 1.5;
+        if (controls.down.getDown())
+            yvel += 1.5;
+        
+        this.x += xvel;
+        this.y += yvel;
+        
+        xvel *= 0.92;
+        yvel *= 0.92;
     }
 }
