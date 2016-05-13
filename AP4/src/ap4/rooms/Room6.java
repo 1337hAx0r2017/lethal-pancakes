@@ -4,7 +4,7 @@ import ap4.map.Room;
 
 public class Room6 extends Room {
 
-    public Room6(boolean[] ex) {
-        super(ex);
+    public Room6() {
+        super();
     }
 }
