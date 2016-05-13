@@ -1,19 +1,46 @@
 package ap4.map;
 
-import ap4.Game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Map {
+public class Map2 {
+
+    static Random random;
+    static ArrayList<Class> roomTypes;
+        
+    static
+    {
+        random = new Random();
+        roomTypes = new ArrayList<Class>();
+        
+        //roomTypes.add(Room1.class);
+        //roomTypes.add(Room2.class);
+        //roomTypes.add(Room3.class);
+        //        etc
+    }
+    
+    static Room getRoom()
+    {
+        try {
+            return (Room)roomTypes.get(random.nextInt(roomTypes.size())).newInstance();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     
     Room[][] rooms;
     Random r = new Random();
     
-    public Map(int nRooms, int sizeX, int sizeY) {
+    public Map2(int nRooms, int sizeX, int sizeY) {
         
         rooms = new Room[sizeX][sizeY];
         
@@ -29,51 +56,99 @@ public class Map {
             }  
             else
             {
-                int randInt = r.nextInt(4);//random 0-3 for directions
-                
-                if(randInt == 0){//Add room above
-                    rooms[cX][cY].exits[0] = true;//add exit to prev room
-                    rooms[cX][cY-1] = new Room(new boolean[] {false,false,true,false});//add sout exit to new room
-                    cY = cY-1;
-                }
-                else if(randInt == 1){//add room to the right
-                    rooms[cX][cY].exits[1] = true;
-                    rooms[cX+1][cY] = new Room(new boolean[] {false,false,false,true});
-                    cX = cX+1;
-                }
-                else if(randInt == 2){//add room below
-                    rooms[cX][cY].exits[2] = true;
-                    rooms[cX][cY+1] = new Room(new boolean[] {true,false,false,false});
-                    cY = cY+1;
-                }
-                else if(randInt == 3){//add room to the left
-                    rooms[cX][cY].exits[3] = true;
-                    rooms[cX-1][cY] = new Room(new boolean[] {false,true,false,false});
-                    cX = cX-1;
+
+                if (i == 0){
+                    rooms[sizeX/2][sizeY/2] =  getRoom();
+                    cX = sizeX/2;
+                    cY = sizeY/2;
+                }  
+                else
+                {
+                    int randInt = r.nextInt(4);//random 0-3 for directions
+
+                    if(randInt == 0 &&  cY > 0){//Add room above
+
+                        rooms[cX][cY].exits[0] = true;//add exit to prev room
+                        Room room = getRoom();
+                        while(room.exits[2] == false){
+                            room = getRoom();
+                        }
+                        rooms[cX][cY-1] = room;
+                        cY = cY-1;
+                    }
+                    else if(randInt == 1 &&  cX < rooms.length-1){//add room to the right
+                        rooms[cX][cY].exits[1] = true;
+                        Room room = getRoom();
+                        while(room.exits[3] == false){
+                            room = getRoom();
+                        }
+                        rooms[cX+1][cY] = room;
+                        cX = cX+1;
+                    }
+                    else if(randInt == 2 &&  cY < rooms[0].length-1){//add room below
+                        rooms[cX][cY].exits[2] = true;
+                        Room room = getRoom();
+                        while(room.exits[0] == false){
+                            room = getRoom();
+                        }
+                        rooms[cX][cY+1] = room;
+                        cY = cY+1;
+                    }
+                    else if(randInt == 3 &&  cX > 0){//add room to the left
+                        rooms[cX][cY].exits[3] = true;
+                        Room room = getRoom();
+                        while(room.exits[1] == false){
+                            room = getRoom();
+                        }
+                        rooms[cX-1][cY] = room;
+                        cX = cX-1;
+                    }
+                    else{
+                        i--;
+                    }
+
                 }
             }
-        }
         
+    }while(verify() == false);//continue making maps until you find a good one
+        
+        
+}
+    
+    
+    boolean verify(){
         //checking all exits
-        for(int x = 0; x < rooms.length; x++){
-            for(int y = 0; y < rooms[0].length;y++){
+        for(int x = 1; x < rooms.length-1; x++){
+            for(int y = 1; y < rooms[0].length-1;y++){
                 
-                if(rooms[x][y] != null && rooms[x+1][y] != null){
-                    
+                if((rooms[x][y] != null && rooms[x+1][y] != null) && (rooms[x][y].exits[1] != rooms[x+1][y].exits[3])){
+                    return false;
+                    //bad map
+                }
+                if((rooms[x][y] != null && rooms[x-1][y] != null) && (rooms[x][y].exits[3] != rooms[x-1][y].exits[1])){
+                    return false;
+                }
+                if((rooms[x][y] != null && rooms[x][y+1] != null) && (rooms[x][y].exits[2] != rooms[x][y+1].exits[0])){
+                    return false;
+                }
+                if((rooms[x][y] != null && rooms[x][y-1] != null) && (rooms[x][y].exits[0] != rooms[x][y-1].exits[2])){
+                    return false;
                 }
             }
         }
+        return true;
     }
     
-    public void draw(Graphics g, Game game)
+    public void draw(Graphics g)
     {
         for (int x = 0; x < rooms.length; x++)
             for (int y = 0; y < rooms[0].length; y++)
             {
                 if (rooms[x][y] != null)
                 {
-                    rooms[x][y].draw(g, game);
+                    rooms[x][y].draw(g);
                 }
             }
     }
 }
+
