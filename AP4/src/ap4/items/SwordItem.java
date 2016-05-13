@@ -5,10 +5,22 @@
  */
 package ap4.items;
 
+import ap4.InvItem;
+import ap4.Player;
+
 /**
  *
  * @author kardzhalao.2017
  */
-public class SwordItem {
+public class SwordItem extends InvItem{
     
+    SwordItem()
+    {
+        
+    }
+    
+    public void Use(Player o)
+    {
+        
+    }
 }
