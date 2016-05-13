@@ -7,6 +7,7 @@ package ap4.items;
 
 import ap4.InvItem;
 import ap4.Player;
+import java.awt.Graphics;
 
 /**
  *
@@ -15,13 +16,14 @@ import ap4.Player;
 public class ArmorItem extends InvItem{
   
     ArmorItem()
-    {
-        
+    { 
     }
     
     public void Use(Player o)
     {
-        
     }
     
+    public void draw(Graphics g)
+    {
+    }
 }

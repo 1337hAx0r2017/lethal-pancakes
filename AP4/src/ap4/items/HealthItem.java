@@ -7,6 +7,7 @@ package ap4.items;
 
 import ap4.InvItem;
 import ap4.Player;
+import java.awt.Graphics;
 
 /**
  *
@@ -15,12 +16,14 @@ import ap4.Player;
 public class HealthItem extends InvItem{
     
     HealthItem()
-    {
-        
+    {    
     }
     
     public void Use(Player o)
-    {
-        
+    {   
+    }
+    
+    public void draw(Graphics g)
+    {  
     }
 }

@@ -1,4 +1,7 @@
 package ap4;
+
+import java.awt.Graphics;
+
 public class Fireball extends InvItem{
 
     @Override
@@ -6,4 +9,8 @@ public class Fireball extends InvItem{
         //throw fireball wherever player is looking
     }
     
+    public void draw(Graphics g)
+    {
+        
+    }
 }

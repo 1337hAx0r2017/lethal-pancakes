@@ -7,19 +7,23 @@ package ap4.items;
 
 import ap4.InvItem;
 import ap4.Player;
+import java.awt.Graphics;
 
 /**
  *
  * @author kardzhalao.2017
  */
-public class SwordItem extends InvItem{
-    
+public class SwordItem extends InvItem{ 
     SwordItem()
     {
         
     }
     
     public void Use(Player o)
+    {   
+    }
+    
+    public void draw(Graphics g)
     {
         
     }
