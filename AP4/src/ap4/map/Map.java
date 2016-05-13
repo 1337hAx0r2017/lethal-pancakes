@@ -28,12 +28,15 @@ public class Map {
     
     static Room getRoom()
     {
-        try {
-            return (Room)roomTypes.get(random.nextInt(roomTypes.size())).newInstance();
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+        if (roomTypes.size() > 0)
+        {
+            try {
+                return (Room)roomTypes.get(random.nextInt(roomTypes.size())).newInstance();
+            } catch (InstantiationException ex) {
+                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return null;
     }
