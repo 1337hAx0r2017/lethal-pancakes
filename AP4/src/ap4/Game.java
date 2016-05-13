@@ -31,7 +31,8 @@ public class Game {
             @Override
             public void run()
             {
-                playGame();
+                //playGame();
+                map = new Map(5, 3, 3);
             }
         };
 
@@ -70,7 +71,7 @@ public class Game {
     //////////// DRAWING ///////////////
     public void drawStuff(Graphics g)
     {
-        map.draw(g);
+        map.draw(g, this);
     }
     
     public void attachController(Controller control)
