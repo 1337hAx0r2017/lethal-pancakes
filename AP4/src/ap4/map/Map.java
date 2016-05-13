@@ -1,5 +1,6 @@
 package ap4.map;
 
+import ap4.Game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -9,7 +10,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Map2 {
+public class Map {
 
     static Random random;
     static ArrayList<Class> roomTypes;
@@ -40,7 +41,7 @@ public class Map2 {
     Room[][] rooms;
     Random r = new Random();
     
-    public Map2(int nRooms, int sizeX, int sizeY) {
+    public Map(int nRooms, int sizeX, int sizeY) {
         
         rooms = new Room[sizeX][sizeY];
         
@@ -139,14 +140,14 @@ public class Map2 {
         return true;
     }
     
-    public void draw(Graphics g)
+    public void draw(Graphics g, Game game)
     {
         for (int x = 0; x < rooms.length; x++)
             for (int y = 0; y < rooms[0].length; y++)
             {
                 if (rooms[x][y] != null)
                 {
-                    rooms[x][y].draw(g);
+                    rooms[x][y].draw(g, game);
                 }
             }
     }
