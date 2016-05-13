@@ -1,6 +1,7 @@
 package ap4.map;
 
 import ap4.Game;
+import ap4.rooms.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -20,9 +21,20 @@ public class Map {
         random = new Random();
         roomTypes = new ArrayList<Class>();
         
-        //roomTypes.add(Room1.class);
-        //roomTypes.add(Room2.class);
-        //roomTypes.add(Room3.class);
+        roomTypes.add(Room2.class);
+        roomTypes.add(Room3.class);
+        roomTypes.add(Room4.class);
+        roomTypes.add(Room5.class);
+        roomTypes.add(Room6.class);
+        roomTypes.add(Room7.class);
+        roomTypes.add(Room8.class);
+        roomTypes.add(Room9.class);
+        roomTypes.add(Room10.class);
+        roomTypes.add(Room11.class);
+        roomTypes.add(Room12.class);
+        roomTypes.add(Room13.class);
+        roomTypes.add(Room14.class);
+        roomTypes.add(Room15.class);
         //        etc
     }
     

@@ -33,14 +33,17 @@ public class Room {
     private TextureModelGraphic twall;
     private TextureModelGraphic bwall;
     
-    public Room(boolean[] ex)//, int x, int y //??ArrayList<RoomObject> objects,
+    public Room()//, int x, int y //??ArrayList<RoomObject> objects,
     {
         tiles = new Tile[width][height];
         
-        this.x = x;
-        this.y = y;
-        
-        this.objects = objects;
+        createExits();
+        setupModels();
+    }
+    
+    public Room(boolean[] ex)//, int x, int y //??ArrayList<RoomObject> objects,
+    {
+        tiles = new Tile[width][height];
         
         exits[0] = ex[0];
         exits[1] = ex[1];
@@ -65,7 +68,7 @@ public class Room {
             {
                 if (tiles[x][y] != null)
                 {
-                    tiles[x][y].draw(g, mainLight);
+                    tiles[x][y].draw(g, game, mainLight);
                 }
             }
     }
