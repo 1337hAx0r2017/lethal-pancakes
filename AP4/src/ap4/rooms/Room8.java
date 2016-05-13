@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ap4.rooms;
 
-/**
- *
- * @author kardzhalao.2017
- */
-public class Room8 {
-    // a north and west exit/entrance
+import ap4.map.Room;
+
+public class Room8 extends Room {
+
+    public Room8(boolean[] ex) {
+        super(ex);
+    }
 }
