@@ -65,7 +65,7 @@ public class Room {
             {
                 if (tiles[x][y] != null)
                 {
-                    tiles[x][y].draw(g, mainLight);
+                    tiles[x][y].draw(g, game, mainLight);
                 }
             }
     }
