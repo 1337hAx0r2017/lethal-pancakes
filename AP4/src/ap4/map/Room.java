@@ -33,6 +33,14 @@ public class Room {
     private TextureModelGraphic twall;
     private TextureModelGraphic bwall;
     
+    public Room()//, int x, int y //??ArrayList<RoomObject> objects,
+    {
+        tiles = new Tile[width][height];
+        
+        createExits();
+        setupModels();
+    }
+    
     public Room(boolean[] ex)//, int x, int y //??ArrayList<RoomObject> objects,
     {
         tiles = new Tile[width][height];
