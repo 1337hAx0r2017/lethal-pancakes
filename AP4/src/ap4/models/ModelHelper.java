@@ -64,4 +64,9 @@ public class ModelHelper {
             r[i] = ibuf.get(i);
         return r;
     }
+    public void clear()
+    {
+        vbuf.clear();
+        ibuf.clear();
+    }
 }
