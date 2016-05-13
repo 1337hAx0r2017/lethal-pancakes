@@ -71,8 +71,10 @@ public class Map {
 
                         rooms[cX][cY].exits[0] = true;//add exit to prev room
                         Room room = getRoom();
-                        while(room.exits[2] == false){
+                        int count = 0;
+                        while(room.exits[2] == false  && count < 5){
                             room = getRoom();
+                            count++;
                         }
                         rooms[cX][cY-1] = room;
                         cY = cY-1;
@@ -80,8 +82,10 @@ public class Map {
                     else if(randInt == 1 &&  cX < rooms.length-1){//add room to the right
                         rooms[cX][cY].exits[1] = true;
                         Room room = getRoom();
-                        while(room.exits[3] == false){
+                        int count = 0;
+                        while(room.exits[3] == false  && count < 5){
                             room = getRoom();
+                            count++;
                         }
                         rooms[cX+1][cY] = room;
                         cX = cX+1;
@@ -89,8 +93,10 @@ public class Map {
                     else if(randInt == 2 &&  cY < rooms[0].length-1){//add room below
                         rooms[cX][cY].exits[2] = true;
                         Room room = getRoom();
-                        while(room.exits[0] == false){
+                        int count = 0;
+                        while(room.exits[0] == false  && count < 5){
                             room = getRoom();
+                            count++;
                         }
                         rooms[cX][cY+1] = room;
                         cY = cY+1;
@@ -98,8 +104,10 @@ public class Map {
                     else if(randInt == 3 &&  cX > 0){//add room to the left
                         rooms[cX][cY].exits[3] = true;
                         Room room = getRoom();
-                        while(room.exits[1] == false){
+                        int count = 0;
+                        while(room.exits[1] == false && count < 5){
                             room = getRoom();
+                            count++;
                         }
                         rooms[cX-1][cY] = room;
                         cX = cX-1;
