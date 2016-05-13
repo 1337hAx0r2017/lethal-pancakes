@@ -37,6 +37,9 @@ public class Player extends Character {
         
         this.x += xvel;
         this.y += yvel;
+        //this is where we'd use the base RoomObject's move method.
+        //don't forget to multiply by time!
+        //don't forget to take time as a parameter!
         
         xvel *= 0.92;
         yvel *= 0.92;

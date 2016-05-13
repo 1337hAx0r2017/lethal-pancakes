@@ -20,4 +20,5 @@ public abstract class Character extends RoomObject
     public abstract void update(Game game, float time);
     public abstract void draw(Graphics g);
     public abstract void move(Game game, Controller controls);
+    //this probably shouldn't exist in Character, at least with Controller
 }
