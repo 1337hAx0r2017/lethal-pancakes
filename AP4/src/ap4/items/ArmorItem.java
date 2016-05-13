@@ -6,14 +6,22 @@
 package ap4.items;
 
 import ap4.InvItem;
+import ap4.Player;
 
 /**
  *
  * @author kardzhalao.2017
  */
 public class ArmorItem extends InvItem{
+  
     ArmorItem()
     {
         
     }
+    
+    public void Use(Player o)
+    {
+        
+    }
+    
 }
