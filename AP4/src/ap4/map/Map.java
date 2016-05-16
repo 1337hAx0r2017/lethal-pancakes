@@ -15,6 +15,8 @@ public class Map {
 
     static Random random;
     static ArrayList<Class> roomTypes;
+        int sizeX;
+        int sizeY;
         
     static
     {
@@ -59,6 +61,9 @@ public class Map {
     public Map(int nRooms, int sizeX, int sizeY) {
         
         rooms = new Room[sizeX][sizeY];
+        
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
         
         int cX = 0;//prevY
         int cY = 0;//prevX
@@ -144,16 +149,21 @@ public class Map {
             for(int y = 1; y < rooms[0].length-1;y++){
                 
                 if((rooms[x][y] != null && rooms[x+1][y] != null) && (rooms[x][y].exits[1] != rooms[x+1][y].exits[3])){
+                    rooms =  new Room[sizeX][sizeY];
                     return false;
+                    
                     //bad map
                 }
                 if((rooms[x][y] != null && rooms[x-1][y] != null) && (rooms[x][y].exits[3] != rooms[x-1][y].exits[1])){
+                    rooms =  new Room[sizeX][sizeY];
                     return false;
                 }
                 if((rooms[x][y] != null && rooms[x][y+1] != null) && (rooms[x][y].exits[2] != rooms[x][y+1].exits[0])){
+                    rooms =  new Room[sizeX][sizeY];
                     return false;
                 }
                 if((rooms[x][y] != null && rooms[x][y-1] != null) && (rooms[x][y].exits[0] != rooms[x][y-1].exits[2])){
+                    rooms =  new Room[sizeX][sizeY];
                     return false;
                 }
             }
