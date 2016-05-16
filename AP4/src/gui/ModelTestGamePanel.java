@@ -2,7 +2,9 @@ package gui;
 
 import ap4.Controller;
 import ap4.Game;
+import ap4.graphics.AmbientLight;
 import ap4.graphics.ColorVertex;
+import ap4.graphics.LightList;
 import ap4.graphics.DirectionalLight;
 import ap4.graphics.GouraudColorModelGraphic;
 import ap4.graphics.Light;
@@ -29,8 +31,10 @@ public class ModelTestGamePanel extends GeneralGamePanel {
     
     Game game;
     Light light;
+    Light ambient;
     double theta;
     ModelGraphic cube;
+    LightList lights;
     
     //GouraudColorModelGraphic[][] testGraphics;
     TextureModelGraphic model;
@@ -79,6 +83,10 @@ public class ModelTestGamePanel extends GeneralGamePanel {
         cube = new DemoCubeModel1();
         
         light = new PointLight(0xffffff, -1,1, 1, 1);
+        lights = new LightList();
+        lights.add(light);
+        ambient = new AmbientLight(0x404040);
+        lights.add(ambient);
         //light = new DirectionalLight(0xffffff, -1,-1, 1);
     }
     
@@ -99,12 +107,16 @@ public class ModelTestGamePanel extends GeneralGamePanel {
         game.camera.beginDraw(g);
         game.camera.setWorld(Matrix.IDENTITY);
         
-        //model.draw(game.camera, 0, 0, .25f, 1, light);
-        //model.draw(game.camera, -1, 0, 0, 1, light);
-        
         Matrix world = Matrix.multiply(Matrix.multiply(Matrix.multiply(Matrix.multiply(Matrix.createRotationZ(Math.PI/4), Matrix.createRotationX(Math.PI/4)), Matrix.createRotationY(-2*theta)), Matrix.createScale(.25f)), Matrix.createTranslation(0, .25f, 0));
-        
-        cube.draw(game.camera, world, light);
+
+        //game.camera.setAdditive(false);
+        //model.draw(game.camera, 0, 0, .25f, 1, ambient);
+        //model.draw(game.camera, -1, 0, 0, 1, ambient);
+        //cube.draw(game.camera, world, ambient);
+        //game.camera.setAdditive(true);
+        model.draw(game.camera, 0, 0, .25f, 1, lights);
+        model.draw(game.camera, -1, 0, 0, 1, lights);
+        cube.draw(game.camera, world, lights);
        
         /*for(int x = 0; x < 16; x++)
             for(int y = 0; y < 12; y++)
