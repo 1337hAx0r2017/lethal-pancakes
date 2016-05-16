@@ -280,7 +280,7 @@ public class Camera {
             int y2 = (int)(height / 2 * (-projectionvbuf[1*4+1]/projectionvbuf[1*4+3] + 1)); 
             int x3 = (int)(width / 2 * (projectionvbuf[2*4+0]/projectionvbuf[2*4+3] + 1)); 
             int y3 = (int)(height / 2 * (-projectionvbuf[2*4+1]/projectionvbuf[2*4+3] + 1)); 
-            drawTriangle(x1,y1,projectionvbuf[0*4+3],vertexWheel[0],x2,y2,projectionvbuf[1*4+3],vertexWheel[1],x3,y3,projectionvbuf[2*4+3],vertexWheel[2],shader);
+            drawTriangle(x1,y1,projectionvbuf[0*4+2],projectionvbuf[0*4+3],vertexWheel[0],x2,y2,projectionvbuf[1*4+2],projectionvbuf[1*4+3],vertexWheel[1],x3,y3,projectionvbuf[2*4+2],projectionvbuf[2*4+3],vertexWheel[2],shader);
         }
         else if((result & 7) == 4) // four vertices used
         {
@@ -293,11 +293,11 @@ public class Camera {
             int x4 = (int)(width / 2 * (projectionvbuf[3*4+0]/projectionvbuf[3*4+3] + 1)); 
             int y4 = (int)(height / 2 * (-projectionvbuf[3*4+1]/projectionvbuf[3*4+3] + 1)); 
             //draw quad
-            drawTriangle(x1,y1,projectionvbuf[0*4+2],vertexWheel[0],x2,y2,projectionvbuf[1*4+2],vertexWheel[1],x3,y3,projectionvbuf[2*4+2],vertexWheel[2],shader);
-            drawTriangle(x3,y3,projectionvbuf[2*4+2],vertexWheel[2],x4,y4,projectionvbuf[3*4+2],vertexWheel[3],x1,y1,projectionvbuf[0*4+2],vertexWheel[0],shader);
+            drawTriangle(x1,y1,projectionvbuf[0*4+2],projectionvbuf[0*4+3],vertexWheel[0],x2,y2,projectionvbuf[1*4+2],projectionvbuf[1*4+3],vertexWheel[1],x3,y3,projectionvbuf[2*4+2],projectionvbuf[2*4+3],vertexWheel[2],shader);
+            drawTriangle(x3,y3,projectionvbuf[2*4+2],projectionvbuf[0*4+3],vertexWheel[2],x4,y4,projectionvbuf[3*4+2],projectionvbuf[3*4+3],vertexWheel[3],x1,y1,projectionvbuf[0*4+2],projectionvbuf[0*4+3],vertexWheel[0],shader);
         }
     }
-    private void drawTriangle(int x1, int y1, float z1, Vertex v1, int x2, int y2, float z2, Vertex v2, int x3, int y3, float z3, Vertex v3, PixelShader shader)
+    private void drawTriangle(int x1, int y1, float z1, float w1, Vertex v1, int x2, int y2, float z2, float w2, Vertex v2, int x3, int y3, float z3, float w3, Vertex v3, PixelShader shader)
     {
         final float tolerance = .000001f;
         float a = x2-x1;
@@ -333,7 +333,7 @@ public class Camera {
                     if(z < zbuf[y * width + x])
                         continue;
                 }
-                int sample = shader.colorAt(v1, v2, v3, l1, l2, l3);
+                int sample = shader.colorAt(v1, v2, v3, w1, w2, w3, l1, l2, l3);
                 if(((sample>>24)&0xff)>=192)
                 {
                     zbuf[y * width + x] = z;

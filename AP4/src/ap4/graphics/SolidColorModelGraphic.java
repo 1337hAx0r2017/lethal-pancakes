@@ -21,7 +21,7 @@ public class SolidColorModelGraphic extends ModelGraphic {
             this.color = color;
         }
         @Override
-        public int colorAt(Vertex v1, Vertex v2, Vertex v3, float l1, float l2, float l3) {
+        public int colorAt(Vertex v1, Vertex v2, Vertex v3, float w1, float w2, float w3, float l1, float l2, float l3) {
             if(light != null)
             {
                 int c1 = light.calculateColor(color, world.transform(v1.position), normal);

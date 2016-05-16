@@ -10,7 +10,7 @@ package ap4.graphics;
  * @author ed.mason
  */
 public abstract class PixelShader {
-    public abstract int colorAt(Vertex v1, Vertex v2, Vertex v3, float l1, float l2, float l3);
+    public abstract int colorAt(Vertex v1, Vertex v2, Vertex v3, float w1, float w2, float w3, float l1, float l2, float l3);
     protected static Vector3 interpolate(Vector3 v1, Vector3 v2, Vector3 v3, float l1, float l2, float l3)
     {
         return new Vector3(v1.x * l1 + v2.x * l2 + v3.x * l3, v1.y * l1 + v2.y * l2 + v3.y * l3, v1.z * l1 + v2.z * l2 + v3.z * l3);
