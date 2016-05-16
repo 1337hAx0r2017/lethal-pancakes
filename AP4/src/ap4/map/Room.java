@@ -17,8 +17,8 @@ import javax.imageio.ImageIO;
 
 public class Room {
     
-    int x;
-    int y;
+    float x = 0;
+    float y = 0;
     
     static int width = 16;
     static int height = 12;
@@ -59,7 +59,7 @@ public class Room {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
         // Draw unique parts of room
-        lwall.draw(game.camera, 0, 0, .25f, 1, game.theLight);
+        lwall.draw(game.camera, x - 1.0f, y - 0.1f, .25f, 1, game.theLight);
         System.out.println("bloop");
         
         // Draw tiles
