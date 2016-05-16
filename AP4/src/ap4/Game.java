@@ -26,6 +26,13 @@ public class Game {
        //playGame();
         
         // Logic setup
+        
+        /* 
+        CAUTION! The supplied GeneralGamePanel class automatically handles the game loop thread!
+        All you need to do is call upon the Game's update and draw methods within those in the panel.
+        Upon further inspection, looks like it already does.
+        Unless I'm missing something, this should not be necessary.
+        
         logicRunnable = new Runnable()
         {
             @Override
@@ -37,7 +44,7 @@ public class Game {
         };
 
         logicThread = new Thread(logicRunnable);
-        logicThread.start();
+        logicThread.start();*/
     }
 
     void playGame()
