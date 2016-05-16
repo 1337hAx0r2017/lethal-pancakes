@@ -67,78 +67,80 @@ public class Map {
         
         int cX = 0;//prevY
         int cY = 0;//prevX
+        int count = 0;
+        
         do{
+            System.out.println(nRooms);
+        
             if(roomTypes.size() > 0){
+                
         for(int i = 0; i < nRooms; i++){
             
+            
+            
             if (i == 0) {
-                rooms[sizeX/2][sizeY/2] =  new Room(new boolean[] {false, false, false, false});
+                rooms[sizeX/2][sizeY/2] =  getRoom();
                 cX = sizeX/2;
                 cY = sizeY/2;
             }  
             else
             {
 
-                if (i == 0){
-                    rooms[sizeX/2][sizeY/2] =  getRoom();
-                    cX = sizeX/2;
-                    cY = sizeY/2;
-                }  
-                else
-                {
-                    int randInt = r.nextInt(4);//random 0-3 for directions
+                
+                int randInt = r.nextInt(4);//random 0-3 for directions
 
-                    if(randInt == 0 &&  cY > 0){//Add room above
+                if(randInt == 0 &&  cY > 0){//Add room above
 
-                        rooms[cX][cY].exits[0] = true;//add exit to prev room
-                        Room room = getRoom();
-                        while(room != null && room.exits[2] == false){
-                            room = getRoom();
-                            
-                        }
-                        rooms[cX][cY-1] = room;
-                        cY = cY-1;
-                    }
-                    else if(randInt == 1 &&  cX < rooms.length-1){//add room to the right
-                        rooms[cX][cY].exits[1] = true;
-                        Room room = getRoom();
-                        while(room != null && room.exits[3] == false){
-                            room = getRoom();
-                            
-                        }
-                        rooms[cX+1][cY] = room;
-                        cX = cX+1;
-                    }
-                    else if(randInt == 2 &&  cY < rooms[0].length-1){//add room below
-                        rooms[cX][cY].exits[2] = true;
-                        Room room = getRoom();
-                        while(room != null && room.exits[0] == false){
-                            room = getRoom();
-                            
-                        }
-                        rooms[cX][cY+1] = room;
-                        cY = cY+1;
-                    }
-                    else if(randInt == 3 &&  cX > 0){//add room to the left
-                        rooms[cX][cY].exits[3] = true;
-                        Room room = getRoom();
-                        while(room != null && room.exits[1] == false){
-                            room = getRoom();
-                        }
-                        rooms[cX-1][cY] = room;
-                        cX = cX-1;
-                    }
-                    else{
-                        i--;
-                    }
+                    rooms[cX][cY].exits[0] = true;//add exit to prev room
+                    Room room = getRoom();
+                    while(room == null && room.exits[2] == false){
+                        room = getRoom();
 
+                    }
+                    rooms[cX][cY-1] = room;
+                    cY = cY-1;
                 }
+                else if(randInt == 1 &&  cX < rooms.length-1){//add room to the right
+                    rooms[cX][cY].exits[1] = true;
+                    Room room = getRoom();
+                    while(room == null && room.exits[3] == false){
+                        room = getRoom();
+
+                    }
+                    rooms[cX+1][cY] = room;
+                    cX = cX+1;
+                }
+                else if(randInt == 2 &&  cY < rooms[0].length-1){//add room below
+                    rooms[cX][cY].exits[2] = true;
+                    Room room = getRoom();
+                    while(room == null && room.exits[0] == false){
+                        room = getRoom();
+
+                    }
+                    rooms[cX][cY+1] = room;
+                    cY = cY+1;
+                }
+                else if(randInt == 3 &&  cX > 0){//add room to the left
+                    rooms[cX][cY].exits[3] = true;
+                    Room room = getRoom();
+                    while(room == null && room.exits[1] == false){
+                        room = getRoom();
+                    }
+                    rooms[cX-1][cY] = room;
+                    cX = cX-1;
+                }
+                else{
+                    i--;
+                }
+
+                
             }
         }
     }
     
-        }while(verify() == false);//continue making maps until you find a good one
-    
+            count++;
+        }while(verify() == false && count < 5);//continue making maps until you find a good one
+        System.out.println("done");
           
 }
     
