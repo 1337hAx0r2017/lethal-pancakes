@@ -60,6 +60,7 @@ public class Room {
         
         // Draw unique parts of room
         lwall.draw(game.camera, 0, 0, .25f, 1, game.theLight);
+        System.out.println("bloop");
         
         // Draw tiles
         for (int x = 0; x < tiles.length; x++)
