@@ -35,6 +35,7 @@ public class Game {
             {
                 //playGame();
                 map = new Map(5, 3, 3);
+                System.out.println("Map gen done");
             }
         };
 
