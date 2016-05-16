@@ -24,7 +24,6 @@ public class Room {
     static int height = 12;
     
     ArrayList<RoomObject> objects;
-    public Light mainLight = new PointLight(0xffffff, -1,1, 1, 1);
     
     Tile[][] tiles;
     boolean[] exits = new boolean[4];
@@ -60,7 +59,7 @@ public class Room {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
         // Draw unique parts of room
-        lwall.draw(game.camera, 0, 0, .25f, 1, mainLight);
+        lwall.draw(game.camera, 0, 0, .25f, 1, game.theLight);
         
         // Draw tiles
         for (int x = 0; x < tiles.length; x++)
@@ -68,7 +67,7 @@ public class Room {
             {
                 if (tiles[x][y] != null)
                 {
-                    tiles[x][y].draw(g, game, mainLight);
+                    tiles[x][y].draw(g, game, game.theLight);
                 }
             }
     }
