@@ -2,22 +2,10 @@ package gui;
 
 import ap4.Controller;
 import ap4.Game;
-import ap4.graphics.ColorVertex;
-import ap4.graphics.GouraudColorModelGraphic;
-import ap4.graphics.Matrix;
-import ap4.graphics.TextureModelGraphic;
-import ap4.graphics.TextureVertex;
-import ap4.graphics.Vector3;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.JPanel;
 
 public class GamePanel extends GeneralGamePanel {
     
