@@ -1,6 +1,7 @@
 package ap4;
 
 import ap4.graphics.Camera;
+import ap4.graphics.Light;
 import ap4.map.Map;
 import ap4.map.Room;
 import java.awt.Graphics;
@@ -16,6 +17,7 @@ public class Game {
     
     public int state = 0;
     public Map map;
+    public Light theLight;
     
     public Game()
     {
@@ -69,8 +71,9 @@ public class Game {
     }
     
     //////////// DRAWING ///////////////
-    public void drawStuff(Graphics g)
+    public void drawStuff(Graphics g, Light l)
     {
+        theLight = l;
         if (map != null)
             map.draw(g, this);
     }
