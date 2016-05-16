@@ -2,6 +2,8 @@ package gui;
 
 import ap4.Controller;
 import ap4.Game;
+import ap4.graphics.Light;
+import ap4.graphics.PointLight;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,6 +13,7 @@ public class GamePanel extends GeneralGamePanel {
     
     Game game;
     Controller control;
+    public Light light = new PointLight(0xffffff, -1,1, 1, 1);
     
     public GamePanel()
     {
