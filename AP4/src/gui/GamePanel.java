@@ -2,34 +2,25 @@ package gui;
 
 import ap4.Controller;
 import ap4.Game;
-import ap4.graphics.ColorVertex;
-import ap4.graphics.GouraudColorModelGraphic;
-import ap4.graphics.Matrix;
-import ap4.graphics.TextureModelGraphic;
-import ap4.graphics.TextureVertex;
-import ap4.graphics.Vector3;
+import ap4.graphics.Light;
+import ap4.graphics.PointLight;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.JPanel;
 
 public class GamePanel extends GeneralGamePanel {
     
     Game game;
     Controller control;
+    public Light light = new PointLight(0xffffff, -1,1, 1, 1);
     
     public GamePanel()
     {
         game = new Game();
         //game.camera.setTilt(-10);
         //game.camera.setPosition(8, 10, 6);
-        game.camera.setPosition(0, .5f, 2);
+        game.camera.setPosition(0, 0.5f, 10);
         control = new Controller();
         game.attachController(control);
         add(control);
@@ -47,7 +38,7 @@ public class GamePanel extends GeneralGamePanel {
         game.camera.beginDraw(g);
         
         //Draw ALL THE THINGS
-        game.drawStuff(g);
+        game.drawStuff(g, light);
         
         game.camera.endDraw(g);
         
