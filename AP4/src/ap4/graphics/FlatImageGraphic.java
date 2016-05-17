@@ -38,6 +38,7 @@ public class FlatImageGraphic extends ModelGraphic {
     }
     @Override
     public void draw(Camera camera, Matrix world, Light light) {
+        camera.setWorld(world);
         PixelShader shader = getPixelShader();
         if(shader != null && shader instanceof LightPixelShader)
             ((LightPixelShader)shader).setPreferredLight(light);
