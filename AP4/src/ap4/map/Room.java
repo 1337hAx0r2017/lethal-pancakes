@@ -60,9 +60,10 @@ public class Room {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
         // Draw unique parts of room
-        bwall.draw(game.camera, x - 1.0f, y - 0.0f, z + 8.0f, 1, game.theLight);
+        twall.draw(game.camera, x - 2.8f, y + 0.1f, z + 6.5f, 1, game.theLight);
+        bwall.draw(game.camera, x - 2.8f, y - 1.25f, z + 6.5f, 1, game.theLight);
         System.out.println("bloop");
-        //z += 0.05;
+        //y += 0.01;
         // Draw tiles
         for (int x = 0; x < tiles.length; x++)
             for (int y = 0; y < tiles[0].length; y++)
@@ -78,20 +79,34 @@ public class Room {
     {
         try
         {
-            bwall = new TextureModelGraphic(
+            twall = new TextureModelGraphic(
                         new TextureVertex[]
                         {
                             new TextureVertex(0, 0, 0, 0, 0),
-                            new TextureVertex(2, 0, 0, 1, 0),
-                            new TextureVertex(0, 0, 1, 0, 1),
-                            new TextureVertex(2, 0, 1, 1, 1),
+                            new TextureVertex(5.5f, 0, 0, 5.5f, 0),
+                            new TextureVertex(0, 0, 0.75f, 0, 0.75f),
+                            new TextureVertex(5.5f, 0, 0.75f, 5.5f, 0.75f),
                         },
                         new short[]
                         {
                             0, 1, 2, 
                             2, 1, 3
                         },
-                        ImageIO.read(new URL(Etc.host + "darkwoodwalls.jpg")));
+                        ImageIO.read(new URL(Etc.host + "darkwoodwalls90r.jpg")));
+            bwall = new TextureModelGraphic(
+                        new TextureVertex[]
+                        {
+                            new TextureVertex(0, 0, 0, 0, 0),
+                            new TextureVertex(5.5f, 0, 0, 5.5f, 0),
+                            new TextureVertex(0, 0, 0.75f, 0, 0.75f),
+                            new TextureVertex(5.5f, 0, 0.75f, 5.5f, 0.75f),
+                        },
+                        new short[]
+                        {
+                            0, 1, 2, 
+                            2, 1, 3
+                        },
+                        ImageIO.read(new URL(Etc.host + "darkwoodwalls90r.jpg")));
         }
         catch (Exception ex)
         { System.out.println("Exception: " + ex.toString()); }
