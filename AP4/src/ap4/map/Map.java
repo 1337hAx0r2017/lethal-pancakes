@@ -135,11 +135,9 @@ public class Map {
             }
     
             count++;
-            
-            if(count > 4){
+            if(count > 4)
                 break;
-            }
-        }while(verify() == false && count < 5);//continue making maps until you find a good one
+        } while(verify() == false && count < 5); //continue making maps until you find a good one
         System.out.println("done");
           
 }

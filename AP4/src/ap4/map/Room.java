@@ -60,7 +60,7 @@ public class Room {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
         // Draw unique parts of room
-        lwall.draw(game.camera, x - 1.0f, y - 0.0f, z + 8.0f, 1, game.theLight);
+        bwall.draw(game.camera, x - 1.0f, y - 0.0f, z + 8.0f, 1, game.theLight);
         System.out.println("bloop");
         //z += 0.05;
         // Draw tiles
@@ -78,7 +78,7 @@ public class Room {
     {
         try
         {
-            lwall = new TextureModelGraphic(
+            bwall = new TextureModelGraphic(
                         new TextureVertex[]
                         {
                             new TextureVertex(0, 0, 0, 0, 0),
