@@ -17,17 +17,17 @@ import javax.imageio.ImageIO;
 
 public class Room {
     
-    float x = 0;
-    float y = 0;
-    float z = 0;
+    public float x = 0;
+    public float y = 0;
+    public float z = 0;
     
-    static int width = 16;
-    static int height = 12;
+    public static int width = 16;
+    public static int height = 12;
     
-    ArrayList<RoomObject> objects;
+    public ArrayList<RoomObject> objects;
     
-    Tile[][] tiles;
-    boolean[] exits = new boolean[4];
+    public Tile[][] tiles;
+    public boolean[] exits = new boolean[4];
     private TextureModelGraphic lwall;
     private TextureModelGraphic rwall;
     private TextureModelGraphic twall;
