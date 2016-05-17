@@ -1,12 +1,19 @@
 package ap4;
 
 import ap4.graphics.Camera;
+import ap4.graphics.FlatImageGraphic;
+import ap4.graphics.ImageGraphic;
 import ap4.graphics.Light;
 import ap4.map.Map;
 import ap4.map.Room;
 import java.awt.Graphics;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 public class Game {
     
@@ -18,12 +25,15 @@ public class Game {
     public int state = 0;
     public Map map;
     public Light theLight;
+        
     
     public Game()
     {
         camera = new Camera(800, 600);
         map = new Map(5, 3, 3);
         System.out.println("Map gen done");
+        
+        
     }
 
     void playGame()
@@ -58,8 +68,18 @@ public class Game {
     public void drawStuff(Graphics g, Light l)
     {
         theLight = l;
+        
+        
+        
+        
+        
         if (map != null)
             map.draw(g, this);
+        
+        
+        
+        
+        
     }
     
     public void attachController(Controller control)
