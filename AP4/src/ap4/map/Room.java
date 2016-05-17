@@ -19,6 +19,7 @@ public class Room {
     
     float x = 0;
     float y = 0;
+    float z = 0;
     
     static int width = 16;
     static int height = 12;
@@ -59,9 +60,9 @@ public class Room {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
         // Draw unique parts of room
-        lwall.draw(game.camera, x - 1.0f, y - 0.1f, .25f, 1, game.theLight);
+        lwall.draw(game.camera, x - 1.0f, y - 0.0f, z + 8.0f, 1, game.theLight);
         System.out.println("bloop");
-        
+        //z += 0.05;
         // Draw tiles
         for (int x = 0; x < tiles.length; x++)
             for (int y = 0; y < tiles[0].length; y++)
@@ -81,9 +82,9 @@ public class Room {
                         new TextureVertex[]
                         {
                             new TextureVertex(0, 0, 0, 0, 0),
-                            new TextureVertex(1, 0, 0, 1, 0),
+                            new TextureVertex(2, 0, 0, 1, 0),
                             new TextureVertex(0, 0, 1, 0, 1),
-                            new TextureVertex(1, 0, 1, 1, 1),
+                            new TextureVertex(2, 0, 1, 1, 1),
                         },
                         new short[]
                         {
