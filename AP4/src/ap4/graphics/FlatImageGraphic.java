@@ -32,16 +32,17 @@ public class FlatImageGraphic extends ModelGraphic {
     {
         super(vbuf, ibuf, new TexturePixelShader(image));
     }
-    @Override
+    /*@Override
     public void draw(Camera camera, float x, float y, float z, float scale) {
         draw(camera, Matrix.multiply(Matrix.createScale(scale), Matrix.createTranslation(x, y, z)), null);
     }
     @Override
     public void draw(Camera camera, Matrix world, Light light) {
+        camera.setWorld(world);
         PixelShader shader = getPixelShader();
         if(shader != null && shader instanceof LightPixelShader)
             ((LightPixelShader)shader).setPreferredLight(light);
         camera.drawTriangle(vbuf[0], vbuf[1], vbuf[2], shader);
         camera.drawTriangle(vbuf[2], vbuf[3], vbuf[0], shader);
-    }
+    }*/
 }
