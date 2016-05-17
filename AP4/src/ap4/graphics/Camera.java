@@ -38,6 +38,7 @@ public class Camera {
     private static final Vertex[] vertexWheel;
     private boolean useZbuf;
     private final Vector3 lightDir;
+    private boolean additive;
     static
     {
         inputvbuf = new float[16];
@@ -65,6 +66,10 @@ public class Camera {
         far = 50;
         fov = Math.PI / 2;
         lightDir = Vector3.normalize(new Vector3(-1,3,2));
+    }
+    public void setAdditive(boolean value)
+    {
+        additive = value;
     }
     public void setPosition(float x, float y, float z)
     {
@@ -266,12 +271,6 @@ public class Camera {
     {
         byte result = prepareVertices(v1, v2, v3);
         
-        if(shader instanceof LightPixelShader && ((LightPixelShader)shader).light != null)
-        {
-            ((LightPixelShader)shader).setWorld(world);
-            ((LightPixelShader)shader).setNormal(v1, v2, v3);
-        }
-        
         if((result & 7) == 3) // three vertices used
         {
             int x1 = (int)(width / 2 * (projectionvbuf[0*4+0]/projectionvbuf[0*4+3] + 1)); 
@@ -306,6 +305,11 @@ public class Camera {
         float d = y3-y1;
         if(Math.abs(a*d-b*c) <= tolerance)
             return;
+        if(shader instanceof LightPixelShader && ((LightPixelShader)shader).light != null)
+        {
+            ((LightPixelShader)shader).setWorld(world);
+            ((LightPixelShader)shader).setNormal(v1, v2, v3);
+        }
         float det = 1 / (a*d-b*c);
         float m11 = d * det;
         float m12 = -b * det;
@@ -337,6 +341,8 @@ public class Camera {
                 if(((sample>>24)&0xff)>=192)
                 {
                     zbuf[y * width + x] = z;
+                    if(additive)
+                        sample = Light.add(sample, pixels[y * width + x]);
                     pixels[y * width + x] = sample;
                 }
             }
