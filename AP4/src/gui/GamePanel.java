@@ -13,7 +13,7 @@ public class GamePanel extends GeneralGamePanel {
     
     Game game;
     Controller control;
-    public Light light = new PointLight(0xffffff, -1,1, 1, 250);
+    public Light light = new PointLight(0xffffff, -1,1, 5, 250);
     
     public GamePanel()
     {
