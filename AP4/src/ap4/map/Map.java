@@ -69,12 +69,13 @@ public class Map {
         int cY = 0;//prevX
         int count = 0;
         
-        do{
+        do
+        {
             System.out.println(nRooms);
         
-            if(roomTypes.size() > 0)
+            if (roomTypes.size() > 0)
             {
-                for(int i = 0; i < nRooms; i++)
+                for (int i = 0; i < nRooms; i++)
                 {
                 if (i == 0)
                     {
@@ -84,8 +85,6 @@ public class Map {
                     }  
                     else
                     {
-
-
                         int randInt = r.nextInt(4);//random 0-3 for directions
 
                         if(randInt == 0 &&  cY > 0){//Add room above
