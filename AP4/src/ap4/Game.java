@@ -22,32 +22,8 @@ public class Game {
     public Game()
     {
         camera = new Camera(800, 600);
-   
-       // will initialize every room here, with their own sets of objects and enemies
-       // will need rockobjects, enemies etc     
-       //playGame();
-        
-        // Logic setup
-        
-        /* 
-        CAUTION! The supplied GeneralGamePanel class automatically handles the game loop thread!
-        All you need to do is call upon the Game's update and draw methods within those in the panel.
-        Upon further inspection, looks like it already does.
-        Unless I'm missing something, this should not be necessary.
-        
-        logicRunnable = new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                //playGame();
-                map = new Map(5, 3, 3);
-                System.out.println("Map gen done");
-            }
-        };
-
-        logicThread = new Thread(logicRunnable);
-        logicThread.start();*/
+        map = new Map(5, 3, 3);
+        System.out.println("Map gen done");
     }
 
     void playGame()

@@ -7,6 +7,7 @@ package items;
 
 import ap4.InvItem;
 import ap4.Player;
+import java.awt.Graphics;
 
 /**
  *
@@ -22,5 +23,10 @@ public class ArmorItem extends InvItem {
     @Override
     public void Use(Player o) {
         // null
+    }
+
+    @Override
+    public void draw(Graphics g) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
