@@ -25,7 +25,6 @@ public class Game {
     public int state = 0;
     public Map map;
     public Light theLight;
-        FlatImageGraphic tile;
         
     
     public Game()
@@ -34,11 +33,6 @@ public class Game {
         map = new Map(5, 3, 3);
         System.out.println("Map gen done");
         
-        try {
-            tile = new FlatImageGraphic(ImageIO.read(new File("testtile.jpg")));
-        } catch (IOException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     void playGame()
@@ -74,18 +68,8 @@ public class Game {
     {
         theLight = l;
         
-        camera.setPosition(0, 2, 0);
-        camera.setTilt(-90);
-        
-        
-        
         if (map != null)
             map.draw(g, this);
-        
-            tile.draw(camera, 0,0,0, 1);
-        
-        camera.endDraw(g);
-        
     }
     
     public void attachController(Controller control)
