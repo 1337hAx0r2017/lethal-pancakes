@@ -80,6 +80,17 @@ public class Room {
     
     private void setupModels()
     {
+        
+        //go through each tile in the room
+            //if the tile is a floor,
+                //put down the floor
+            //if the tile to the NORTH is a wall (whether a wall tile or if the space above is out of the room,
+                //put down the north-side (south-facing) wall
+            //same with south, east, west
+            //if this tile IS a wall, then put the top on it
+        
+        
+        
         try
         {
             twall = new TextureModelGraphic(
