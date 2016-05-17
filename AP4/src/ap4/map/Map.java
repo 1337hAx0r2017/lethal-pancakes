@@ -138,9 +138,8 @@ public class Map {
             if(count > 4)
                 break;
         } while(verify() == false && count < 5); //continue making maps until you find a good one
-        System.out.println("done");
-          
-}
+        System.out.println("done"); 
+    }
     
     
     boolean verify(){
