@@ -30,7 +30,8 @@ public class Game {
     public Game()
     {
         camera = new Camera(800, 600);
-        map = new Map(5, 3, 3);
+        //map = new Map(5, 3, 3);
+        map = new Map(1);
         System.out.println("Map gen done");
         
     }
@@ -60,7 +61,14 @@ public class Game {
     //////////// UPDATE ///////////////
     public void update(float time)
     {
-        
+        if (control.up.getDown())
+            map.rooms[0][0].z += 0.1f;
+        if (control.down.getDown())
+            map.rooms[0][0].z -= 0.1f;
+        if (control.left.getDown())
+            map.rooms[0][0].x += 0.1f;
+        if (control.right.getDown())
+            map.rooms[0][0].x -= 0.1f;
     }
     
     //////////// DRAWING ///////////////

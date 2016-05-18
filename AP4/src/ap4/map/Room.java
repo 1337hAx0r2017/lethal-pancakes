@@ -27,17 +27,12 @@ public class Room {
     public ArrayList<RoomObject> objects;
     
     public Tile[][] tiles;
+    public boolean tilesFinalized = false;
     public boolean[] exits = new boolean[4];
-    private TextureModelGraphic lwall;
-    private TextureModelGraphic rwall;
-    private TextureModelGraphic twall;
-    private TextureModelGraphic bwall;
-    
-    private TextureModelGraphic MasonWalls;
     
     public Room()//, int x, int y //??ArrayList<RoomObject> objects,
     {
-        tiles = new Tile[width][height];
+        tiles = new Tile[height][width];
         
         createExits();
         setupModels();
@@ -61,26 +56,14 @@ public class Room {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
-        // Draw unique parts of room
-        //twall.draw(game.camera, x - 2.8f, y - 0.2f, z + 6.5f, 1, game.theLight);
-        //bwall.draw(game.camera, x - 2.8f, y - 1.25f, z + 6.5f, 1, game.theLight);
-        //System.out.println("bloop");
-        //y += 0.02;
-        // Draw tiles
-        /*for (int x = 0; x < tiles.length; x++)
-            for (int y = 0; y < tiles[0].length; y++)
-            {
-                if (tiles[x][y] != null)
-                {
-                    tiles[x][y].draw(g, game, game.theLight);
-                }
-            }*/
-        MasonWalls.draw(game.camera, 0, 0, 0, 1);
+        if (tilesFinalized)
+            for (int r = 0; r < tiles.length; r++)
+                for (int c = 0; c < tiles[0].length; c++)
+                    tiles[r][c].draw(g, game, this);
     }
     
     private void setupModels()
     {
-        
         //go through each tile in the room
             //if the tile is a floor,
                 //put down the floor
@@ -88,57 +71,6 @@ public class Room {
                 //put down the north-side (south-facing) wall
             //same with south, east, west
             //if this tile IS a wall, then put the top on it
-        
-        
-        
-        try
-        {
-            twall = new TextureModelGraphic(
-                        new TextureVertex[]
-                        {
-                            new TextureVertex(0, 0, 0, 0, 0),
-                            new TextureVertex(5.5f, 0, 0, 5.5f, 0),
-                            new TextureVertex(0, 0, 0.75f, 0, 0.75f),
-                            new TextureVertex(5.5f, 0, 0.75f, 5.5f, 0.75f),
-                        },
-                        new short[]
-                        {
-                            0, 1, 2, 
-                            2, 1, 3
-                        },
-                        ImageIO.read(new URL(Etc.host + "darkwoodwalls90r.jpg")));
-            bwall = new TextureModelGraphic(
-                        new TextureVertex[]
-                        {
-                            new TextureVertex(0, 0, 0, 0, 0),
-                            new TextureVertex(5.5f, 0, 0, 5.5f, 0),
-                            new TextureVertex(0, 0, 0.75f, 0, 0.75f),
-                            new TextureVertex(5.5f, 0, 0.75f, 5.5f, 0.75f),
-                        },
-                        new short[]
-                        {
-                            0, 1, 2, 
-                            2, 1, 3
-                        },
-                        ImageIO.read(new URL(Etc.host + "darkwoodwalls90r.jpg")));
-            
-            MasonWalls = new TextureModelGraphic(
-                    new TextureVertex[]
-                    {
-                        new TextureVertex(0, 1, 1, 0, 0),
-                        new TextureVertex(1, 1, 1, 1, 0),
-                        new TextureVertex(0, 0, 1, 0, 1),
-                        new TextureVertex(1, 0, 1, 1, 1),
-                    },
-                    new short[]
-                    {
-                        0, 1, 2,
-                        2, 1, 3,
-                    },
-                    ImageIO.read(new URL(Etc.host + "darkwoodwalls90r.jpg")));
-        }
-        catch (Exception ex)
-        { System.out.println("Exception: " + ex.toString()); }
     }
     
     private void createExits(){
@@ -191,5 +123,27 @@ public class Room {
         else {
             return false;
         }
+    }
+    
+    //////////////////////////////////// Tile stuff //////
+    public void blankTiles()
+    {
+        for (int r = 0; r < tiles.length; r++)
+            for (int c = 0; c < tiles[0].length; c++)
+                tiles[r][c] = new Tile();
+    }
+    
+    public void finalizeTiles()
+    {
+        for (int r = 0; r < tiles.length; r++)
+            for (int c = 0; c < tiles[0].length; c++)
+            {
+                tiles[r][c].x = c;
+                tiles[r][c].y = 0;
+                tiles[r][c].z = r;
+                tiles[r][c].setupWalls(tiles);
+            }
+        
+        tilesFinalized = true;
     }
 }

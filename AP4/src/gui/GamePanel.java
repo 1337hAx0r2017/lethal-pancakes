@@ -13,14 +13,14 @@ public class GamePanel extends GeneralGamePanel {
     
     Game game;
     Controller control;
-    public Light light = new PointLight(0xffffff, -1,1, 5, 250);
+    public Light light = new PointLight(0xffffff, 5,1, 5, 500);
     
     public GamePanel()
     {
         game = new Game();
         //game.camera.setTilt(-10);
         //game.camera.setPosition(8, 10, 6);
-        game.camera.setPosition(8, 15, 6);
+        game.camera.setPosition(8, 10, 6);
         game.camera.setTilt(-90);
         control = new Controller();
         game.attachController(control);
