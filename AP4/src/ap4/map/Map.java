@@ -40,7 +40,7 @@ public class Map {
         //        etc
     }
     
-    static Room getRoom()
+    static Room getRoom() 
     {
         if (roomTypes.size() > 0)
         {
@@ -66,6 +66,7 @@ public class Map {
             rooms = new Room[1][1];
             rooms[0][0] = new StartRoom();
         }
+        //sdrgsdgr
     }
     public Map(int nRooms)
     {
