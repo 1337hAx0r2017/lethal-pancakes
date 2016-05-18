@@ -13,6 +13,8 @@ import java.awt.RenderingHints;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 public class Room {
@@ -37,7 +39,17 @@ public class Room {
         createExits();
         setupModels();
     }
-    
+    public Room clone()
+    {
+        try {
+            return this.getClass().newInstance();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     public Room(boolean[] ex)//, int x, int y //??ArrayList<RoomObject> objects,
     {
         tiles = new Tile[width][height];
