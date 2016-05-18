@@ -2,6 +2,11 @@
 package ap4.graphics;
 
 public class Vector3 {
+    static Vector3 BACKWARD;
+    static
+    {
+        BACKWARD = new Vector3(0, 0, 1);
+    }
     public float x;
     public float y;
     public float z;

@@ -1,6 +1,7 @@
 
 package ap4.graphics;
 
+import static ap4.graphics.PixelShader.interpolate;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -378,7 +379,11 @@ public class Camera {
     static int[] imagedata = new int[800*600*4];
     public void drawImage(Vector3 position, BufferedImage image, float scale)
     {
-        Vector4 pos = viewProjection.transform(world.transform(new Vector4(position.x, position.y, position.z, 1)));
+        drawImage(position, image, scale, null);
+    }
+    public void drawImage(Vector3 position, BufferedImage image, float scale, Light light)
+    {
+        Vector4 pos = viewProjection.transform(new Vector4(position.x, position.y, position.z, 1));
         scale /= pos.w;
         int cx = (int)(width / 2 * (pos.x / pos.w + 1));
         int cy = (int)(-height / 2 * (pos.y / pos.w - 1));
@@ -391,6 +396,7 @@ public class Camera {
         int miny = Math.max(top, 0);
         int maxy = Math.min(bottom, height - 1);
         image.getData().getPixels(0, 0, image.getWidth(), image.getHeight(), imagedata);
+        Vector3 normal = Vector3.normalize(new Vector3(x-position.x,y-position.y, z-position.z));
         for(int y = miny; y <= maxy; y++)
             for(int x = minx; x <= maxx; x++)
             {
@@ -398,8 +404,13 @@ public class Camera {
                     continue;
                 int sx = Math.max(0, Math.min(image.getWidth() - 1, image.getWidth() * (x - left) / (right - left)));
                 int sy = Math.max(0, Math.min(image.getHeight() - 1, image.getHeight() * (y - top) / (bottom - top)));
-                int base = (sy * image.getWidth() + sx) * 4;
+                int base = (sy * image.getWidth() + sx) * image.getRaster().getNumDataElements();
                 int sample = (imagedata[base + 0] << 16) | (imagedata[base + 1] << 8) | (imagedata[base + 2]) | (imagedata[base + 3] << 24);
+                if(light != null)
+                {
+                    int l = light.calculateLighting(position, normal);
+                    sample = Light.multiply(l, sample);
+                }
                 if(((sample >> 24) & 0xff) >= 192)
                 {
                     pixels[y * width + x] = 0xff000000 | sample;
