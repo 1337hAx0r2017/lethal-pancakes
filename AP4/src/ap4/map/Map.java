@@ -298,14 +298,14 @@ public class Map {
         return true;
     }
     
-    public void draw(Graphics g, Game game)
+    public void draw(Game game)
     {
         for (int x = 0; x < rooms.length; x++)
             for (int y = 0; y < rooms[0].length; y++)
             {
                 if (rooms[x][y] != null)
                 {
-                    rooms[x][y].draw(g, game);
+                    rooms[x][y].draw(game);
                 }
             }
     }

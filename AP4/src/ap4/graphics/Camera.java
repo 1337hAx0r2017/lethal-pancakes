@@ -348,11 +348,11 @@ public class Camera {
                 }
             }
     }
-    public void beginDraw(Graphics g)
+    public void beginDraw()
     {
-        beginDraw(g, 0xff000000);
+        beginDraw(0xff000000);
     }
-    public void beginDraw(Graphics g, int color)
+    public void beginDraw(int color)
     {
         for(int i = 0; i < pixels.length; i++)
         {
@@ -360,7 +360,7 @@ public class Camera {
             zbuf[i] = 0;
         }
         setView(x, y, z, pan, tilt);
-        setProjection(fov, (float)g.getClipBounds().getWidth() / (float)g.getClipBounds().getHeight(), near, far);
+        setProjection(fov, (float)width / (float)height, near, far);
         this.viewProjection = Matrix.multiply(view, projection);
     }
     public void endDraw(Graphics g)

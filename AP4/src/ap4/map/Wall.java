@@ -27,8 +27,8 @@ public class Wall extends Tile {
     static {
     }
     
-    public void draw(Graphics g, Game game, Room r)
+    public void draw(Game game, Room r)
     {
-        super.draw(g, game, r);
+        super.draw(game, r);
     }
 }

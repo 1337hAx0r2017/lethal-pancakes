@@ -34,13 +34,17 @@ public class GamePanel extends GeneralGamePanel {
     }
     
     @Override
-    public void draw(Graphics g)
+    public void render()
     {
-        game.camera.beginDraw(g);
+        game.camera.beginDraw();
         
         //Draw ALL THE THINGS
-        game.drawStuff(g, light);
-        
+        game.drawStuff(light);
+    }
+    
+    @Override
+    public void draw(Graphics g)
+    {
         game.camera.endDraw(g);
         
         // Debug stuff

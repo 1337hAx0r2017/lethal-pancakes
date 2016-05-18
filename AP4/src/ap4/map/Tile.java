@@ -178,7 +178,7 @@ public class Tile {
             }
     }
     
-    public void draw(Graphics g, Game game, Room r)
+    public void draw(Game game, Room r)
     {
         System.out.println("drawing " + this + "; dnw: " + drawnorth);
         

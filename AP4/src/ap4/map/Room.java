@@ -63,15 +63,15 @@ public class Room {
         setupModels();
     }
     
-    public void draw(Graphics g, Game game)
+    public void draw(Game game)
     {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        //Graphics2D g2d = (Graphics2D) g;
+        //g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
         if (tilesFinalized)
             for (int r = 0; r < tiles.length; r++)
                 for (int c = 0; c < tiles[0].length; c++)
-                    tiles[r][c].draw(g, game, this);
+                    tiles[r][c].draw(game, this);
     }
     
     private void setupModels()

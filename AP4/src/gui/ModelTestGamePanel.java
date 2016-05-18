@@ -99,18 +99,15 @@ public class ModelTestGamePanel extends GeneralGamePanel {
     @Override
     public void update(float time)
     {
-        game.update(time);
+        //game.update(time);
         theta += time;
         ((PointLight)light).source = new Vector3((float)Math.cos(theta), 1, (float)Math.sin(theta));
         //((DirectionalLight)light).setDirection((float)Math.cos(theta), -1, (float)Math.sin(theta));
     }
     
-    @Override
-    public void draw(Graphics g)
+    public void render()
     {
-
-        
-        game.camera.beginDraw(g);
+        game.camera.beginDraw();
         game.camera.setWorld(Matrix.IDENTITY);
         
         Matrix world = Matrix.multiply(Matrix.multiply(Matrix.multiply(Matrix.multiply(Matrix.createRotationZ(Math.PI/4), Matrix.createRotationX(Math.PI/4)), Matrix.createRotationY(-2*theta)), Matrix.createScale(.25f)), Matrix.createTranslation(0, .25f, 0));
@@ -134,6 +131,13 @@ public class ModelTestGamePanel extends GeneralGamePanel {
         
         //Draw ALL THE THINGS
         //map.draw(camera);
+        
+    }
+    
+    @Override
+    public void draw(Graphics g)
+    {
+
         
         game.camera.endDraw(g);
         
