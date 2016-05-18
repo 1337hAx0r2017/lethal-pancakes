@@ -59,6 +59,14 @@ public class Map {
     public Room[][] rooms;
     Random r = new Random();
     
+    public Map(boolean thing)
+    {
+        if (thing)
+        {
+            rooms = new Room[1][1];
+            rooms[0][0] = new StartRoom();
+        }
+    }
     public Map(int nRooms)
     {
         this(nRooms, nRooms * 2 - 1, nRooms * 2 - 1);
