@@ -12,11 +12,23 @@ package ap4.graphics;
 public abstract class Graphic {
     public void draw(Camera camera, float x, float z)
     {
-        draw(camera, x, 0, z, 1);
+        draw(camera, x, 0, z, 1, null);
     }
     public void draw(Camera camera, float x, float y, float z)
     {
-        draw(camera, x, y, z, 1);
+        draw(camera, x, y, z, 1, null);
     }
-    public abstract void draw(Camera camera, float x, float y, float z, float scale);
+    public void draw(Camera camera, float x, float y, float z, float scale)
+    {
+        draw(camera, x, y, z, 1, null);
+    }
+    public void draw(Camera camera, float x, float z, Light light)
+    {
+        draw(camera, x, 0, z, 1, light);
+    }
+    public void draw(Camera camera, float x, float y, float z, Light light)
+    {
+        draw(camera, x, y, z, 1, light);
+    }
+    public abstract void draw(Camera camera, float x, float y, float z, float scale, Light light);
 }

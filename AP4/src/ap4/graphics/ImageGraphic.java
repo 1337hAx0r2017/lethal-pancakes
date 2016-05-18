@@ -19,7 +19,8 @@ public class ImageGraphic extends Graphic {
         this.image = image;
     }
     @Override
-    public void draw(Camera camera, float x, float y, float z, float scale) {
-        camera.drawImage(new Vector3(x, y, z), image, scale);
+    public void draw(Camera camera, float x, float y, float z, float scale, Light light) {
+        camera.setWorld(Matrix.IDENTITY);
+        camera.drawImage(new Vector3(x, y, z), image, scale, light);
     }
 }
