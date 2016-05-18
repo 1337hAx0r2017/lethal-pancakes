@@ -7,6 +7,7 @@ import ap4.graphics.ColorVertex;
 import ap4.graphics.LightList;
 import ap4.graphics.DirectionalLight;
 import ap4.graphics.GouraudColorModelGraphic;
+import ap4.graphics.ImageGraphic;
 import ap4.graphics.Light;
 import ap4.graphics.Matrix;
 import ap4.graphics.ModelGraphic;
@@ -35,6 +36,7 @@ public class ModelTestGamePanel extends GeneralGamePanel {
     double theta;
     ModelGraphic cube;
     LightList lights;
+    ImageGraphic pic;
     
     //GouraudColorModelGraphic[][] testGraphics;
     TextureModelGraphic model;
@@ -79,7 +81,11 @@ public class ModelTestGamePanel extends GeneralGamePanel {
         catch(IOException ex)
         {
         }
-        
+        try {
+            pic = new ImageGraphic(ImageIO.read(new File("47610129.jpg")));
+        } catch (IOException ex) {
+            Logger.getLogger(ModelTestGamePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         cube = new DemoCubeModel1();
         
         light = new PointLight(0xffffff, -1,1, 1, 1);
@@ -117,6 +123,7 @@ public class ModelTestGamePanel extends GeneralGamePanel {
         model.draw(game.camera, 0, 0, .25f, 1, lights);
         model.draw(game.camera, -1, 0, 0, 1, lights);
         cube.draw(game.camera, world, lights);
+        pic.draw(game.camera, 5, -5, lights);
        
         /*for(int x = 0; x < 16; x++)
             for(int y = 0; y < 12; y++)

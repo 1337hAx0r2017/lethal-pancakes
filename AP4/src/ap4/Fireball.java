@@ -11,6 +11,6 @@ public class Fireball extends InvItem{
     
     public void draw(Graphics g)
     {
-        
+        //add music later
     }
 }

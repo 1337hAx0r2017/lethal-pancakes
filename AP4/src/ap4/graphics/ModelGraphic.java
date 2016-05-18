@@ -23,13 +23,13 @@ public abstract class ModelGraphic extends Graphic {
         this.shader = shader;
     }
     
-    @Override
+    /*@Override
     public void draw(Camera camera, float x, float y, float z, float scale) {
         draw(camera, x, y, z, scale, null);
     }
     public void draw(Camera camera, float x, float z, Light light) {
         draw(camera, x, 0, z, 1, light);
-    }
+    }*/
     public void draw(Camera camera, float x, float y, float z, float scale, Light light) {
         draw(camera, Matrix.multiply(Matrix.createScale(scale), Matrix.createTranslation(x, y, z)), light);
     }

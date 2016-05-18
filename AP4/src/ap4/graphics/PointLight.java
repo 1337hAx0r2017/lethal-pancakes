@@ -26,8 +26,11 @@ public class PointLight extends Light {
     
     @Override
     int calculateLighting(Vector3 position, Vector3 normal) {
+        float r2 = Vector3.distanceSquared(position, source);
+        if(r2 > power * 100)
+            return 0xff000000;
         Vector3 direction = Vector3.normalize(Vector3.subtract(source, position));
-        float f = power * Math.max(Vector3.dot(direction, normal), 0) / Vector3.distanceSquared(position, source);
+        float f = power * Math.max(Vector3.dot(direction, normal), 0) / r2;
         return 0xff000000 | multiply(color, f);
     }
     
