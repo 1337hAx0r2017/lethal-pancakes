@@ -7,13 +7,13 @@ import java.awt.Graphics;
 import java.net.URL;
 import javax.imageio.ImageIO;
 
-public class WoodenSword extends InvItem {
+public class MasterSword extends InvItem {
     
-    public WoodenSword()
+    public MasterSword()
     { 
         try
         {
-            visual = ImageIO.read(new URL(Etc.host + "woodensword.png"));
+            visual = ImageIO.read(new URL(Etc.host + "mastersword.png"));
         }
         catch (Exception ex)
         { System.out.println(ex); }
