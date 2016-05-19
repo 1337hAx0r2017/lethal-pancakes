@@ -139,7 +139,7 @@ public class ModelTestGamePanel extends GeneralGamePanel {
     {
 
         
-        game.camera.endDraw(g);
+        game.camera.show(g);
         
         // Debug stuff
         Graphics2D g2d = (Graphics2D) g;

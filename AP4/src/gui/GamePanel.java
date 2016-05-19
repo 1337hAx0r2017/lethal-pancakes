@@ -40,12 +40,14 @@ public class GamePanel extends GeneralGamePanel {
         
         //Draw ALL THE THINGS
         game.drawStuff(light);
+        
+        game.camera.endDraw();
     }
     
     @Override
     public void draw(Graphics g)
     {
-        game.camera.endDraw(g);
+        game.camera.show(g);
         
         // Debug stuff
         Graphics2D g2d = (Graphics2D) g;

@@ -28,11 +28,11 @@ public class Camera {
     int width;
     int height;
     DataBufferInt databuf;
-    BufferedImage backbuf;
+    BufferedImage renderedImage;
     WritableRaster raster;
     //DataBuffer dataBuffer;
-    int[] pixels;
-    //int[] frontpixels;
+    int[] backpixels;
+    int[] frontpixels;
     float[] zbuf;
     private static final float[] inputvbuf;
     private static final float[] viewvbuf;
@@ -54,14 +54,14 @@ public class Camera {
         //projection = new Matrix();
         width = screenWidth;
         height = screenHeight;
-        pixels = new int[width*height];
-        //frontpixels = new int[width*height];
+        backpixels = new int[width*height];
+        frontpixels = new int[width*height];
         zbuf = new float[width*height];
-        databuf = new DataBufferInt(pixels, pixels.length);
-        //databuf = new DataBufferInt(frontpixels, frontpixels.length);
+        //databuf = new DataBufferInt(backpixels, backpixels.length);
+        databuf = new DataBufferInt(frontpixels, frontpixels.length);
         int[] bandMasks = { 0xff0000, 0xff00, 0xff, 0xff000000 };
         raster = Raster.createPackedRaster(databuf, width, height, width, bandMasks, null);
-        backbuf = new BufferedImage(ColorModel.getRGBdefault(), raster, ColorModel.getRGBdefault().isAlphaPremultiplied(), null);
+        renderedImage = new BufferedImage(ColorModel.getRGBdefault(), raster, ColorModel.getRGBdefault().isAlphaPremultiplied(), null);
         //raster = backbuf.getRaster().createCompatibleWritableRaster();
         //backbuf.setData(raster);
         //dataBuffer = raster.getDataBuffer();
@@ -346,8 +346,8 @@ public class Camera {
                 {
                     zbuf[y * width + x] = z;
                     if(additive)
-                        sample = Light.add(sample, pixels[y * width + x]);
-                    pixels[y * width + x] = sample;
+                        sample = Light.add(sample, backpixels[y * width + x]);
+                    backpixels[y * width + x] = sample;
                 }
             }
     }
@@ -357,24 +357,27 @@ public class Camera {
     }
     public void beginDraw(int color)
     {
-        for(int i = 0; i < pixels.length; i++)
+        for(int i = 0; i < backpixels.length; i++)
         {
-            pixels[i] = color;
+            backpixels[i] = color;
             zbuf[i] = 0;
         }
         setView(x, y, z, pan, tilt);
         setProjection(fov, (float)width / (float)height, near, far);
         this.viewProjection = Matrix.multiply(view, projection);
     }
-    public void endDraw(Graphics g)
+    public void endDraw()
     {
         //raster.set
         //raster.setPixels(0, 0, width, height, pixels);
         //raster.setDataElements(0, 0, width, height, pixels);
         //backbuf.setData(raster);
         //backbuf.setRGB(0, 0, width, height, pixels, 0, width);
-        //System.arraycopy(pixels, 0, frontpixels, 0, pixels.length);
-        g.drawImage(backbuf, 0, 0, null);
+        System.arraycopy(backpixels, 0, frontpixels, 0, backpixels.length);
+    }
+    public void show(Graphics g)
+    {
+        g.drawImage(renderedImage, 0, 0, null);
     }
     /*public Image getBackBuffer()
     {
@@ -417,7 +420,7 @@ public class Camera {
                 }
                 if(((sample >> 24) & 0xff) >= 192)
                 {
-                    pixels[y * width + x] = 0xff000000 | sample;
+                    backpixels[y * width + x] = 0xff000000 | sample;
                     if(useZbuf)
                         zbuf[y * width + x] = pos.z;
                 }

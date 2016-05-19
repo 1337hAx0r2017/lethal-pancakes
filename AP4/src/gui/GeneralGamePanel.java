@@ -47,7 +47,7 @@ public abstract class GeneralGamePanel extends JPanel {
                 while(running)
                 {
                     long startUpdateTime = System.nanoTime();
-                    update(seconds);
+                    update((float)cycleTime);
                     long endUpdateTime = System.nanoTime();
                     //drawing = true;
                     render();
