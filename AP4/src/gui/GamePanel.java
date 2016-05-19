@@ -2,6 +2,7 @@ package gui;
 
 import ap4.Controller;
 import ap4.Game;
+import ap4.graphics.DirectionalLight;
 import ap4.graphics.Light;
 import ap4.graphics.PointLight;
 import java.awt.Color;
@@ -13,7 +14,9 @@ public class GamePanel extends GeneralGamePanel {
     
     Game game;
     Controller control;
-    public Light light = new PointLight(0xffffff, 5,1, 5, 500);
+    //public Light light = new PointLight(0xffffff, 5,1, 5, 500);
+    //public DirectionalLight light = new DirectionalLight(0xffffff, -1f, -1f, 1f);
+    public DirectionalLight light = null;
     
     public GamePanel()
     {
