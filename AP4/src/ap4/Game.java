@@ -73,12 +73,12 @@ public class Game {
     }
     
     //////////// DRAWING ///////////////
-    public void drawStuff(Graphics g, Light l)
+    public void drawStuff(Light l)
     {
         theLight = l;
         
         if (map != null)
-            map.draw(g, this);
+            map.draw(this);
     }
     
     public void attachController(Controller control)

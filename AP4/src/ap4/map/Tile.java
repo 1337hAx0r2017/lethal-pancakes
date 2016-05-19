@@ -180,8 +180,6 @@ public class Tile {
     
     public void draw(Game game, Room r)
     {
-        System.out.println("drawing " + this + "; dnw: " + drawnorth);
-        
         if (drawnorth)
             northwall.draw(game.camera, r.x + x, r.y + y, r.z + z, 1, game.theLight);
         if (drawsouth)
