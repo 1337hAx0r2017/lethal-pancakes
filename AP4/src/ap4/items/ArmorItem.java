@@ -28,7 +28,7 @@ public class ArmorItem extends InvItem{
         { System.out.println(ex); }
     }
     
-    public void Use(Player o)
+    public void use(Player o)
     {
     }
     
