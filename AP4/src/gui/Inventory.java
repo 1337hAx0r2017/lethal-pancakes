@@ -41,10 +41,10 @@ public class Inventory {
         
         g2d.setColor(Color.white);
         
-        g2d.drawImage(slots, null, 658, 496);
+        g2d.drawImage(slots, null, Window.sx - 142, Window.sy - 104);
         if (weapon != null)
-            g2d.drawImage(weapon.visual, null, 667, 504);
+            g2d.drawImage(weapon.visual, null, Window.sx - 133, Window.sy - 95);
         if (thing != null)
-            g2d.drawImage(thing.visual, null, 728, 504);
+            g2d.drawImage(thing.visual, null, Window.sx - 71, Window.sy - 95);
     }
 }
