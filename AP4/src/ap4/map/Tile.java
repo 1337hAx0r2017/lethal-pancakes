@@ -68,7 +68,7 @@ public class Tile {
                         0, 1, 2,
                         2, 1, 3,
                     },
-                    ImageIO.read(new URL(Etc.host + "darkwoodwalls.jpg")));
+                    ImageIO.read(new URL(Etc.host + "darkwoodwalls90r.jpg")));
             southwall = new TextureModelGraphic(
                     new TextureVertex[]
                     {
@@ -82,7 +82,7 @@ public class Tile {
                         0, 1, 2,
                         2, 1, 3,
                     },
-                    ImageIO.read(new URL(Etc.host + "darkwoodwalls.jpg")));
+                    ImageIO.read(new URL(Etc.host + "darkwoodwalls90r.jpg")));
             eastwall = new TextureModelGraphic(
                     new TextureVertex[]
                     {
@@ -96,7 +96,7 @@ public class Tile {
                         0, 1, 2,
                         2, 1, 3,
                     },
-                    ImageIO.read(new URL(Etc.host + "darkwoodwalls.jpg")));
+                    ImageIO.read(new URL(Etc.host + "darkwoodwalls90r.jpg")));
             westwall = new TextureModelGraphic(
                     new TextureVertex[]
                     {
@@ -110,7 +110,7 @@ public class Tile {
                         0, 1, 2,
                         2, 1, 3,
                     },
-                    ImageIO.read(new URL(Etc.host + "darkwoodwalls.jpg")));
+                    ImageIO.read(new URL(Etc.host + "darkwoodwalls90r.jpg")));
             cap = new TextureModelGraphic(
                     new TextureVertex[]
                     {
