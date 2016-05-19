@@ -32,6 +32,7 @@ public class Camera {
     WritableRaster raster;
     //DataBuffer dataBuffer;
     int[] pixels;
+    //int[] frontpixels;
     float[] zbuf;
     private static final float[] inputvbuf;
     private static final float[] viewvbuf;
@@ -54,8 +55,10 @@ public class Camera {
         width = screenWidth;
         height = screenHeight;
         pixels = new int[width*height];
+        //frontpixels = new int[width*height];
         zbuf = new float[width*height];
         databuf = new DataBufferInt(pixels, pixels.length);
+        //databuf = new DataBufferInt(frontpixels, frontpixels.length);
         int[] bandMasks = { 0xff0000, 0xff00, 0xff, 0xff000000 };
         raster = Raster.createPackedRaster(databuf, width, height, width, bandMasks, null);
         backbuf = new BufferedImage(ColorModel.getRGBdefault(), raster, ColorModel.getRGBdefault().isAlphaPremultiplied(), null);
@@ -370,6 +373,7 @@ public class Camera {
         //raster.setDataElements(0, 0, width, height, pixels);
         //backbuf.setData(raster);
         //backbuf.setRGB(0, 0, width, height, pixels, 0, width);
+        //System.arraycopy(pixels, 0, frontpixels, 0, pixels.length);
         g.drawImage(backbuf, 0, 0, null);
     }
     /*public Image getBackBuffer()
