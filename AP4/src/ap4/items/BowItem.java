@@ -5,9 +5,12 @@
  */
 package ap4.items;
 
+import ap4.Etc;
 import ap4.InvItem;
 import ap4.Player;
 import java.awt.Graphics;
+import java.net.URL;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -15,8 +18,14 @@ import java.awt.Graphics;
  */
 public class BowItem extends InvItem{
     
-    BowItem()
+   public BowItem()
     { 
+   try
+        {
+            visual = ImageIO.read(new URL(Etc.host + "bow.png"));
+        }
+        catch (Exception ex)
+        { System.out.println(ex); }
     }
     
     public void Use(Player o)

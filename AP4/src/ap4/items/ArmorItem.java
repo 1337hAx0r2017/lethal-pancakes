@@ -5,9 +5,12 @@
  */
 package ap4.items;
 
+import ap4.Etc;
 import ap4.InvItem;
 import ap4.Player;
 import java.awt.Graphics;
+import java.net.URL;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -17,6 +20,12 @@ public class ArmorItem extends InvItem{
   
     ArmorItem()
     { 
+        try
+        {
+            visual = ImageIO.read(new URL(Etc.host + "zeldashield.png"));
+        }
+        catch (Exception ex)
+        { System.out.println(ex); }
     }
     
     public void Use(Player o)
