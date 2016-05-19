@@ -13,16 +13,16 @@ import java.awt.Graphics;
  *
  * @author kileys.2017
  */
-public class Floor extends Tile{
-
+public class Pit extends Floor {
+    
     public boolean drawnorth = false;
     public boolean drawsouth = false;
     public boolean draweast = false;
     public boolean drawwest = false;
     
-    
-    Floor(){
+    Pit(){
         solid = false;
+        isPit = true;
     }
     public void setupWalls(Tile[][] t)
     {
@@ -42,32 +42,40 @@ public class Floor extends Tile{
                         draweast = true;
                     
                     if (r > 0)
-                        if (t[r - 1][c].type == 1)
+                        if (t[r - 1][c].type != 2)
                             drawnorth = true;
                     if (r < t.length - 1)
-                        if (t[r + 1][c].type == 1)
+                        if (t[r + 1][c].type != 2)
                             drawsouth = true;
                     
                     if (c > 0)
-                        if (t[r][c - 1].type == 1)
+                        if (t[r][c - 1].type != 2)
                             drawwest = true;
                     if (c < t.length - 1)
-                        if (t[r][c + 1].type == 1)
+                        if (t[r][c + 1].type != 2)
                             draweast = true;
                 }
             }
+        super.setupWalls(t);
     }
     
     public void draw(Game game, Room r)
     {
-        if (drawnorth)
+        if (super.drawnorth)
             northwall.draw(game.camera, r.x + x, r.y + y, r.z + z, 1, game.theLight);
-        if (drawsouth)
+        if (super.drawsouth)
             southwall.draw(game.camera, r.x + x, r.y + y, r.z + z, 1, game.theLight);
-        if (draweast)
+        if (super.draweast)
             eastwall.draw(game.camera, r.x + x, r.y + y, r.z + z, 1, game.theLight);
-        if (drawwest)
+        if (super.drawwest)
             westwall.draw(game.camera, r.x + x, r.y + y, r.z + z, 1, game.theLight);
-        floor.draw(game.camera, r.x + x, r.y + y, r.z + z, 1, game.theLight);
+        if (drawnorth)
+            northwall.draw(game.camera, r.x + x, r.y + y - 1, r.z + z, 1, game.theLight);
+        if (drawsouth)
+            southwall.draw(game.camera, r.x + x, r.y + y - 1, r.z + z, 1, game.theLight);
+        if (draweast)
+            eastwall.draw(game.camera, r.x + x, r.y + y - 1, r.z + z, 1, game.theLight);
+        if (drawwest)
+            westwall.draw(game.camera, r.x + x, r.y + y - 1, r.z + z, 1, game.theLight);
     }
 }

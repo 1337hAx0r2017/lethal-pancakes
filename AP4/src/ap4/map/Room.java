@@ -142,7 +142,7 @@ public class Room {
     {
         for (int r = 0; r < tiles.length; r++)
             for (int c = 0; c < tiles[0].length; c++)
-                tiles[r][c] = new Tile();
+                tiles[r][c] = new Floor();
     }
     
     public void finalizeTiles()
