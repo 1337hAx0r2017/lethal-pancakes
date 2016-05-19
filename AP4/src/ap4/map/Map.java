@@ -160,7 +160,7 @@ public class Map {
         
         finalizeRooms();        
         
-        crop();
+       // crop();
         
         System.out.println("done"); 
     }
@@ -242,7 +242,7 @@ public class Map {
                                     //there is a room to the right that DOESN'T open left but this room DOES open right (etc)
                                     
                     
-/*
+
                     if(rooms[x][y] != null && rooms[x+1][y] == null && rooms[x][y].exits[1] == true){
                         Room room = getRoom();
                         while(room == null && room.exits[3] == false){
@@ -279,7 +279,7 @@ public class Map {
                         
                         good = false;
                     }
-                    */
+                    
                 }
             }
         
@@ -301,7 +301,7 @@ public class Map {
         }
         
         if(n < nRooms){
-            System.out.println("too small");
+            //System.out.println("too small");
             return false;
             
         }
@@ -311,24 +311,24 @@ public class Map {
                 
                 if((rooms[x][y] != null && rooms[x+1][y] != null) && (rooms[x][y].exits[1] != rooms[x+1][y].exits[3])){
                     //rooms =  new Room[sizeX][sizeY];
-                    System.out.println("bad exit");
+                    //System.out.println("bad exit");
                     return false;
                     
                     //bad map
                 }
                 if((rooms[x][y] != null && rooms[x-1][y] != null) && (rooms[x][y].exits[3] != rooms[x-1][y].exits[1])){
                     //rooms =  new Room[sizeX][sizeY];
-                    System.out.println("bad exit");
+                    //System.out.println("bad exit");
                     return false;
                 }
                 if((rooms[x][y] != null && rooms[x][y+1] != null) && (rooms[x][y].exits[2] != rooms[x][y+1].exits[0])){
                     //rooms =  new Room[sizeX][sizeY];
-                    System.out.println("bad exit");
+                    //System.out.println("bad exit");
                     return false;
                 }
                 if((rooms[x][y] != null && rooms[x][y-1] != null) && (rooms[x][y].exits[0] != rooms[x][y-1].exits[2])){
                     //rooms =  new Room[sizeX][sizeY];
-                    System.out.println("bad exit");
+                    //System.out.println("bad exit");
                     return false;
                 }
             }
