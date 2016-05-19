@@ -5,9 +5,12 @@
  */
 package ap4.items;
 
+import ap4.Etc;
 import ap4.InvItem;
 import ap4.Player;
 import java.awt.Graphics;
+import java.net.URL;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -15,8 +18,14 @@ import java.awt.Graphics;
  */
 public class WoodenSword extends InvItem{
     
-    WoodenSword()
+    public WoodenSword()
     { 
+        try
+        {
+            visual = ImageIO.read(new URL(Etc.host + "woodensword.png"));
+        }
+        catch (Exception ex)
+        { System.out.println(ex); }
     }
     
     public void Use(Player o)
@@ -26,5 +35,4 @@ public class WoodenSword extends InvItem{
     public void draw(Graphics g)
     {
     }
-    
 }
