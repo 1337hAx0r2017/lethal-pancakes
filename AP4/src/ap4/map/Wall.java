@@ -27,8 +27,14 @@ public class Wall extends Tile {
     static {
     }
     
+    
+    
     public void draw(Game game, Room r)
     {
-        super.draw(game, r);
+        cap.draw(game.camera, r.x + x, r.y + y, r.z + z, 1, game.theLight);
+    }
+
+    @Override
+    public void setupWalls(Tile[][] t) {
     }
 }

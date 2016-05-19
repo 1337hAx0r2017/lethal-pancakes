@@ -13,7 +13,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-public class Tile {
+public abstract class Tile {
+    
+    public static final int TILE_FLOOR = 0;
+    public static final int TILE_WALL = 2;
+    public static final int TILE_PIT = 2;
     
     public static TextureModelGraphic northwall;
     public static TextureModelGraphic southwall;
@@ -26,11 +30,6 @@ public class Tile {
     public boolean solid = false; //false = can walk through
     public boolean isPit = false;
     public int type = 0;
-    
-    public boolean drawnorth = false;
-    public boolean drawsouth = false;
-    public boolean draweast = false;
-    public boolean drawwest = false;
     
     public float x;
     public float y;
@@ -48,8 +47,10 @@ public class Tile {
     {
         exit = false;
         this.type = type;
-        if (type == 1)
+        if (type == TILE_WALL)
             solid = true;
+        if (type == TILE_PIT)
+            isPit = true;
     }
     
     static {
@@ -144,53 +145,6 @@ public class Tile {
         { Logger.getLogger(Wall.class.getName()).log(Level.SEVERE, null, ex); }
     }
     
-    public void setupWalls(Tile[][] t)
-    {
-        for (int r = 0; r < t.length; r++)
-            for (int c = 0; c < t[0].length; c++)
-            {
-                if (t[r][c] == this)
-                {
-                    if (r == 0)
-                        drawnorth = true;
-                    else if (r == t.length - 1)
-                        drawsouth = true;
-                    
-                    if (c == 0)
-                        drawwest = true;
-                    else if (c == t[0].length - 1)
-                        draweast = true;
-                    
-                    if (r > 0)
-                        if (t[r - 1][c].type == 1)
-                            drawnorth = true;
-                    if (r < t.length - 1)
-                        if (t[r + 1][c].type == 1)
-                            drawsouth = true;
-                    
-                    if (c > 0)
-                        if (t[r][c - 1].type == 1)
-                            drawwest = true;
-                    if (c < t.length - 1)
-                        if (t[r][c + 1].type == 1)
-                            draweast = true;
-                }
-            }
-    }
-    
-    public void draw(Game game, Room r)
-    {
-        if (drawnorth)
-            northwall.draw(game.camera, r.x + x, r.y + y, r.z + z, 1, game.theLight);
-        if (drawsouth)
-            southwall.draw(game.camera, r.x + x, r.y + y, r.z + z, 1, game.theLight);
-        if (draweast)
-            eastwall.draw(game.camera, r.x + x, r.y + y, r.z + z, 1, game.theLight);
-        if (drawwest)
-            westwall.draw(game.camera, r.x + x, r.y + y, r.z + z, 1, game.theLight);
-        if (type == 1)
-            cap.draw(game.camera, r.x + x, r.y + y, r.z + z, 1, game.theLight);
-        if (!isPit)
-            floor.draw(game.camera, r.x + x, r.y + y, r.z + z, 1, game.theLight);
-    }
+    public abstract void setupWalls(Tile[][] t);
+    public abstract void draw(Game game, Room r);
 }
