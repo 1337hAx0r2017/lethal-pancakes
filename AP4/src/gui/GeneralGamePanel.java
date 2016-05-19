@@ -49,10 +49,10 @@ public abstract class GeneralGamePanel extends JPanel {
                     long startUpdateTime = System.nanoTime();
                     update(seconds);
                     long endUpdateTime = System.nanoTime();
-                    drawing = true;
+                    //drawing = true;
                     render();
                     repaint();
-                    drawing = false;
+                    //drawing = false;
                     long endDrawTime = System.nanoTime();
                     drawTime = (endDrawTime - endUpdateTime) / 1000000000.0;
                     int sleepTime = (int)(nanoseconds - (endDrawTime - startUpdateTime));
