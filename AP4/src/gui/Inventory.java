@@ -2,7 +2,7 @@ package gui;
 
 import ap4.Etc;
 import ap4.InvItem;
-import ap4.items.WoodenSword;
+import ap4.items.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -23,7 +23,9 @@ public class Inventory {
     
     public Inventory()
     {
-        weapon = new WoodenSword();
+        weapon = new MasterSword();
+        thing = new Potion();
+        
         try
         {
             slots = ImageIO.read(new URL(Etc.host + "slots.png"));
@@ -42,5 +44,7 @@ public class Inventory {
         g2d.drawImage(slots, null, 658, 496);
         if (weapon != null)
             g2d.drawImage(weapon.visual, null, 667, 504);
+        if (thing != null)
+            g2d.drawImage(thing.visual, null, 728, 504);
     }
 }
