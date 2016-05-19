@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ap4.items;
 
 import ap4.Etc;
@@ -12,10 +7,6 @@ import java.awt.Graphics;
 import java.net.URL;
 import javax.imageio.ImageIO;
 
-/**
- *
- * @author kardzhalao.2017
- */
 public class WoodenSword extends InvItem{
     
     public WoodenSword()
@@ -28,11 +19,13 @@ public class WoodenSword extends InvItem{
         { System.out.println(ex); }
     }
     
-    public void Use(Player o)
+    public void use(Player o)
     {
+        
     }
     
     public void draw(Graphics g)
     {
+        
     }
 }
