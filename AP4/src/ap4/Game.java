@@ -6,6 +6,7 @@ import ap4.graphics.ImageGraphic;
 import ap4.graphics.Light;
 import ap4.map.Map;
 import ap4.map.Room;
+import gui.Inventory;
 import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +18,8 @@ import javax.imageio.ImageIO;
 
 public class Game {
     
-    Controller control;
+    public Controller control;
+    public Inventory inventory;
     public Camera camera;
     public Runnable logicRunnable;
     public Thread logicThread;
@@ -32,6 +34,7 @@ public class Game {
         camera = new Camera(800, 600);
         //map = new Map(5, 3, 3);
         //map = new Map(10);
+        inventory = new Inventory();
         map = new Map(true);
         System.out.println("Map gen done");
         
