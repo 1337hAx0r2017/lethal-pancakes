@@ -84,6 +84,11 @@ public class Game {
             map.draw(this);
     }
     
+    public void subdraw(Graphics g)
+    {
+        inventory.draw(g);
+    }
+    
     public void attachController(Controller control)
     { this.control = control; }
 }

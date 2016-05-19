@@ -37,19 +37,9 @@ public class Room {
         tiles = new Tile[height][width];
         
         createExits();
-        setupModels();
+        blankTiles();
     }
-    public Room clone()
-    {
-        try {
-            return this.getClass().newInstance();
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
+    
     public Room(boolean[] ex)//, int x, int y //??ArrayList<RoomObject> objects,
     {
         tiles = new Tile[width][height];
@@ -60,7 +50,19 @@ public class Room {
         exits[3] = ex[3];
         
         createExits();
-        setupModels();
+        blankTiles();
+    }
+    
+    public Room clone()
+    {
+        try {
+            return this.getClass().newInstance();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
     public void draw(Game game)
