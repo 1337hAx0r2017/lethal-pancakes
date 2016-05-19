@@ -3,7 +3,9 @@ import javax.swing.JFrame;
 
 public class Window extends JFrame {
     
-    GeneralGamePanel panel;
+    public GeneralGamePanel panel;
+    public static int sx = 790;
+    public static int sy = 620;
     
     public Window()
     {
