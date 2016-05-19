@@ -21,7 +21,7 @@ public class ArmorItem extends InvItem {
     }
 
     @Override
-    public void Use(Player o) {
+    public void use(Player o) {
         // null
     }
 
