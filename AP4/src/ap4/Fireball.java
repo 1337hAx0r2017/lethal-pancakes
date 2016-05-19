@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public class Fireball extends InvItem{
 
     @Override
-    public void Use(Player o) {
+    public void use(Player o) {
         //throw fireball wherever player is looking
     }
     

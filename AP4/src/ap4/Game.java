@@ -33,7 +33,7 @@ public class Game {
     {
         camera = new Camera(800, 600);
         //map = new Map(5, 3, 3);
-        //map = new Map(10);
+        //map = new Map(20);
         inventory = new Inventory();
         map = new Map(true);
         System.out.println("Map gen done");
@@ -82,6 +82,11 @@ public class Game {
         
         if (map != null)
             map.draw(this);
+    }
+    
+    public void subdraw(Graphics g)
+    {
+        inventory.draw(g);
     }
     
     public void attachController(Controller control)
