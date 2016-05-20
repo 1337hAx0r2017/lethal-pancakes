@@ -73,7 +73,7 @@ public class Game {
         sr.isTheStartRoom = true;
         
         // Camera position
-        camera.setPosition(sr.x + 8, 5, sr.z + 6);
+        camera.setPosition(sr.x + 8, 10, sr.z + 6.5f);
         camera.setTilt(-90);
         System.out.println(camera.getX() + " " + camera.getY() + " " + camera.getZ());
     }
