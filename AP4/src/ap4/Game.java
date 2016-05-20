@@ -22,13 +22,27 @@ public class Game {
     
     public Game()
     {
-        camera = new Camera(800, 600);
-        //map = new Map(5, 3, 3);
-        //map = new Map(20);
+        camera = new Camera(790, 620);
+        
+        map = new Map(10);
+        for (int r = 0; r < map.rooms.length; r++)
+        {
+            String line = "";
+            for (int c = 0; c < map.rooms[0].length; c++)
+            {
+                if (map.rooms[r][c] != null)
+                    line += "ROOM ";
+                else
+                    line += "MAP ";
+            }
+            System.out.println(line);
+        }
+    
         inventory = new Inventory();
-        map = new Map(true);
+        //map = new Map(true);
         System.out.println("Map gen done");
         
+        // Position camera accordingly
     }
 
     void playGame()
@@ -56,14 +70,18 @@ public class Game {
     //////////// UPDATE ///////////////
     public void update(float time)
     {
-        if (control.up.getDown())
-            map.rooms[0][0].z += 0.1f;
-        if (control.down.getDown())
-            map.rooms[0][0].z -= 0.1f;
-        if (control.left.getDown())
-            map.rooms[0][0].x += 0.1f;
-        if (control.right.getDown())
-            map.rooms[0][0].x -= 0.1f;
+        if (control._w.getDown())
+            camera.setPosition(camera.getX(), camera.getY(), camera.getZ() - 0.1f);
+        if (control._s.getDown())
+            camera.setPosition(camera.getX(), camera.getY(), camera.getZ() + 0.1f);
+        if (control._a.getDown())
+            camera.setPosition(camera.getX() - 0.1f, camera.getY(), camera.getZ());
+        if (control._s.getDown())
+            camera.setPosition(camera.getX() + 0.1f, camera.getY(), camera.getZ());
+        if (control._q.getDown())
+            camera.setPosition(camera.getX(), camera.getY() + 0.1f, camera.getZ());
+        if (control._e.getDown())
+            camera.setPosition(camera.getX(), camera.getY() - 0.1f, camera.getZ());
     }
     
     //////////// DRAWING ///////////////
