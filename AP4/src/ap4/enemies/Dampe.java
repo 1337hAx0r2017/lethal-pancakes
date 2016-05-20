@@ -42,7 +42,6 @@ public class Dampe extends Enemy{
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.drawImage(visual, null, Window.sx - 133, Window.sy - 95);
-        
     }
 
     @Override
