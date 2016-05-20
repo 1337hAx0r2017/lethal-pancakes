@@ -48,7 +48,6 @@ public class Game {
         {
             for (int c = 0; c < map.rooms.length; c++)
             {
-                rs.add(map.rooms[c][r]);
                 if (map.rooms[c][r] != null)
                 {
                     map.rooms[c][r].z = r * 14;
@@ -56,27 +55,13 @@ public class Game {
                 }
             }
         }
-        rs.get(new Random().nextInt(rs.size())).isStartRoom = true;
     
         inventory = new Inventory();
         //map = new Map(true);
         System.out.println("Map gen done");
         
         // Position camera accordingly
-        for (int r = 0; r < map.rooms[0].length; r++)
-        {
-            for (int c = 0; c < map.rooms.length; c++)
-            {
-                if (map.rooms[c][r] != null)
-                {
-                    if (map.rooms[c][r].isStartRoom)
-                    {
-                        camera.setPosition(map.rooms[c][r].x, 5, map.rooms[c][r].z);
-                        break;
-                    }
-                }
-            }
-        }
+        
     }
 
     //////////// UPDATE ///////////////

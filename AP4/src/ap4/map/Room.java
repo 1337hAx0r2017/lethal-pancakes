@@ -28,7 +28,7 @@ public class Room {
     
     public static int width = 16;
     public static int height = 12;
-    public boolean isStartRoom = false;
+    public boolean isTheStartRoom = false;
     
     static DoorModel doormodel;
     static

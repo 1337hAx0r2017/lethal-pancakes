@@ -2,7 +2,7 @@ package ap4.rooms;
 
 import ap4.map.Room;
 
-public class StartRoom extends Room {
+public class StartRoom extends Room implements StartingRoom {
     
     public StartRoom()
     {
