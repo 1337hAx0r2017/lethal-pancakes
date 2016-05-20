@@ -6,6 +6,7 @@ import ap4.map.Map;
 import ap4.map.Room;
 import ap4.rooms.StartingRoom;
 import gui.Inventory;
+import gui.MiniMap;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
@@ -20,6 +21,7 @@ public class Game {
     
     public int state = 0;
     public Map map;
+    public MiniMap minimap;
     public Light theLight;
         
     
@@ -63,13 +65,17 @@ public class Game {
         //map = new Map(true);
         System.out.println("Map gen done");
         
+        // Minimap
+        minimap = new MiniMap(map);
+        
         // Set start room from candidates
         Room sr = rs.get(new Random().nextInt(rs.size()));
         sr.isTheStartRoom = true;
         
         // Camera position
-        camera.setPosition(sr.x, 5, sr.z);
-        System.out.println(sr.x + ", 5, " + sr.z);
+        camera.setPosition(sr.z, 5, sr.x);
+        camera.setTilt(-90);
+        System.out.println(camera.getX() + " " + camera.getY() + " " + camera.getZ());
     }
 
     //////////// UPDATE ///////////////
@@ -101,6 +107,8 @@ public class Game {
     public void subdraw(Graphics g)
     {
         inventory.draw(g);
+        
+        minimap.draw(g, 0, 0, 10);
     }
     
     public void attachController(Controller control)
