@@ -67,10 +67,13 @@ public class Game {
         {
             for (int c = 0; c < map.rooms.length; c++)
             {
-                if (map.rooms[c][r].isStartRoom)
+                if (map.rooms[c][r] != null)
                 {
-                    camera.setPosition(map.rooms[c][r].x, 5, map.rooms[c][r].z);
-                    break;
+                    if (map.rooms[c][r].isStartRoom)
+                    {
+                        camera.setPosition(map.rooms[c][r].x, 5, map.rooms[c][r].z);
+                        break;
+                    }
                 }
             }
         }
