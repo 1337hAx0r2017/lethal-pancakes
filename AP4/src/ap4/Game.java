@@ -27,12 +27,12 @@ public class Game {
         map = new Map(10);
         
         //
-        for (int r = 0; r < map.rooms.length; r++)
+        for (int r = 0; r < map.rooms[0].length; r++)
         {
             String line = "";
-            for (int c = 0; c < map.rooms[0].length; c++)
+            for (int c = 0; c < map.rooms.length; c++)
             {
-                if (map.rooms[r][c] != null)
+                if (map.rooms[c][r] != null)
                     line += "ROOM ";
                 else
                     line += "NULL ";
@@ -41,14 +41,14 @@ public class Game {
         }
         
         // Give rooms their coordinates
-        for (int r = 0; r < map.rooms.length; r++)
+        for (int r = 0; r < map.rooms[0].length; r++)
         {
-            for (int c = 0; c < map.rooms[0].length; c++)
+            for (int c = 0; c < map.rooms.length; c++)
             {
-                if (map.rooms[r][c] != null)
+                if (map.rooms[c][r] != null)
                 {
-                    map.rooms[r][c].x = r * 16;
-                    map.rooms[r][c].y = c * 12;
+                    map.rooms[c][r].z = r * 14;
+                    map.rooms[c][r].x = c * 18;
                 }
             }
         }
