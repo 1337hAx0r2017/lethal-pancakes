@@ -58,6 +58,7 @@ public class Game {
         System.out.println("Map gen done");
         
         // Position camera accordingly
+        camera.setPosition(state, state, state);
     }
 
     void playGame()
