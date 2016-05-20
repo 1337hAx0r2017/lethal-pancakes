@@ -6,6 +6,7 @@
 package ap4;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -13,6 +14,8 @@ import java.awt.Graphics;
  */
 public abstract class Enemy extends Character{
     
+    public BufferedImage visual;
+     
     public Enemy(float x, float y, float movespeed)
     {
         super(x, y, movespeed);
