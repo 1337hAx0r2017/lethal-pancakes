@@ -23,7 +23,7 @@ public class Inventory {
     
     public Inventory()
     {
-        weapon = new MasterSword();
+        weapon = new WoodenSword();
         thing = new Potion();
         
         try
