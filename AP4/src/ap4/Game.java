@@ -54,7 +54,7 @@ public class Game {
                 if (map.rooms[c][r] != null)
                 {
                     if (map.rooms[c][r] instanceof StartingRoom)
-                    { rs.add(map.rooms[c][r]); System.out.println("[c][r]: " + c + "," + r); }
+                        rs.add(map.rooms[c][r]);
                     map.rooms[c][r].z = r * 14;
                     map.rooms[c][r].x = c * 18;
                 }
