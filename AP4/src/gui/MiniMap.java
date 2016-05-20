@@ -34,7 +34,7 @@ public class MiniMap {
             for(int rx = 0; rx < map.rooms.length; rx++)
                 if(map.rooms[rx][ry] != null)
                 {
-                    g.setColor(discovered.contains(map.rooms[rx][ry]) ? Color.GRAY : Color.BLUE);
+                    g.setColor(discovered.contains(map.rooms[rx][ry]) ? Color.BLUE : Color.GRAY);
                     g.fillRect(x + rx * (roomSize + 2) + 1, y + (ry * (roomSize + 2) + 1), roomSize, roomSize);
                 }
         for(int ry = 0; ry < map.rooms[0].length; ry++)
