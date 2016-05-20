@@ -15,20 +15,26 @@ public class TextureModelGraphic extends ModelGraphic {
 
     static class TexturePixelShader extends LightPixelShader
     {
-        BufferedImage texture;
+        //BufferedImage texture;
+        int stride;
+        int width;
+        int height;
         int[] data;
         public TexturePixelShader(BufferedImage texture)
         {
-            this.texture = texture;
+            //this.texture = texture;
             data = new int[texture.getWidth() * texture.getHeight() * 4];
+            stride = texture.getRaster().getNumDataElements();
+            width = texture.getWidth();
+            height = texture.getHeight();
             texture.getData().getPixels(0, 0, texture.getWidth(), texture.getHeight(), data);
         }
         public int textureSample(float u, float v)
         {
-            int x = (int)(texture.getWidth() * u) % texture.getWidth();
-            int y = (int)(texture.getHeight() * v) % texture.getHeight();
-            int base = (y * texture.getWidth() + x) * texture.getRaster().getNumDataElements();
-            return (data[base + 0]<<16)|(data[base+1]<<8)|(data[base+2]<<0)|(texture.getRaster().getNumDataElements() == 3 ? 0xff000000 : data[base+3]<<24);
+            int x = (int)(width * u) % width;
+            int y = (int)(height * v) % height;
+            int base = (y * width+ x) * stride;
+            return (data[base + 0]<<16)|(data[base+1]<<8)|(data[base+2]<<0)|(stride == 3 ? 0xff000000 : data[base+3]<<24);
         }
         
         
