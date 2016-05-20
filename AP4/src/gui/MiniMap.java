@@ -22,11 +22,13 @@ public class MiniMap {
     int pX;
     int pY;
     int roomSize;
+    long nanoTime;
     public MiniMap(Map map, int roomSize)
     {
         this.map = map;
         this.roomSize = roomSize;
         discovered = new HashSet<Room>();
+        nanoTime = System.nanoTime();
     }
     public void draw(Graphics g, int x, int y)
     {
@@ -34,7 +36,7 @@ public class MiniMap {
             for(int rx = 0; rx < map.rooms.length; rx++)
                 if(map.rooms[rx][ry] != null)
                 {
-                    g.setColor(discovered.contains(map.rooms[rx][ry]) ? Color.BLUE : Color.GRAY);
+                    g.setColor(discovered.contains(map.rooms[rx][ry]) ? Color.CYAN : Color.GRAY);
                     g.fillRect(x + rx * (roomSize + 2) + 1, y + (ry * (roomSize + 2) + 1), roomSize, roomSize);
                 }
         for(int ry = 0; ry < map.rooms[0].length; ry++)
@@ -42,17 +44,18 @@ public class MiniMap {
             {
                 if(rx < map.rooms.length - 1 && map.rooms[rx][ry] != null && map.rooms[rx + 1][ry] != null && (discovered.contains(map.rooms[rx][ry]) || discovered.contains(map.rooms[rx + 1][ry])))
                 {
-                    g.setColor(Color.BLUE);
-                    g.fillRect(x + rx * (roomSize + 2) + roomSize, y + (ry * (roomSize + 2) + 1) + roomSize / 2 - 2, 2, 4);
+                    g.setColor(Color.CYAN);
+                    g.fillRect(x + rx * (roomSize + 2) + roomSize + 1, y + (ry * (roomSize + 2) + 1) + roomSize / 2 - 2, 2, 4);
                 }
                 if(ry < map.rooms[0].length - 1 && map.rooms[rx][ry] != null && map.rooms[rx][ry + 1] != null && (discovered.contains(map.rooms[rx][ry]) || discovered.contains(map.rooms[rx][ry + 1])))
                 {
-                    g.setColor(Color.BLUE);
-                    g.fillRect(x + rx * (roomSize + 2) + roomSize / 2 - 2, y + (ry * (roomSize + 2) + 1) + roomSize, 4, 2);
+                    g.setColor(Color.CYAN);
+                    g.fillRect(x + rx * (roomSize + 2) + roomSize / 2 - 2 + 1, y + (ry * (roomSize + 2) + 1) + roomSize, 4, 2);
                 }
             }
-        g.setColor(Color.YELLOW);
-        g.fillRect(x + pX * (roomSize + 2) + roomSize / 2 - 2, y + pY * (roomSize + 2) + roomSize / 2 - 2, 4, 4);
+        float t = (float)(System.nanoTime() - nanoTime) / 1000000000.0f % 1.0f;
+        g.setColor(new Color((int)(255 * (1 - t)), (int)(255 * (1 - t)), 0));
+        g.fillRect(1 + x + pX * (roomSize + 2) + roomSize / 2 - 2, 1 + y + pY * (roomSize + 2) + roomSize / 2 - 2, 4, 4);
     }
     public void playerEntered(int pX, int pY)
     {
