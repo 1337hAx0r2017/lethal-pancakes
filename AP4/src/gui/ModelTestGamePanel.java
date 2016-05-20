@@ -131,7 +131,7 @@ public class ModelTestGamePanel extends GeneralGamePanel {
         
         //Draw ALL THE THINGS
         //map.draw(camera);
-        
+        game.camera.endDraw();
     }
     
     @Override
