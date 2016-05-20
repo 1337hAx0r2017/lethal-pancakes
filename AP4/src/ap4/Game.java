@@ -1,20 +1,11 @@
 package ap4;
 
 import ap4.graphics.Camera;
-import ap4.graphics.FlatImageGraphic;
-import ap4.graphics.ImageGraphic;
 import ap4.graphics.Light;
 import ap4.map.Map;
-import ap4.map.Room;
 import gui.Inventory;
 import java.awt.Graphics;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 
 public class Game {
     
