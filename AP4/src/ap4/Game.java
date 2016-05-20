@@ -66,14 +66,14 @@ public class Game {
         System.out.println("Map gen done");
         
         // Minimap
-        minimap = new MiniMap(map);
+        minimap = new MiniMap(map, 10);
         
         // Set start room from candidates
         Room sr = rs.get(new Random().nextInt(rs.size()));
         sr.isTheStartRoom = true;
         
         // Camera position
-        camera.setPosition(sr.z, 5, sr.x);
+        camera.setPosition(sr.x + 8, 5, sr.z + 6);
         camera.setTilt(-90);
         System.out.println(camera.getX() + " " + camera.getY() + " " + camera.getZ());
     }
@@ -108,7 +108,7 @@ public class Game {
     {
         inventory.draw(g);
         
-        minimap.draw(g, 0, 0, 10);
+        minimap.draw(g, 0, 0);
     }
     
     public void attachController(Controller control)
