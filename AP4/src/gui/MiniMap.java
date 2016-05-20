@@ -21,12 +21,14 @@ public class MiniMap {
     HashSet<Room> discovered;
     int pX;
     int pY;
-    public MiniMap(Map map)
+    int roomSize;
+    public MiniMap(Map map, int roomSize)
     {
         this.map = map;
+        this.roomSize = roomSize;
         discovered = new HashSet<Room>();
     }
-    public void draw(Graphics g, int x, int y, int roomSize)
+    public void draw(Graphics g, int x, int y)
     {
         for(int ry = 0; ry < map.rooms[0].length; ry++)
             for(int rx = 0; rx < map.rooms.length; rx++)
@@ -61,5 +63,13 @@ public class MiniMap {
             if(pX >= 0 && pX < map.rooms.length && pY >= 0 && pY <= map.rooms[0].length && map.rooms[pX][pY] != null)
                 discovered.add(map.rooms[pX][pY]);
         }
+    }
+    public int getWidth()
+    {
+        return map.rooms.length * (roomSize + 2);
+    }
+    public int getHeight()
+    {
+        return map.rooms[0].length * (roomSize + 2);
     }
 }
