@@ -4,6 +4,7 @@ import ap4.graphics.Camera;
 import ap4.graphics.Light;
 import ap4.map.Map;
 import ap4.map.Room;
+import ap4.rooms.StartingRoom;
 import gui.Inventory;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -50,6 +51,8 @@ public class Game {
             {
                 if (map.rooms[c][r] != null)
                 {
+                    if (map.rooms[c][r] instanceof StartingRoom)
+                    { rs.add(map.rooms[c][r]); System.out.println("[c][r]: " + c + "," + r); }
                     map.rooms[c][r].z = r * 14;
                     map.rooms[c][r].x = c * 18;
                 }
@@ -60,8 +63,13 @@ public class Game {
         //map = new Map(true);
         System.out.println("Map gen done");
         
-        // Position camera accordingly
+        // Set start room from candidates
+        Room sr = rs.get(new Random().nextInt(rs.size()));
+        sr.isTheStartRoom = true;
         
+        // Camera position
+        camera.setPosition(sr.x, 5, sr.z);
+        System.out.println(sr.x + ", 5, " + sr.z);
     }
 
     //////////// UPDATE ///////////////
