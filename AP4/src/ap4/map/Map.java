@@ -84,7 +84,10 @@ public class Map {
             n = 0;
             rooms = new Room[sizeX][sizeY];//start over
             
-                    rooms[sizeX/2][sizeY/2] =  getRoom();
+                    do
+                    {
+                        rooms[sizeX/2][sizeY/2] =  getRoom();
+                    }while(!(rooms[sizeX/2][sizeY/2] instanceof StartingRoom));
                     cX = sizeX/2;
                     cY = sizeY/2;
                     n++;
