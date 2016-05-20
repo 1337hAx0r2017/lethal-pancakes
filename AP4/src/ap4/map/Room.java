@@ -4,13 +4,16 @@ import ap4.Etc;
 import ap4.Game;
 import ap4.RoomObject;
 import ap4.graphics.Light;
+import ap4.graphics.Matrix;
 import ap4.graphics.PointLight;
 import ap4.graphics.TextureModelGraphic;
 import ap4.graphics.TextureVertex;
+import ap4.models.DoorModel;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -25,6 +28,15 @@ public class Room {
     
     public static int width = 16;
     public static int height = 12;
+    static DoorModel doormodel;
+    static
+    {
+        try {
+            doormodel = new DoorModel(ImageIO.read(new URL(Etc.host + "darkwoodwalls90r.jpg")));
+        } catch (IOException ex) {
+            Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     public ArrayList<RoomObject> objects;
     
@@ -36,7 +48,6 @@ public class Room {
     {
         tiles = new Tile[height][width];
         
-        createExits();
         blankTiles();
     }
     
@@ -49,7 +60,6 @@ public class Room {
         exits[2] = ex[2];
         exits[3] = ex[3];
         
-        createExits();
         blankTiles();
     }
     
@@ -74,6 +84,14 @@ public class Room {
             for (int r = 0; r < tiles.length; r++)
                 for (int c = 0; c < tiles[0].length; c++)
                     tiles[r][c].draw(game, this);
+        if(exits[0])
+            doormodel.draw(game.camera, Matrix.createTranslation(width / 2 + x, 0 + y, -1 + z), game.theLight);
+        if(exits[1])
+            doormodel.draw(game.camera, Matrix.multiply(Matrix.createRotationY(-Math.PI/2), Matrix.createTranslation(width + x + 1, 0 + y, height / 2 + z)), game.theLight);
+        if(exits[2])
+            doormodel.draw(game.camera, Matrix.multiply(Matrix.createRotationY(Math.PI), Matrix.createTranslation(width / 2 + x, 0 + y, height + 1 + z)), game.theLight);
+        if(exits[3])
+            doormodel.draw(game.camera, Matrix.multiply(Matrix.createRotationY(Math.PI/2), Matrix.createTranslation(-1 + x, 0 + y, height / 2 + z)), game.theLight);
     }
     
     private void setupModels()
@@ -88,21 +106,38 @@ public class Room {
     }
     
     private void createExits(){
+        //the exits are actually OUTSIDE the room's array.
         if (exits[0] == true) {//if north exit
-            tiles[width/2][0].exit = true;
-            tiles[(width/2)-1][0].exit = true;
+            //tiles[width/2][0].exit = true;
+            //tiles[(width/2)-1][0].exit = true;
+            if(tiles[0][width/2].type == Tile.TILE_FLOOR)
+                ((Floor)tiles[0][width/2]).drawnorth = false;
+            if(tiles[0][width/2-1].type == Tile.TILE_FLOOR)
+                ((Floor)tiles[0][width/2-1]).drawnorth = false;
         }
         if (exits[1] == true) {//if east exit
-            tiles[width-1][height/2].exit = true;
-            tiles[width-1][(height/2)-1].exit = true;
+            //tiles[width-1][height/2].exit = true;
+            //tiles[width-1][(height/2)-1].exit = true;
+            if(tiles[height/2][width-1].type == Tile.TILE_FLOOR)
+                ((Floor)tiles[height/2][width-1]).draweast = false;
+            if(tiles[height/2-1][width-1].type == Tile.TILE_FLOOR)
+                ((Floor)tiles[height/2-1][width-1]).draweast = false;
         }
         if (exits[2] == true) {//if south exit
-            tiles[width/2][height-1].exit = true;
-            tiles[(width/2)-1][height-1].exit = true;
+            //tiles[width/2][height-1].exit = true;
+            //tiles[(width/2)-1][height-1].exit = true;
+            if(tiles[height-1][width/2].type == Tile.TILE_FLOOR)
+                ((Floor)tiles[height-1][width/2]).drawsouth = false;
+            if(tiles[height-1][width/2-1].type == Tile.TILE_FLOOR)
+                ((Floor)tiles[height-1][width/2-1]).drawsouth = false;
         }
         if (exits[3] == true) {//if west exit
-            tiles[0][height/2].exit = true;
-            tiles[0][(height/2)-1].exit = true;
+            //tiles[0][height/2].exit = true;
+            //tiles[0][(height/2)-1].exit = true;
+            if(tiles[height/2][0].type == Tile.TILE_FLOOR)
+                ((Floor)tiles[height/2][0]).drawwest = false;
+            if(tiles[height/2-1][0].type == Tile.TILE_FLOOR)
+                ((Floor)tiles[height/2-1][0]).drawwest = false;
         }
     }
     
@@ -149,6 +184,7 @@ public class Room {
     
     public void finalizeTiles()
     {
+        createExits();
         for (int r = 0; r < tiles.length; r++)
             for (int c = 0; c < tiles[0].length; c++)
             {
@@ -157,6 +193,8 @@ public class Room {
                 tiles[r][c].z = r;
                 tiles[r][c].setupWalls(tiles);
             }
+        
+        
         
         tilesFinalized = true;
     }
