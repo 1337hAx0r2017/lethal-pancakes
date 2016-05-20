@@ -21,7 +21,7 @@ public class MiniMap {
     HashSet<Room> discovered;
     int pX;
     int pY;
-    MiniMap(Map map)
+    public MiniMap(Map map)
     {
         this.map = map;
         discovered = new HashSet<Room>();
