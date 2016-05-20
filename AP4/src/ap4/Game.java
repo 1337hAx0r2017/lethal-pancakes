@@ -71,6 +71,7 @@ public class Game {
         // Set start room from candidates
         Room sr = rs.get(new Random().nextInt(rs.size()));
         sr.isTheStartRoom = true;
+        minimap.playerEntered(map.getXOf(sr), map.getYOf(sr));
         
         // Camera position
         camera.setPosition(sr.x + 8, 10, sr.z + 6.5f);
@@ -93,6 +94,9 @@ public class Game {
             camera.setPosition(camera.getX(), camera.getY() + 0.25f, camera.getZ());
         if (control._e.getDown())
             camera.setPosition(camera.getX(), camera.getY() - 0.25f, camera.getZ());
+        
+        //temporary
+            minimap.playerEntered((int)camera.getX() / 18, (int)camera.getZ() / 14);
     }
     
     //////////// DRAWING ///////////////
@@ -108,7 +112,7 @@ public class Game {
     {
         inventory.draw(g);
         
-        minimap.draw(g, 0, 0);
+        minimap.draw(g, 5, 575 - minimap.getHeight());
     }
     
     public void attachController(Controller control)
