@@ -85,69 +85,10 @@ public class Map {
         {
             rooms = new Room[sizeX][sizeY];//start over
             
-
-        
-            /*for (int i = 0; i < nRooms; i++)
-            {
-                if (i == 0)
-                {*/
                     rooms[sizeX/2][sizeY/2] =  getRoom();
                     cX = sizeX/2;
                     cY = sizeY/2;
-                /*}  
-                else
-                {
-                    int randInt = r.nextInt(4);//random 0-3 for directions
-
-                    if(randInt == 0 &&  cY > 0 && rooms[cX][cY].exits[0] && rooms[cX][cY-1] == null){//Add room above
-
-                        
-                        Room room = getRoom();
-                        while(room == null || room.exits[2] == false){
-                            room = getRoom();
-
-                        }
-                        rooms[cX][cY-1] = room;
-                        cY = cY-1;
-                    }
-                    else if(randInt == 1 &&  cX < rooms.length-1 && rooms[cX][cY].exits[1]  && rooms[cX+1][cY] == null){//add room to the right
-                       
-                        Room room = getRoom();
-                        while(room == null || room.exits[3] == false){
-                            room = getRoom();
-
-                        }
-                        rooms[cX+1][cY] = room;
-                        cX = cX+1;
-                    }
-                    else if(randInt == 2 &&  cY < rooms[0].length-1 && rooms[cX][cY].exits[2]  && rooms[cX][cY+1] == null){//add room below
-                       
-                        Room room = getRoom();
-                        while(room == null || room.exits[0] == false){
-                            room = getRoom();
-
-                        }
-                        rooms[cX][cY+1] = room;
-                        cY = cY+1;
-                    }
-                    else if(randInt == 3 &&  cX > 0 && rooms[cX][cY].exits[3]  && rooms[cX-1][cY] == null){//add room to the left
-                        
-                        Room room = getRoom();
-                        while(room == null && room.exits[1] == false){
-                            room = getRoom();
-                        }
-                        rooms[cX-1][cY] = room;
-                        cX = cX-1;
-                    }
-                    else{
-                        i--;
-                    }
-                    System.out.println("making");
-                }
-            }
-            count++; // this is how many tries we've made
-            
-            */
+               
             mapGen();//attach rooms
             
             //might want to make a method for this:
@@ -161,7 +102,7 @@ public class Map {
         
         finalizeRooms();        
         
-       // crop();
+        crop();
         
         System.out.println("done making "); 
     }
@@ -247,7 +188,7 @@ public class Map {
                                 //check BELOW room. if out of bounds or if there is a room, and the exit is wrong
                                 g = false;
                             }
-                            else if(rX < rooms.length-1 && rooms[rX+1][rY] != null && rooms[rX+1][rY].exits[3] != room.exits[1] == true){
+                            else if(rX < rooms.length-1 && rooms[rX+1][rY] != null && rooms[rX+1][rY].exits[3] != room.exits[1]){
                                 //check RIGHT room. if out of bounds or if there is a room, and the exit is wrong
                                 g = false;
                             }
@@ -291,15 +232,7 @@ public class Map {
                          checkSurround(x, y-1);
                          good = false;
                      }
-                     
-                    //if this space IS empty,
-                        //if there IS a room in ANY direction that opens into this space,
-                            //do:
-                                //pick a random room
-                                //try again if:
-                                    //there is a room to the right that opens left and this room DOESN'T open right (etc)
-                                    //OR
-                                    //there is a room to the right that DOESN'T open left but this room DOES open right (etc)
+                    
 
                 }
             }
@@ -321,8 +254,8 @@ public class Map {
             }
         }
         System.out.println(n);
-        if(n < nRooms || n > (2*nRooms)){
-            System.out.println("too small");
+        if(n != nRooms){
+            System.out.println("not right size");
             return false;
             
         }
