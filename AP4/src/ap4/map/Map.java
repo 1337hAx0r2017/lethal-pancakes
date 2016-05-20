@@ -161,6 +161,7 @@ public class Map {
             }
             cX++;
         }
+        rooms = newRooms;
         System.out.println("done cropping");
         
         
