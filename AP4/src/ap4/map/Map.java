@@ -153,8 +153,9 @@ public class Map {
         int cX = 0;
         int cY = 0;
         
-        for(int x = minX; x < maxX;x++){
-            for(int y = minY; y < maxY; y++){
+        for(int x = minX; x <= maxX;x++){
+            cY = 0;
+            for(int y = minY; y <= maxY; y++){
                 newRooms[cX][cY] = rooms[x][y];
                 cY++;
             }
