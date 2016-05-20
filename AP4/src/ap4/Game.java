@@ -83,17 +83,17 @@ public class Game {
     public void update(float time)
     {
         if (control._w.getDown())
-            camera.setPosition(camera.getX(), camera.getY(), camera.getZ() - 0.1f);
+            camera.setPosition(camera.getX(), camera.getY(), camera.getZ() - 0.2f);
         if (control._s.getDown())
-            camera.setPosition(camera.getX(), camera.getY(), camera.getZ() + 0.1f);
+            camera.setPosition(camera.getX(), camera.getY(), camera.getZ() + 0.2f);
         if (control._a.getDown())
-            camera.setPosition(camera.getX() - 0.1f, camera.getY(), camera.getZ());
+            camera.setPosition(camera.getX() - 0.2f, camera.getY(), camera.getZ());
         if (control._d.getDown())
-            camera.setPosition(camera.getX() + 0.1f, camera.getY(), camera.getZ());
+            camera.setPosition(camera.getX() + 0.2f, camera.getY(), camera.getZ());
         if (control._q.getDown())
-            camera.setPosition(camera.getX(), camera.getY() + 0.1f, camera.getZ());
+            camera.setPosition(camera.getX(), camera.getY() + 0.25f, camera.getZ());
         if (control._e.getDown())
-            camera.setPosition(camera.getX(), camera.getY() - 0.1f, camera.getZ());
+            camera.setPosition(camera.getX(), camera.getY() - 0.25f, camera.getZ());
     }
     
     //////////// DRAWING ///////////////
