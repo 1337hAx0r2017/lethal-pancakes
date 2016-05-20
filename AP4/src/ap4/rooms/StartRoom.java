@@ -2,9 +2,9 @@ package ap4.rooms;
 
 import ap4.map.Room;
 
-public class Room16 extends Room {
+public class StartRoom extends Room {
     
-    public Room16()
+    public StartRoom()
     {
         super();
         exits[0] = true; //north
