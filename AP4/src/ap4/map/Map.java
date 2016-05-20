@@ -25,7 +25,7 @@ public class Map {
         random = new Random();
         roomTypes = new ArrayList<Room>();
         
-        roomTypes.add(new Room1());
+        roomTypes.add(new StartRoom());
         roomTypes.add(new Room2());
         roomTypes.add(new Room3());
         roomTypes.add(new Room4());
