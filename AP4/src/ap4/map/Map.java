@@ -2,14 +2,10 @@ package ap4.map;
 
 import ap4.Game;
 import ap4.rooms.*;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Map {
 
@@ -101,7 +97,7 @@ public class Map {
             //repeat if any additions were made (kind of like our bubble sort!)
             
             
-        }while(!success || n != nRooms); //continue making maps until you find a good one
+        }while(!success || n != nRooms);// || shortestDistanceBetween(cX, cY, cX-4, cY-4) == -1); //continue making maps until you find a good one
         
         finalizeRooms();        
         
@@ -283,6 +279,107 @@ public class Map {
                     rooms[x][y].draw(game);
                 }
             }
+    }
+    
+    private class PathNode
+    {
+        int x;
+        int y;
+        int gen;
+        PathNode parent;
+        ArrayList<PathNode> children;
+        PathNode(int x, int y)
+        {
+            this(x, y, 0, null);
+        }
+        private PathNode(int x, int y, int gen, PathNode parent)
+        {
+            this.x = x;
+            this.y = y;
+            this.gen = gen;
+            this.parent = parent;
+            children = new ArrayList<PathNode>(4);
+        }
+        void branch(Map map)
+        {
+            Room current = map.rooms[x][y];
+            if(current.exits[0] && !ancestorHas(x, y-1))
+                children.add(new PathNode(x, y-1, gen+1, this));
+            if(current.exits[1] && !ancestorHas(x+1, y))
+                children.add(new PathNode(x+1, y, gen+1, this));
+            if(current.exits[2] && !ancestorHas(x, y+1))
+                children.add(new PathNode(x, y+1, gen+1, this));
+            if(current.exits[3] && !ancestorHas(x-1, y))
+                children.add(new PathNode(x-1, y, gen+1, this));
+            for(int i = 0; i < children.size(); i++)
+                children.get(i).branch(map);
+        }
+        void branch(Map map, int destx, int desty)
+        {
+            if(!(this.x == destx && this.y == desty))
+                branch(map);
+        }
+        private boolean ancestorHas(int x, int y)
+        {
+            PathNode current = this;
+            do
+            {
+                if(current.x == x && current.y == y)
+                    return true;
+                current = current.parent;
+            }
+            while(current != null);
+            return false;
+        }
+        void findEnds(HashSet<PathNode> results, int destx, int desty)
+        {
+            if(this.x == destx && this.y == desty)
+                results.add(this);
+            else
+                for(int i = 0; i < children.size(); i++)
+                    children.get(i).findEnds(results, destx, desty);
+        }
+    }
+    public int shortestDistanceBetween(int x1, int y1, int x2, int y2)
+    {
+        if(rooms[x1][y1] == null || rooms[x2][y2] == null)
+            return -1;
+        PathNode tree = new PathNode(x1, y1);
+        tree.branch(this, x2, y2);
+        HashSet<PathNode> results = new HashSet<PathNode>();
+        tree.findEnds(results, x2, y2);
+        ArrayList<PathNode> list = new ArrayList<PathNode>(results);
+        if(list.size() == 0)
+            return -1;
+        list.sort(new Comparator<PathNode>(){
+
+            @Override
+            public int compare(PathNode o1, PathNode o2) {
+                return Integer.compare(o1.gen, o2.gen);
+            }
+        });
+        if(list.size() == 1)
+            System.out.println("There is 1 path to get from (" + x1 + ", " + y1 + ") to (" + x2 + ", " + y2 + "), which is " + (list.get(0).gen == 1 ? "1 room" : list.get(0).gen + " rooms") + " long.");
+        else
+            System.out.println("There are " + list.size() + " paths to get from (" + x1 + ", " + y1 + ") to (" + x2 + ", " + y2 + "), the shortest of which is " + (list.get(0).gen == 1 ? "1 room" : list.get(0).gen + " rooms") + " long.");
+        return list.get(0).gen;
+    }
+    
+    public int getXOf(Room room)
+    {
+        for(int y = 0; y < rooms[0].length; y++)
+            for(int x = 0; x < rooms.length; x++)
+                if(rooms[x][y] == room)
+                    return x;
+        return -1;
+    }
+    public int getYOf(Room room)
+    {
+        for(int y = 0; y < rooms[0].length; y++)
+            for(int x = 0; x < rooms.length; x++)
+                if(rooms[x][y] == room)
+                    return y;
+        return -1;
     }
 }
 
