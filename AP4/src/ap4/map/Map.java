@@ -17,12 +17,15 @@ public class Map {
     static ArrayList<Room> roomTypes;
         int sizeX;
         int sizeY;
+        int nRooms = 0;
+        int n;
         
     static
     {
         random = new Random();
         roomTypes = new ArrayList<Room>();
         
+        roomTypes.add(new Room1());
         roomTypes.add(new Room2());
         roomTypes.add(new Room3());
         roomTypes.add(new Room4());
@@ -59,15 +62,7 @@ public class Map {
     public Room[][] rooms;
     Random r = new Random();
     
-    public Map(boolean thing)
-    {
-        if (thing)
-        {
-            rooms = new Room[1][1];
-            rooms[0][0] = new StartRoom();
-        }
-        //sdrgsdgr
-    }
+    
     public Map(int nRooms)
     {
         this(nRooms, nRooms * 2 - 1, nRooms * 2 - 1);
@@ -79,17 +74,22 @@ public class Map {
         
         int cX = 0;//prevY
         int cY = 0;//prevX
-
+        
+        this.nRooms = nRooms;
+        
+        boolean success;
         
         do
         {
+            n = 0;
             rooms = new Room[sizeX][sizeY];//start over
             
                     rooms[sizeX/2][sizeY/2] =  getRoom();
                     cX = sizeX/2;
                     cY = sizeY/2;
+                    n++;
                
-            mapGen();//attach rooms
+            success = mapGen();//attach rooms
             
             //might want to make a method for this:
             //go through all the rooms
@@ -98,7 +98,7 @@ public class Map {
             //repeat if any additions were made (kind of like our bubble sort!)
             
             
-        }while(verify(nRooms) == false); //continue making maps until you find a good one
+        }while(!success || n != nRooms); //continue making maps until you find a good one
         
         finalizeRooms();        
         
@@ -114,27 +114,29 @@ public class Map {
                 if(rooms[x][y] != null)
                     rooms[x][y] = rooms[x][y].clone();
     }
-    
+    /*int checkSize(){
+        int n = 0;
+        for(int i = 0; i < rooms.length;i++){
+            for(int x = 0; x < rooms[i].length;x++){
+                if(rooms[i][x] != null){
+                    n++;
+                }
+            }
+        }
+        System.out.println(n);
+        return n;
+    }*/
     void crop()
     {
-        //find the leftmost x coordinate
-        //find the rightmost x coordinate
-        //find the topmost y coordinate
-        //find the bottommost y coordinate
-        //allocate a new array
-        //copy stuff over
         int minX = 1000;
         int minY = 1000;
         int maxX = 0;
         int maxY = 0;
         
-        
-        
         for(int x = 0 ; x < rooms.length; x++){//min
             for(int y = 0;y < rooms[0].length; y++){
                 if(rooms[x][y] != null &&  x > maxX){
                     maxX = x;
-                    
                 }
                 if(rooms[x][y] != null &&  x < minX){
                     minX = x;
@@ -205,19 +207,23 @@ public class Map {
                         }while(g == false);//continue searchhing for correct room if neccesary
                         
                         rooms[rX][rY] = room;
+                        n++;
                         //System.out.println("found right room");
                     
     }
-    void mapGen(){
+    boolean mapGen(){
         boolean good = true;
         
         do{
-            
             good = true;
             
             for(int x = 1; x < rooms.length-1; x++){
                 for(int y = 1; y < rooms[0].length-1;y++){
                     
+                    if(n > nRooms){
+                        System.out.println(n);
+                        return false;
+                    }
                     if(rooms[x][y] != null && rooms[x+1][y] == null && rooms[x][y].exits[1] == true){//adding room to the right
                         checkSurround(x+1,y);//checks and adds correct room
                         good = false;
@@ -234,17 +240,16 @@ public class Map {
                          checkSurround(x, y-1);
                          good = false;
                      }
-                    
-
                 }
+                
             }
             
         }while(good == false);
-        
+        return true;
         
     }
     
-    boolean verify(int nRooms){
+/*    boolean verify(){
         //checking all exits
         int n = 0;
         
@@ -261,37 +266,10 @@ public class Map {
             return false;
             
         }
-        
-        for(int x = 1; x < rooms.length-1; x++){
-            for(int y = 1; y < rooms[0].length-1;y++){
-                
-                if((rooms[x][y] != null && rooms[x+1][y] != null) && (rooms[x][y].exits[1] != rooms[x+1][y].exits[3])){
-                    //rooms =  new Room[sizeX][sizeY];
-                    System.out.println("bad exit right");
-                    return false;
-                    
-                    //bad map
-                }
-                if((rooms[x][y] != null && rooms[x-1][y] != null) && (rooms[x][y].exits[3] != rooms[x-1][y].exits[1])){
-                    //rooms =  new Room[sizeX][sizeY];
-                    System.out.println("bad exit left");
-                    return false;
-                }
-                if((rooms[x][y] != null && rooms[x][y+1] != null) && (rooms[x][y].exits[2] != rooms[x][y+1].exits[0])){
-                    //rooms =  new Room[sizeX][sizeY];
-                    System.out.println("bad exit below");
-                    return false;
-                }
-                if((rooms[x][y] != null && rooms[x][y-1] != null) && (rooms[x][y].exits[0] != rooms[x][y-1].exits[2])){
-                    //rooms =  new Room[sizeX][sizeY];
-                    System.out.println("bad exit up");
-                    return false;
-                }
-            }
-        }
+
         return true;
     }
-    
+  */  
     public void draw(Game game)
     {
         for (int x = 0; x < rooms.length; x++)
