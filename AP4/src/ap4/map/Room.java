@@ -1,24 +1,13 @@
 package ap4.map;
 
-import ap4.Etc;
 import ap4.Game;
 import ap4.RoomObject;
-import ap4.graphics.Light;
 import ap4.graphics.Matrix;
-import ap4.graphics.PointLight;
-import ap4.graphics.TextureModelGraphic;
-import ap4.graphics.TextureVertex;
+import static ap4.map.Tile.cap;
 import ap4.models.DoorModel;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 
 public class Room {
     
@@ -33,11 +22,7 @@ public class Room {
     static DoorModel doormodel;
     static
     {
-        try {
-            doormodel = new DoorModel(ImageIO.read(new URL(Etc.host + "darkwoodwalls90r.jpg")));
-        } catch (IOException ex) {
-            Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            doormodel = new DoorModel();//ImageIO.read(new URL(Etc.host + "darkwoodwalls90r.jpg")));
     }
     
     public ArrayList<RoomObject> objects;
@@ -94,6 +79,17 @@ public class Room {
             doormodel.draw(game.camera, Matrix.multiply(Matrix.createRotationY(Math.PI), Matrix.createTranslation(width / 2 + x, 0 + y, height + 1 + z)), game.theLight);
         if(exits[3])
             doormodel.draw(game.camera, Matrix.multiply(Matrix.createRotationY(Math.PI/2), Matrix.createTranslation(-1 + x, 0 + y, height / 2 + z)), game.theLight);
+
+        for(int x = -1; x <= width; x++)
+        {
+            cap.draw(game.camera, this.x + x, this.y, this.z - 1, 1, game.theLight);
+            cap.draw(game.camera, this.x + x, this.y, this.z + height , 1, game.theLight);
+        }
+        for(int z = 0; z < height; z++)
+        {
+            cap.draw(game.camera, this.x - 1, this.y, this.z + z, 1, game.theLight);
+            cap.draw(game.camera, this.x + width, this.y, this.z + z, 1, game.theLight);
+        }
     }
     
     private void setupModels()
@@ -186,7 +182,6 @@ public class Room {
     
     public void finalizeTiles()
     {
-        createExits();
         for (int r = 0; r < tiles.length; r++)
             for (int c = 0; c < tiles[0].length; c++)
             {
@@ -195,6 +190,7 @@ public class Room {
                 tiles[r][c].z = r;
                 tiles[r][c].setupWalls(tiles);
             }
+        createExits();
         
         
         

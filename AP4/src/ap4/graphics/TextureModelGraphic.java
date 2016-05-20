@@ -25,10 +25,8 @@ public class TextureModelGraphic extends ModelGraphic {
         }
         public int textureSample(float u, float v)
         {
-            u %= 1;
-            v %= 1;
-            int x = (int)(texture.getWidth() * u);
-            int y = (int)(texture.getHeight() * v);
+            int x = (int)(texture.getWidth() * u) % texture.getWidth();
+            int y = (int)(texture.getHeight() * v) % texture.getHeight();
             int base = (y * texture.getWidth() + x) * texture.getRaster().getNumDataElements();
             return (data[base + 0]<<16)|(data[base+1]<<8)|(data[base+2]<<0)|(texture.getRaster().getNumDataElements() == 3 ? 0xff000000 : data[base+3]<<24);
         }

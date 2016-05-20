@@ -28,6 +28,7 @@ public class Game {
     public Game()
     {
         camera = new Camera(790, 620);
+        camera.setZBuffer(true);
         
         map = new Map(10);
         

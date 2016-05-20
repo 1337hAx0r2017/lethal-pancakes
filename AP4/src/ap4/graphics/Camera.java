@@ -335,16 +335,18 @@ public class Camera {
                 float l1 = 1 - l2 - l3;
                 if(l1 < 0 - tolerance || l1 > 1 + tolerance)
                     continue;
+                float z = 0;
                 if(useZbuf)
                 {
-                    float z = z1 * l1 + z2 * l2 + z3 * l3;
+                    z = z1 * l1 + z2 * l2 + z3 * l3;
                     if(z < zbuf[y * width + x])
                         continue;
                 }
                 int sample = shader.colorAt(v1, v2, v3, w1, w2, w3, l1, l2, l3);
                 if(((sample>>24)&0xff)>=192)
                 {
-                    zbuf[y * width + x] = z;
+                    if(useZbuf)
+                        zbuf[y * width + x] = z;
                     if(additive)
                         sample = Light.add(sample, backpixels[y * width + x]);
                     backpixels[y * width + x] = sample;
