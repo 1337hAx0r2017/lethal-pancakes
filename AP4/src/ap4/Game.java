@@ -3,9 +3,11 @@ package ap4;
 import ap4.graphics.Camera;
 import ap4.graphics.Light;
 import ap4.map.Map;
+import ap4.map.Room;
 import gui.Inventory;
 import java.awt.Graphics;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Game {
     
@@ -40,11 +42,13 @@ public class Game {
             System.out.println(line);
         }
         
+        ArrayList<Room> rs = new ArrayList<>();
         // Give rooms their coordinates
         for (int r = 0; r < map.rooms[0].length; r++)
         {
             for (int c = 0; c < map.rooms.length; c++)
             {
+                rs.add(map.rooms[c][r]);
                 if (map.rooms[c][r] != null)
                 {
                     map.rooms[c][r].z = r * 14;
@@ -52,37 +56,26 @@ public class Game {
                 }
             }
         }
+        rs.get(new Random().nextInt(rs.size())).isStartRoom = true;
     
         inventory = new Inventory();
         //map = new Map(true);
         System.out.println("Map gen done");
         
         // Position camera accordingly
-        camera.setPosition(state, state, state);
+        for (int r = 0; r < map.rooms[0].length; r++)
+        {
+            for (int c = 0; c < map.rooms.length; c++)
+            {
+                if (map.rooms[c][r].isStartRoom)
+                {
+                    camera.setPosition(map.rooms[c][r].x, 5, map.rooms[c][r].z);
+                    break;
+                }
+            }
+        }
     }
 
-    void playGame()
-    {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Welcome to Lethal Pancakes, pick a map size: easy(1), medium(2), hard(3), or EXTREME(4) map.");
-        if (input.nextInt() == 1)
-        {
-            map = new Map(5, 3, 3);
-        }
-        else if (input.nextInt() == 2)
-        {
-            map = new Map(8, 4, 4);
-        }
-        else if (input.nextInt() == 3)
-        {
-            map = new Map(11, 4, 4);
-        }
-        else if (input.nextInt() == 4)
-        {
-            map = new Map(15, 5, 5);
-        }
-    }
-    
     //////////// UPDATE ///////////////
     public void update(float time)
     {
