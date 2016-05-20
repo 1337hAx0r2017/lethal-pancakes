@@ -33,7 +33,7 @@ public class Game {
                 if (map.rooms[r][c] != null)
                     line += "ROOM ";
                 else
-                    line += "MAP ";
+                    line += "NULL ";
             }
             System.out.println(line);
         }
