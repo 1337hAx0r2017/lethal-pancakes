@@ -25,6 +25,8 @@ public class Game {
         camera = new Camera(790, 620);
         
         map = new Map(10);
+        
+        //
         for (int r = 0; r < map.rooms.length; r++)
         {
             String line = "";
@@ -36,6 +38,19 @@ public class Game {
                     line += "NULL ";
             }
             System.out.println(line);
+        }
+        
+        // Give rooms their coordinates
+        for (int r = 0; r < map.rooms.length; r++)
+        {
+            for (int c = 0; c < map.rooms[0].length; c++)
+            {
+                if (map.rooms[r][c] != null)
+                {
+                    map.rooms[r][c].x = r * 16;
+                    map.rooms[r][c].y = c * 12;
+                }
+            }
         }
     
         inventory = new Inventory();
@@ -76,7 +91,7 @@ public class Game {
             camera.setPosition(camera.getX(), camera.getY(), camera.getZ() + 0.1f);
         if (control._a.getDown())
             camera.setPosition(camera.getX() - 0.1f, camera.getY(), camera.getZ());
-        if (control._s.getDown())
+        if (control._d.getDown())
             camera.setPosition(camera.getX() + 0.1f, camera.getY(), camera.getZ());
         if (control._q.getDown())
             camera.setPosition(camera.getX(), camera.getY() + 0.1f, camera.getZ());
