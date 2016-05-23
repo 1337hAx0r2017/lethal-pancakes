@@ -12,9 +12,10 @@ import java.awt.image.WritableRaster;
 
 
 public class Camera {
-    float x;
+    /*float x;
     float y;
-    float z;
+    float z;*/
+    Vector3 position;
     double fov;
     double pan;
     double tilt;
@@ -25,6 +26,7 @@ public class Camera {
     private Matrix projection;
     private Matrix worldView;
     private Matrix viewProjection;
+    private Matrix inverseViewProjection;
     int width;
     int height;
     DataBufferInt databuf;
@@ -77,9 +79,14 @@ public class Camera {
     }
     public void setPosition(float x, float y, float z)
     {
-        this.x = x;
+        /*this.x = x;
         this.y = y;
-        this.z = z;
+        this.z = z;*/
+        position = new Vector3(x, y, z);
+    }
+    public void setPosition(Vector3 position)
+    {
+        this.position = position;
     }
     public void setTilt(double degrees)
     {
@@ -89,9 +96,10 @@ public class Camera {
     {
         pan = degrees * Math.PI / 180;
     }
-    public float getX() { return x; }
-    public float getY() { return y; }
-    public float getZ() { return z; }
+    public float getX() { return position.x; }
+    public float getY() { return position.y; }
+    public float getZ() { return position.z; }
+    public Vector3 getPosition() { return position; }
     public void setZoom(float zoom)
     {
         fov = Math.atan(zoom) * 2;
@@ -311,8 +319,17 @@ public class Camera {
             return;
         if(shader instanceof LightPixelShader && ((LightPixelShader)shader).light != null)
         {
-            ((LightPixelShader)shader).setWorld(world);
-            ((LightPixelShader)shader).setNormal(v1, v2, v3);
+            //((LightPixelShader)shader).setWorld(world);
+            //((LightPixelShader)shader).setNormal(v1, v2, v3);
+            Vector3 normal = Vector3.normalize(world.transformNormal(Vector3.cross(Vector3.subtract(v3.position, v1.position), Vector3.subtract(v2.position, v1.position))));
+            Vector3 vt1 = world.transform(v1.position);
+            Vector3 vt2 = world.transform(v2.position);
+            Vector3 vt3 = world.transform(v3.position);
+            ((LightPixelShader)shader).setVertexLights(
+                ((LightPixelShader)shader).light.calculateLighting(vt1, normal),
+                ((LightPixelShader)shader).light.calculateLighting(vt2, normal),
+                ((LightPixelShader)shader).light.calculateLighting(vt3, normal)
+            );
         }
         float det = 1 / (a*d-b*c);
         float m11 = d * det;
@@ -364,9 +381,10 @@ public class Camera {
             backpixels[i] = color;
             zbuf[i] = 0;
         }
-        setView(x, y, z, pan, tilt);
+        setView(position, pan, tilt);
         setProjection(fov, (float)width / (float)height, near, far);
         this.viewProjection = Matrix.multiply(view, projection);
+        this.inverseViewProjection = viewProjection.inverse();
     }
     public void endDraw()
     {
@@ -405,7 +423,7 @@ public class Camera {
         int miny = Math.max(top, 0);
         int maxy = Math.min(bottom, height - 1);
         image.getData().getPixels(0, 0, image.getWidth(), image.getHeight(), imagedata);
-        Vector3 normal = Vector3.normalize(new Vector3(x-position.x,y-position.y, z-position.z));
+        Vector3 normal = Vector3.normalize(Vector3.subtract(this.position, position));
         for(int y = miny; y <= maxy; y++)
             for(int x = minx; x <= maxx; x++)
             {

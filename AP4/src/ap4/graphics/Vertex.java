@@ -11,6 +11,7 @@ package ap4.graphics;
  */
 public class Vertex {
     public Vector3 position;
+    public Vector3 light;
     public Vertex()
     {
         position = new Vector3();

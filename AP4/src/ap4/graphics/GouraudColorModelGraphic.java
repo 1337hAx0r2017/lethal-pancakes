@@ -20,9 +20,9 @@ public class GouraudColorModelGraphic extends ModelGraphic {
             int c3 = ((ColorVertex)v3).color;
             if(light != null)
             {
-                c1 = light.calculateColor(c1, world.transform(v1.position), normal);
-                c2 = light.calculateColor(c2, world.transform(v2.position), normal);
-                c3 = light.calculateColor(c3, world.transform(v3.position), normal);
+                c1 = Light.multiply(c1, vl1);
+                c2 = Light.multiply(c2, vl2);
+                c3 = Light.multiply(c3, vl3);
             }
             return 0xff000000 | interpolate(c1, c2, c3, l1, l2, l3);
         }
