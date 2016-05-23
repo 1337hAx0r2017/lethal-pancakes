@@ -36,8 +36,8 @@ public class GamePanel extends GeneralGamePanel {
         add(loadingPanel);
         
         game = new Game(this);
-        //game.camera.setTilt(-10);
-        //game.camera.setPosition(8, 10, 6);
+        game.camera.setTilt(-10);
+        game.camera.setPosition(8, 10, 6);
         control = new Controller();
         game.attachController(control);
         add(control);
