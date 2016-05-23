@@ -86,7 +86,7 @@ public class Player extends Character {
     public void draw(Game game) {
         visual.draw(game.camera, x, 0.3f, y, 1, game.theLight);
         
-        if (usingWeapon > 0)
+        if (usingWeapon > 0) // Sword swing
         {
             if (wepDir == 2)
             {
