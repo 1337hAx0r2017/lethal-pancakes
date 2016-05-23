@@ -49,7 +49,7 @@ public class Game {
         new Thread()
         {
             public void run() {
-                map = new Map(10);
+                map = new Map(200);
                 initialize();
                 running = true;
             }
@@ -166,6 +166,9 @@ public class Game {
                 camera.setPosition(camera.getX(), camera.getY() + 0.25f, camera.getZ());
             if (control._e.getDown())
                 camera.setPosition(camera.getX(), camera.getY() - 0.25f, camera.getZ());*/
+            
+            // Room stuff
+            map.update(this, time);
 
             // Player
             player.update(this, time);

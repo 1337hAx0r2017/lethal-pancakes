@@ -62,6 +62,14 @@ public class Room {
         return null;
     }
     
+    public void update(Game game, float time)
+    {
+        for (RoomObject ro : objects)
+        {
+            ro.update(game, time);
+        }
+    }
+    
     public void draw(Game game)
     {
         //Graphics2D g2d = (Graphics2D) g;

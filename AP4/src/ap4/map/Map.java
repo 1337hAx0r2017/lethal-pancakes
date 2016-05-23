@@ -269,6 +269,12 @@ public class Map {
         return true;
     }
   */  
+    
+    public void update(Game game, float time)
+    {
+        game.currentRoom.update(game, time);
+    }
+    
     public void draw(Game game)
     {
         /*for (int x = 0; x < rooms.length; x++)

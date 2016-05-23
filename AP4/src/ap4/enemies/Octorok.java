@@ -14,9 +14,9 @@ import javax.imageio.ImageIO;
 
 public class Octorok extends Enemy{
 
-    public Octorok(float x, float y, float movespeed)
+    public Octorok(float x, float y)
     {
-        super(x, y, movespeed);
+        super(x, y, 0.05f);
         try
         {
             visual = new TextureModelGraphic(

@@ -26,8 +26,8 @@ public abstract class RoomObject {
     }
     
     // Paint the images we put in
-    abstract void draw(Game game);
+    public abstract void draw(Game game);
     
     // Will be different in object3d and image object
-    abstract void update(Game game, float time);
+    public abstract void update(Game game, float time);
 }
