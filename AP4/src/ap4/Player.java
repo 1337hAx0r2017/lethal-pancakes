@@ -1,5 +1,6 @@
 package ap4;
 
+import ap4.graphics.Matrix;
 import ap4.graphics.TextureModelGraphic;
 import ap4.graphics.TextureVertex;
 import java.awt.Graphics;
@@ -48,10 +49,28 @@ public class Player extends Character {
             move(game);
         
         // Action buttons
-        if (game.control.d.getDown() && usingWeapon == 0)
+        if (usingWeapon == 0)
         {
-            usingWeapon = 1;
-            wepDir = 2;
+            if (game.control.w.getDown())
+            {
+                usingWeapon = 1;
+                wepDir = 1;
+            }
+            else if (game.control.d.getDown())
+            {
+                usingWeapon = 1;
+                wepDir = 2;
+            }
+            else if (game.control.s.getDown())
+            {
+                usingWeapon = 1;
+                wepDir = 3;
+            }
+            else if (game.control.a.getDown())
+            {
+                usingWeapon = 1;
+                wepDir = 4;
+            }
         }
         
         // Weapon anim
@@ -71,7 +90,23 @@ public class Player extends Character {
         {
             if (wepDir == 2)
             {
-                game.inventory.weapon.animFrames.get(usingWeapon - 1).draw(game.camera, x + 0.65f, 0.28f, y - 0.475f, 1, game.theLight);
+                Matrix world = Matrix.multiply(Matrix.multiply(Matrix.createTranslation(0.65f, 0, -0.475f), Matrix.createRotationY(Math.toRadians(0))), Matrix.createTranslation(x, 0.28f, y));
+                game.inventory.weapon.animFrames.get(usingWeapon - 1).draw(game.camera, world, game.theLight);
+            }
+            else if (wepDir == 1)
+            {
+                Matrix world = Matrix.multiply(Matrix.multiply(Matrix.createTranslation(-0.45f, 0, -0.625f), Matrix.createRotationY(Math.toRadians(90))), Matrix.createTranslation(x, 0.28f, y));
+                game.inventory.weapon.animFrames.get(usingWeapon - 1).draw(game.camera, world, game.theLight);
+            }
+            else if (wepDir == 3)
+            {
+                Matrix world = Matrix.multiply(Matrix.multiply(Matrix.createTranslation(1.0f, 0, -1.875f), Matrix.createRotationY(Math.toRadians(-90))), Matrix.createTranslation(x, 0.28f, y));
+                game.inventory.weapon.animFrames.get(usingWeapon - 1).draw(game.camera, world, game.theLight);
+            }
+            else if (wepDir == 4)
+            {
+                Matrix world = Matrix.multiply(Matrix.multiply(Matrix.createTranslation(-0.425f, 0, -2.1f), Matrix.createRotationY(Math.toRadians(190))), Matrix.createTranslation(x, 0.28f, y));
+                game.inventory.weapon.animFrames.get(usingWeapon - 1).draw(game.camera, world, game.theLight);
             }
         }
     }
