@@ -12,6 +12,8 @@ public class Player extends Character {
     public ArrayList<InvItem> items;
     public TextureModelGraphic visual;
     public boolean canMove = true;
+    public int usingWeapon = 0;
+    public int wepDir = 0;
     
     public Player(float x, float y, float moveSpeed){
         super(x, y, moveSpeed);
@@ -44,11 +46,34 @@ public class Player extends Character {
         // Movement
         if (canMove)
             move(game);
+        
+        // Action buttons
+        if (game.control.d.getDown() && usingWeapon == 0)
+        {
+            usingWeapon = 1;
+            wepDir = 2;
+        }
+        
+        // Weapon anim
+        if (usingWeapon > 0)
+        {
+            usingWeapon++;
+            if (usingWeapon > game.inventory.weapon.animFrames.size())
+                usingWeapon = 0;
+        }
     }
     
     @Override
     public void draw(Game game) {
         visual.draw(game.camera, x, 0.3f, y, 1, game.theLight);
+        
+        if (usingWeapon > 0)
+        {
+            if (wepDir == 2)
+            {
+                game.inventory.weapon.animFrames.get(usingWeapon - 1).draw(game.camera, x + 0.65f, 0.28f, y - 0.475f, 1, game.theLight);
+            }
+        }
     }
     
     @Override

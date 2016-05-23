@@ -102,7 +102,7 @@ public class GamePanel extends GeneralGamePanel {
         g2d.setColor(Color.WHITE);
         if (loading)
         {
-            g2d.drawImage(loadingImg, null, 250, 240);
+            g2d.drawImage(loadingImg, null, 250, 260);
         }
     }
 }
