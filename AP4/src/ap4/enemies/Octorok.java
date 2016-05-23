@@ -1,14 +1,11 @@
 package ap4.enemies;
 
-import ap4.Controller;
 import ap4.Enemy;
 import ap4.Etc;
 import ap4.Game;
+import ap4.graphics.TextureModelGraphic;
+import ap4.graphics.TextureVertex;
 import gui.Inventory;
-import gui.Window;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -20,9 +17,22 @@ public class Octorok extends Enemy{
     public Octorok(float x, float y, float movespeed)
     {
         super(x, y, movespeed);
-         try
+        try
         {
-            visual = ImageIO.read(new URL(Etc.host + "zeldashield.png"));
+            visual = new TextureModelGraphic(
+                    new TextureVertex[]
+                    {
+                        new TextureVertex(0, 0, 0, 0, 0),
+                        new TextureVertex(0.77777f, 0, 0, 1, 0),
+                        new TextureVertex(0, 0, 1, 0, 1),
+                        new TextureVertex(0.77777f, 0, 1, 1, 1),
+                    },
+                    new short[]
+                    {
+                        0, 1, 2,
+                        2, 1, 3,
+                    },
+                    ImageIO.read(new URL(Etc.host + "tael.png")));
         }
         catch (IOException ex)
         { Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex); }
@@ -30,7 +40,7 @@ public class Octorok extends Enemy{
     
     @Override
     public void draw(Game game) {
-        
+        visual.draw(game.camera, x, 0.31f, y, 1, game.theLight);
     }
     @Override
     public void update(Game game, float time) {
