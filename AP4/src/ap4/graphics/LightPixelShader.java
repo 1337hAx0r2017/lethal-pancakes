@@ -13,8 +13,17 @@ public abstract class LightPixelShader extends PixelShader {
     Light light;
     Vector3 normal;
     Matrix world;
+    int vl1;
+    int vl2;
+    int vl3;
     public void setPreferredLight(Light light) { this.light = light; }
-    public void setNormal(Vector3 normal) { this.normal = normal; }
-    public void setWorld(Matrix world) { this.world = world; }
-    public void setNormal(Vertex v1, Vertex v2, Vertex v3) { this.normal = Vector3.normalize(world.transformNormal(Vector3.cross(Vector3.subtract(v3.position, v1.position), Vector3.subtract(v2.position, v1.position)))); }
+    //public void setNormal(Vector3 normal) { this.normal = normal; }
+    //public void setWorld(Matrix world) { this.world = world; }
+    //public void setNormal(Vertex v1, Vertex v2, Vertex v3) { this.normal = Vector3.normalize(world.transformNormal(Vector3.cross(Vector3.subtract(v3.position, v1.position), Vector3.subtract(v2.position, v1.position)))); }
+
+    void setVertexLights(int vl1, int vl2, int vl3) {
+        this.vl1 = vl1;
+        this.vl2 = vl2;
+        this.vl3 = vl3;
+    }
 }

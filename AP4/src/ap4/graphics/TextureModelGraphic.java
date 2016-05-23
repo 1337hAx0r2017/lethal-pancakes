@@ -54,7 +54,7 @@ public class TextureModelGraphic extends ModelGraphic {
             int c = textureSample(interpolate(vu1, vu2, vu3, l1, l2, l3) / w, interpolate(vv1, vv2, vv3, l1, l2, l3) / w);
             if(light != null)
             {
-                int l = light.calculateLighting(interpolate(world.transform(v1.position), world.transform(v2.position), world.transform(v3.position), l1, l2, l3), normal);
+                int l = interpolate(vl1, vl2, vl3, l1, l2, l3);
                 return Light.multiply(c, l);
             }
             else
