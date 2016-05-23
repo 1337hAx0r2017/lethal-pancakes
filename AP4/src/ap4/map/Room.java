@@ -25,7 +25,7 @@ public class Room {
             doormodel = new DoorModel();//ImageIO.read(new URL(Etc.host + "darkwoodwalls90r.jpg")));
     }
     
-    public ArrayList<RoomObject> objects;
+    public ArrayList<RoomObject> objects = new ArrayList<>();
     
     public Tile[][] tiles;
     public boolean tilesFinalized = false;
@@ -68,6 +68,7 @@ public class Room {
         {
             ro.update(game, time);
         }
+        System.out.println(this + ": " + objects.size());
     }
     
     public void draw(Game game)
@@ -97,6 +98,13 @@ public class Room {
         {
             cap.draw(game.camera, this.x - 1, this.y, this.z + z, 1, game.theLight);
             cap.draw(game.camera, this.x + width, this.y, this.z + z, 1, game.theLight);
+        }
+        
+        // Enemies
+        if (this == game.currentRoom)
+        {
+            for (RoomObject ro : objects)
+                ro.draw(game);
         }
     }
     

@@ -13,7 +13,7 @@ public class Room11 extends Room {
         
         // First make all tiles air tiles (they have floor though) via blankTiles(), called in super class
         // Now add other tiles (rocks, walls, etc)
-        objects.add(new Octorok(this.x + 3, this.z + 3));
+       objects.add(new Octorok(3, 3));
        
         // Finalize tiles
         finalizeTiles();

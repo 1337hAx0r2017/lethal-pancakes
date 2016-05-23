@@ -8,11 +8,12 @@ import ap4.graphics.TextureVertex;
 import gui.Inventory;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-public class Octorok extends Enemy{
+public class Octorok extends Enemy {
 
     public Octorok(float x, float y)
     {
@@ -32,7 +33,7 @@ public class Octorok extends Enemy{
                         0, 1, 2,
                         2, 1, 3,
                     },
-                    ImageIO.read(new URL(Etc.host + "tael.png")));
+                    ImageIO.read(new URL(Etc.host + "octorok.png")));
         }
         catch (IOException ex)
         { Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex); }
@@ -40,11 +41,11 @@ public class Octorok extends Enemy{
     
     @Override
     public void draw(Game game) {
-        visual.draw(game.camera, x, 0.31f, y, 1, game.theLight);
+        visual.draw(game.camera, x, 0.25f, y, 1.5f, game.theLight);
     }
     @Override
     public void update(Game game, float time) {
-       // specific to this class' move method
+        wander(game);
     }
 
     @Override

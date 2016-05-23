@@ -49,7 +49,7 @@ public class Game {
         new Thread()
         {
             public void run() {
-                map = new Map(200);
+                map = new Map(10);
                 initialize();
                 running = true;
             }
@@ -82,8 +82,15 @@ public class Game {
                 {
                     if (map.rooms[c][r] instanceof StartingRoom)
                         rs.add(map.rooms[c][r]);
+                    // Global room positions
                     map.rooms[c][r].z = r * 14;
                     map.rooms[c][r].x = c * 18;
+                    // Enemy positions
+                    for (RoomObject ro : map.rooms[c][r].objects)
+                    {
+                        ro.x = ro.x + map.rooms[c][r].x;
+                        ro.y = ro.y + map.rooms[c][r].z;
+                    }
                 }
             }
         }

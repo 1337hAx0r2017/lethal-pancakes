@@ -1,5 +1,6 @@
 package ap4.rooms;
 
+import ap4.enemies.Octorok;
 import ap4.map.Room;
 
 public class Room14 extends Room {
@@ -12,7 +13,8 @@ public class Room14 extends Room {
         exits[3] = true;
         
         // First make all tiles air tiles (they have floor though) via blankTiles(), called in super class
-        // Now add other tiles (rocks, walls, etc)
+        // Now add other tiles (rocks, walls, etc).
+        objects.add(new Octorok(3, 3));
        
         // Finalize tiles
         finalizeTiles();
