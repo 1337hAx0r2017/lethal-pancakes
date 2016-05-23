@@ -5,6 +5,7 @@ import ap4.graphics.Light;
 import ap4.map.Map;
 import ap4.map.Room;
 import ap4.rooms.StartingRoom;
+import gui.GamePanel;
 import gui.Inventory;
 import gui.MiniMap;
 import java.awt.Graphics;
@@ -16,10 +17,9 @@ public class Game {
     public Controller control;
     public Inventory inventory;
     public Camera camera;
-    public Runnable logicRunnable;
-    public Thread logicThread;
+    public GamePanel gp;
     
-    public int state = 0;
+    public boolean running;
     public Map map;
     public Room currentRoom;
     public MiniMap minimap;
@@ -35,11 +35,29 @@ public class Game {
     
     public Game()
     {
+        // null
+    }
+    
+    public Game(GamePanel gp)
+    {
+        this.gp = gp;
+        running = false;
+        
         camera = new Camera(790, 620);
         camera.setZBuffer(true);
         
-        map = new Map(10);
-        
+        new Thread()
+        {
+            public void run() {
+                map = new Map(10);
+                initialize();
+                running = true;
+            }
+        }.start();
+    }
+    
+    private void initialize()
+    {
         // Show map in console for verification purposes
         for (int r = 0; r < map.rooms[0].length; r++)
         {
@@ -75,7 +93,7 @@ public class Game {
         System.out.println("Map gen done");
         
         // Minimap
-        minimap = new MiniMap(map, 10);
+        minimap = new MiniMap(map, 12);
         
         // Set start room from candidates
         Room sr = rs.get(new Random().nextInt(rs.size()));
@@ -90,6 +108,8 @@ public class Game {
         
         // Add player
         player = new Player(sr.x + 7.5f, sr.z + 6f, 0.035f);
+        
+        gp.clearLoadingPanel();
     }
     
     public void moveCamera(String dir)
@@ -131,83 +151,92 @@ public class Game {
     //////////// UPDATE ///////////////
     public void update(float time)
     {
-        // Camera panning
-        if (control._w.getDown())
-            camera.setPosition(camera.getX(), camera.getY(), camera.getZ() - 0.2f);
-        if (control._s.getDown())
-            camera.setPosition(camera.getX(), camera.getY(), camera.getZ() + 0.2f);
-        if (control._a.getDown())
-            camera.setPosition(camera.getX() - 0.2f, camera.getY(), camera.getZ());
-        if (control._d.getDown())
-            camera.setPosition(camera.getX() + 0.2f, camera.getY(), camera.getZ());
-        if (control._q.getDown())
-            camera.setPosition(camera.getX(), camera.getY() + 0.25f, camera.getZ());
-        if (control._e.getDown())
-            camera.setPosition(camera.getX(), camera.getY() - 0.25f, camera.getZ());
-        
-        // Player
-        player.update(this, time);
-        
-        // Shifting rooms (operating)
-        if (operating > 0)
+        if (running)
         {
-            camera.setPosition(camera.getX() + ((cgx - camera.getX()) / 5), 10, camera.getZ() + ((cgz - camera.getZ()) / 5));
-            player.x += (pgx - player.x) / 5;
-            player.y += (pgy - player.y) / 5;
-            if (Math.abs(cgx - camera.getX()) < 0.05 && Math.abs(cgz - camera.getZ()) < 0.05)
+            // Camera panning
+            /*if (control._w.getDown())
+                camera.setPosition(camera.getX(), camera.getY(), camera.getZ() - 0.2f);
+            if (control._s.getDown())
+                camera.setPosition(camera.getX(), camera.getY(), camera.getZ() + 0.2f);
+            if (control._a.getDown())
+                camera.setPosition(camera.getX() - 0.2f, camera.getY(), camera.getZ());
+            if (control._d.getDown())
+                camera.setPosition(camera.getX() + 0.2f, camera.getY(), camera.getZ());
+            if (control._q.getDown())
+                camera.setPosition(camera.getX(), camera.getY() + 0.25f, camera.getZ());
+            if (control._e.getDown())
+                camera.setPosition(camera.getX(), camera.getY() - 0.25f, camera.getZ());*/
+
+            // Player
+            player.update(this, time);
+
+            // Shifting rooms (operating)
+            if (operating > 0)
             {
-                camera.setPosition(cgx, 10, cgz);
-                if (operating == 1)
+                camera.setPosition(camera.getX() + ((cgx - camera.getX()) / 5), 10, camera.getZ() + ((cgz - camera.getZ()) / 5));
+                player.x += (pgx - player.x) / 5;
+                player.y += (pgy - player.y) / 5;
+                if (Math.abs(cgx - camera.getX()) < 0.05 && Math.abs(cgz - camera.getZ()) < 0.05)
                 {
-                    int r = (int)(currentRoom.z / 14);
-                    int c = (int)(currentRoom.x / 18);
-                    currentRoom = map.rooms[c][r - 1];
+                    camera.setPosition(cgx, 10, cgz);
+                    if (operating == 1)
+                    {
+                        int r = (int)(currentRoom.z / 14);
+                        int c = (int)(currentRoom.x / 18);
+                        currentRoom = map.rooms[c][r - 1];
+                    }
+                    else if (operating == 3)
+                    {
+                        int r = (int)(currentRoom.z / 14);
+                        int c = (int)(currentRoom.x / 18);
+                        currentRoom = map.rooms[c][r + 1];
+                    }
+                    else if (operating == 2)
+                    {
+                        int r = (int)(currentRoom.z / 14);
+                        int c = (int)(currentRoom.x / 18);
+                        currentRoom = map.rooms[c + 1][r];
+                    }
+                    else if (operating == 4)
+                    {
+                        int r = (int)(currentRoom.z / 14);
+                        int c = (int)(currentRoom.x / 18);
+                        currentRoom = map.rooms[c - 1][r];
+                    }
+                    player.canMove = true;
+                    operating = 0;
                 }
-                else if (operating == 3)
-                {
-                    int r = (int)(currentRoom.z / 14);
-                    int c = (int)(currentRoom.x / 18);
-                    currentRoom = map.rooms[c][r + 1];
-                }
-                else if (operating == 2)
-                {
-                    int r = (int)(currentRoom.z / 14);
-                    int c = (int)(currentRoom.x / 18);
-                    currentRoom = map.rooms[c + 1][r];
-                }
-                else if (operating == 4)
-                {
-                    int r = (int)(currentRoom.z / 14);
-                    int c = (int)(currentRoom.x / 18);
-                    currentRoom = map.rooms[c - 1][r];
-                }
-                player.canMove = true;
-                operating = 0;
             }
+
+            //temporary
+                minimap.playerEntered((int)camera.getX() / 18, (int)camera.getZ() / 14);
         }
-        
-        //temporary
-            minimap.playerEntered((int)camera.getX() / 18, (int)camera.getZ() / 14);
     }
     
     //////////// DRAWING ///////////////
     public void drawRender(Light l)
     {
-        theLight = l;
-        
-        if (map != null)
-            map.draw(this);
-        
-        player.draw(this);
+        if (running)
+        {
+            theLight = l;
+
+            if (map != null)
+                map.draw(this);
+
+            player.draw(this);
+        }
     }
     
     public void subdraw(Graphics g)
     {
-        // Inventory
-        inventory.draw(g);
-        
-        // Minimap
-        minimap.draw(g, 5, 575 - minimap.getHeight());
+        if (running)
+        {
+            // Inventory
+            inventory.draw(g);
+
+            // Minimap
+            minimap.draw(g, 5, 575 - minimap.getHeight());
+        }
     }
     
     public void attachController(Controller control)
