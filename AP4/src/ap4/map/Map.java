@@ -15,7 +15,7 @@ public class Map {
         int sizeY;
         int nRooms = 0;
         int n;
-        
+        //shish
     static
     {
         random = new Random();
@@ -271,14 +271,47 @@ public class Map {
   */  
     public void draw(Game game)
     {
-        for (int x = 0; x < rooms.length; x++)
+        /*for (int x = 0; x < rooms.length; x++)
             for (int y = 0; y < rooms[0].length; y++)
             {
                 if (rooms[x][y] != null)
                 {
                     rooms[x][y].draw(game);
                 }
-            }
+            }*/
+        int c = (int)(game.currentRoom.x / 18);
+        int r = (int)(game.currentRoom.z / 14);
+        if (r - 1 > -1)
+        {
+            if (c - 1 > -1)
+                if (rooms[c - 1][r - 1] != null)
+                    rooms[c - 1][r - 1].draw(game);
+            if (rooms[c][r - 1] != null)
+                    rooms[c][r - 1].draw(game);
+            if (c + 1 < rooms.length)
+                if (rooms[c + 1][r - 1] != null)
+                    rooms[c + 1][r - 1].draw(game);
+        }
+        
+        if (c - 1 > -1)
+            if (rooms[c - 1][r] != null)
+                rooms[c - 1][r].draw(game);
+        rooms[c][r].draw(game);
+        if (c + 1 < rooms.length)
+            if (rooms[c + 1][r] != null)
+                rooms[c + 1][r].draw(game);
+        
+        if (r + 1 < rooms[0].length)
+        {
+            if (c - 1 > -1)
+                if (rooms[c - 1][r + 1] != null)
+                    rooms[c - 1][r + 1].draw(game);
+            if (rooms[c][r + 1] != null)
+                rooms[c][r + 1].draw(game);
+            if (c + 1 < rooms.length)
+                if (rooms[c + 1][r + 1] != null)
+                    rooms[c + 1][r + 1].draw(game);
+        }
     }
     
     private class PathNode

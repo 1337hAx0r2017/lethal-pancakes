@@ -154,13 +154,13 @@ public class Game {
         if (running)
         {
             // Camera panning
-            /*if (control._w.getDown())
+            /*if (control.w.getDown())
                 camera.setPosition(camera.getX(), camera.getY(), camera.getZ() - 0.2f);
-            if (control._s.getDown())
+            if (control.s.getDown())
                 camera.setPosition(camera.getX(), camera.getY(), camera.getZ() + 0.2f);
-            if (control._a.getDown())
+            if (control.a.getDown())
                 camera.setPosition(camera.getX() - 0.2f, camera.getY(), camera.getZ());
-            if (control._d.getDown())
+            if (control.d.getDown())
                 camera.setPosition(camera.getX() + 0.2f, camera.getY(), camera.getZ());
             if (control._q.getDown())
                 camera.setPosition(camera.getX(), camera.getY() + 0.25f, camera.getZ());
