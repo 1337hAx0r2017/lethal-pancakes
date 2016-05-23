@@ -1,8 +1,5 @@
 package ap4;
 
-import java.awt.Graphics;
-import java.util.ArrayList;
-
 public abstract class Character extends RoomObject
 {
     public float moveSpeed;
@@ -18,7 +15,6 @@ public abstract class Character extends RoomObject
     
     @Override
     public abstract void update(Game game, float time);
-    public abstract void draw(Graphics g);
-    public abstract void move(Game game, Controller controls);
-    //this probably shouldn't exist in Character, at least with Controller
+    public abstract void draw(Game game);
+    public abstract void move(Game game);
 }

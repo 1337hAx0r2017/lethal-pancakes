@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ap4.enemies;
 
 import ap4.Controller;
@@ -20,10 +15,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-/**
- *
- * @author kardzhalao.2017
- */
 public class Dampe extends Enemy{
     
     public Dampe(float x, float y, float movespeed)
@@ -36,12 +27,10 @@ public class Dampe extends Enemy{
         catch (IOException ex)
         { Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex); }
     }
+    
     @Override
-    public void draw(Graphics g) {
-        //import image of an octorok
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.drawImage(visual, null, Window.sx - 133, Window.sy - 95);
+    public void draw(Game game) {
+        
     }
 
     @Override
@@ -50,7 +39,7 @@ public class Dampe extends Enemy{
     }
 
     @Override
-    public void move(Game game, Controller controls) {
+    public void move(Game game) {
         //movement specific to dampe
     }
 }

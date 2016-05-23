@@ -40,7 +40,7 @@ public class GamePanel extends GeneralGamePanel {
         game.camera.beginDraw();
         
         //Draw ALL THE THINGS
-        game.drawStuff(light);
+        game.drawRender(light);
         
         game.camera.endDraw();
     }

@@ -22,7 +22,7 @@ public abstract class Enemy extends Character{
     }
     
     @Override
-    public abstract void draw(Graphics g);
+    public abstract void draw(Game g);
     @Override
     public abstract void update(Game game, float time);
 }

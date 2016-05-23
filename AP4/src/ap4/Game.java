@@ -23,6 +23,8 @@ public class Game {
     public Map map;
     public MiniMap minimap;
     public Light theLight;
+    
+    public Player player;
         
     
     public Game()
@@ -32,7 +34,7 @@ public class Game {
         
         map = new Map(10);
         
-        //
+        // Show map in console for verification purposes
         for (int r = 0; r < map.rooms[0].length; r++)
         {
             String line = "";
@@ -75,14 +77,18 @@ public class Game {
         minimap.playerEntered(map.getXOf(sr), map.getYOf(sr));
         
         // Camera position
-        camera.setPosition(sr.x + 8, 10, sr.z + 6.5f);
+        camera.setPosition(sr.x + 8f, 10, sr.z + 6.5f);
         camera.setTilt(-90);
         System.out.println(camera.getX() + " " + camera.getY() + " " + camera.getZ());
+        
+        // Add player
+        player = new Player(sr.x + 7.5f, sr.z + 6f, 0.025f);
     }
 
     //////////// UPDATE ///////////////
     public void update(float time)
     {
+        // Camera panning
         if (control._w.getDown())
             camera.setPosition(camera.getX(), camera.getY(), camera.getZ() - 0.2f);
         if (control._s.getDown())
@@ -96,23 +102,30 @@ public class Game {
         if (control._e.getDown())
             camera.setPosition(camera.getX(), camera.getY() - 0.25f, camera.getZ());
         
+        // Player
+        player.update(this, time);
+        
         //temporary
             minimap.playerEntered((int)camera.getX() / 18, (int)camera.getZ() / 14);
     }
     
     //////////// DRAWING ///////////////
-    public void drawStuff(Light l)
+    public void drawRender(Light l)
     {
         theLight = l;
         
         if (map != null)
             map.draw(this);
+        
+        player.draw(this);
     }
     
     public void subdraw(Graphics g)
     {
+        // Inventory
         inventory.draw(g);
         
+        // Minimap
         minimap.draw(g, 5, 575 - minimap.getHeight());
     }
     
