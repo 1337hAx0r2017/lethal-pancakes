@@ -15,7 +15,7 @@ public class Map {
         int sizeY;
         int nRooms = 0;
         int n;
-        
+        //shish
     static
     {
         random = new Random();
