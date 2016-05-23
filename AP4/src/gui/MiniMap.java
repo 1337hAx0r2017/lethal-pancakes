@@ -42,12 +42,12 @@ public class MiniMap {
         for(int ry = 0; ry < map.rooms[0].length; ry++)
             for(int rx = 0; rx < map.rooms.length; rx++)
             {
-                if(rx < map.rooms.length - 1 && map.rooms[rx][ry] != null && map.rooms[rx + 1][ry] != null && (discovered.contains(map.rooms[rx][ry]) || discovered.contains(map.rooms[rx + 1][ry])))
+                if(rx < map.rooms.length - 1 && map.rooms[rx][ry] != null && map.rooms[rx + 1][ry] != null && map.rooms[rx][ry].exits[1] && map.rooms[rx+1][ry].exits[3] && (discovered.contains(map.rooms[rx][ry]) || discovered.contains(map.rooms[rx + 1][ry])))
                 {
                     g.setColor(Color.CYAN);
                     g.fillRect(x + rx * (roomSize + 2) + roomSize + 1, y + (ry * (roomSize + 2) + 1) + roomSize / 2 - 2, 2, 4);
                 }
-                if(ry < map.rooms[0].length - 1 && map.rooms[rx][ry] != null && map.rooms[rx][ry + 1] != null && (discovered.contains(map.rooms[rx][ry]) || discovered.contains(map.rooms[rx][ry + 1])))
+                if(ry < map.rooms[0].length - 1 && map.rooms[rx][ry] != null && map.rooms[rx][ry + 1] != null && map.rooms[rx][ry].exits[2] && map.rooms[rx][ry+1].exits[0] && (discovered.contains(map.rooms[rx][ry]) || discovered.contains(map.rooms[rx][ry + 1])))
                 {
                     g.setColor(Color.CYAN);
                     g.fillRect(x + rx * (roomSize + 2) + roomSize / 2 - 2 + 1, y + (ry * (roomSize + 2) + 1) + roomSize, 4, 2);
