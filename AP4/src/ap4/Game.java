@@ -21,11 +21,17 @@ public class Game {
     
     public int state = 0;
     public Map map;
+    public Room currentRoom;
     public MiniMap minimap;
     public Light theLight;
     
+    public int operating = 0;
+    public float cgx = 0f;
+    public float cgz = 0f;
+    public float pgx = 0f;
+    public float pgy = 0f;
+    
     public Player player;
-        
     
     public Game()
     {
@@ -74,6 +80,7 @@ public class Game {
         // Set start room from candidates
         Room sr = rs.get(new Random().nextInt(rs.size()));
         sr.isTheStartRoom = true;
+        currentRoom = sr;
         minimap.playerEntered(map.getXOf(sr), map.getYOf(sr));
         
         // Camera position
@@ -82,7 +89,43 @@ public class Game {
         System.out.println(camera.getX() + " " + camera.getY() + " " + camera.getZ());
         
         // Add player
-        player = new Player(sr.x + 7.5f, sr.z + 6f, 0.025f);
+        player = new Player(sr.x + 7.5f, sr.z + 6f, 0.035f);
+    }
+    
+    public void moveCamera(String dir)
+    {
+        if (dir.equals("up"))
+        {
+            cgx = camera.getX();
+            cgz = camera.getZ() - 14;
+            pgx = player.x;
+            pgy = player.y - 3.1f;
+            operating = 1;
+        }
+        else if (dir.equals("down"))
+        {
+            cgx = camera.getX();
+            cgz = camera.getZ() + 14;
+            pgx = player.x;
+            pgy = player.y + 3.1f;
+            operating = 3;
+        }
+        else if (dir.equals("right"))
+        {
+            cgx = camera.getX() + 18;
+            cgz = camera.getZ();
+            pgx = player.x + 3.1f;
+            pgy = player.y;
+            operating = 2;
+        }
+        else if (dir.equals("left"))
+        {
+            cgx = camera.getX() - 18;
+            cgz = camera.getZ();
+            pgx = player.x - 3.1f;
+            pgy = player.y;
+            operating = 4;
+        }
     }
 
     //////////// UPDATE ///////////////
@@ -104,6 +147,44 @@ public class Game {
         
         // Player
         player.update(this, time);
+        
+        // Shifting rooms (operating)
+        if (operating > 0)
+        {
+            camera.setPosition(camera.getX() + ((cgx - camera.getX()) / 5), 10, camera.getZ() + ((cgz - camera.getZ()) / 5));
+            player.x += (pgx - player.x) / 5;
+            player.y += (pgy - player.y) / 5;
+            if (Math.abs(cgx - camera.getX()) < 0.05 && Math.abs(cgz - camera.getZ()) < 0.05)
+            {
+                camera.setPosition(cgx, 10, cgz);
+                if (operating == 1)
+                {
+                    int r = (int)(currentRoom.z / 14);
+                    int c = (int)(currentRoom.x / 18);
+                    currentRoom = map.rooms[c][r - 1];
+                }
+                else if (operating == 3)
+                {
+                    int r = (int)(currentRoom.z / 14);
+                    int c = (int)(currentRoom.x / 18);
+                    currentRoom = map.rooms[c][r + 1];
+                }
+                else if (operating == 2)
+                {
+                    int r = (int)(currentRoom.z / 14);
+                    int c = (int)(currentRoom.x / 18);
+                    currentRoom = map.rooms[c + 1][r];
+                }
+                else if (operating == 4)
+                {
+                    int r = (int)(currentRoom.z / 14);
+                    int c = (int)(currentRoom.x / 18);
+                    currentRoom = map.rooms[c - 1][r];
+                }
+                player.canMove = true;
+                operating = 0;
+            }
+        }
         
         //temporary
             minimap.playerEntered((int)camera.getX() / 18, (int)camera.getZ() / 14);

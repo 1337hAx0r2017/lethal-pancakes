@@ -42,10 +42,10 @@ public class Room {
     {
         tiles = new Tile[width][height];
         
-        exits[0] = ex[0];
-        exits[1] = ex[1];
-        exits[2] = ex[2];
-        exits[3] = ex[3];
+        exits[0] = ex[0]; // North
+        exits[1] = ex[1]; // East
+        exits[2] = ex[2]; // South
+        exits[3] = ex[3]; // West
         
         blankTiles();
     }
